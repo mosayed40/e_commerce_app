@@ -7,12 +7,15 @@ class CustomTitleHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        color: AppColors.primaryColor,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: AppColors.primaryColor,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
