@@ -15,21 +15,24 @@ class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
   HomeData homeData = HomeData(Get.find<Crud>());
 
-  List data = [];
+  // List data = [];
+  List categories = [];
+  List items = [];
 
   late StatusRequest statusRequest;
 
   String? username;
-  String? id;
+  int? id;
 
   @override
   initialData() {
     username = myServices.sharedPreferences.getString("username");
-    id = myServices.sharedPreferences.getString("id");
+    id = myServices.sharedPreferences.getInt("id");
   }
 
   @override
   void onInit() {
+    getData();
     initialData();
     super.onInit();
   }
@@ -41,7 +44,8 @@ class HomeControllerImp extends HomeController {
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        data.addAll(response);
+        categories.addAll(response['categories']['data']);
+        items.addAll(response['items']['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
