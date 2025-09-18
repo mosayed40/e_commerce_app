@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/localization/translation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_commerce_app/binding/initialBinding.dart';
+import 'package:e_commerce_app/binding/initial_binding.dart';
 import 'package:e_commerce_app/core/localization/changelocal.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/routes.dart';
@@ -9,7 +9,7 @@ import 'package:e_commerce_app/routes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Handling a background message: ${message.messageId}");
+  // print("Handling a background message: ${message.messageId}");
 }
 
 void main() async {

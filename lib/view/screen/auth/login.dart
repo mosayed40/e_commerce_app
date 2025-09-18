@@ -9,7 +9,7 @@ import 'package:e_commerce_app/core/functions/valid_input.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_body_auth.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_form_auth.dart';
-import 'package:e_commerce_app/view/widget/auth/custom_text_signUp.dart';
+import 'package:e_commerce_app/view/widget/auth/custom_text_signup.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_title_auth.dart';
 
 class Login extends StatelessWidget {
@@ -53,7 +53,7 @@ class Login extends StatelessWidget {
                   const SizedBox(height: 60),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 11, 50, "email");
+                      return vaildInput(val!, 11, 50, "email");
                     },
                     labelText: "labelEmail",
                     hintText: "lintEmail",
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
                         myController.update();
                       },
                       valid: (val) {
-                        return VaildInput(val!, 6, 30, "password");
+                        return vaildInput(val!, 6, 30, "password");
                       },
                       labelText: "labelPassword",
                       hintText: "lintPasword",

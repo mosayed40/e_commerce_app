@@ -19,11 +19,11 @@ class CategoriesModle {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['categories_id'] = this.categoriesId;
-    data['categories_name'] = this.categoriesName;
-    data['categories_image'] = this.categoriesImage;
-    data['categories_datetime'] = this.categoriesDatetime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['categories_id'] = categoriesId;
+    data['categories_name'] = categoriesName;
+    data['categories_image'] = categoriesImage;
+    data['categories_datetime'] = categoriesDatetime;
     return data;
   }
 }

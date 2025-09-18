@@ -41,7 +41,7 @@ class CheckEamil extends StatelessWidget {
 
               CustomTextFormAuth(
                 valid: (val) {
-                  return VaildInput(val!, 6, 50, "email");
+                  return vaildInput(val!, 6, 50, "email");
                 },
                 labelText: "labelEmail",
                 hintText: "lintEmail",

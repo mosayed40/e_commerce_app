@@ -44,7 +44,7 @@ class ResetPassword extends StatelessWidget {
                   const SizedBox(height: 60),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 5, 30, "password");
+                      return vaildInput(val!, 5, 30, "password");
                     },
                     labelText: "labelPassword",
                     hintText: "lintPasword",
@@ -54,7 +54,7 @@ class ResetPassword extends StatelessWidget {
                   const SizedBox(height: 15),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 5, 30, "password");
+                      return vaildInput(val!, 5, 30, "password");
                     },
                     labelText: "labelConfirmPassword",
                     hintText: "hintConfirmPassword",

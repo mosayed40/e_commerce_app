@@ -25,7 +25,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          print("==========success forget password==============");
+          // print("==========success forget password==============");
 
           Get.offNamed(
             AppRoute.verfiyCodeForgetPassword,
@@ -39,7 +39,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
             backgroundColor: const Color(0xFFAE3B33),
             colorText: Colors.white,
           );
-          print("==========failure forget password==============");
+          // print("==========failure forget password==============");
           statusRequest = StatusRequest.failure;
         }
       }

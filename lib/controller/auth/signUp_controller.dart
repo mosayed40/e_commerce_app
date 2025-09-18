@@ -40,7 +40,6 @@ class SignUpControllerImp extends SignupController {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          // data.addAll(response);
           Get.offNamed(
             AppRoute.verfiyCodeSignUp,
             arguments: {"email": email.text},
@@ -50,7 +49,7 @@ class SignUpControllerImp extends SignupController {
             "Warning",
             "Phone number or email already exists",
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: const Color.fromARGB(255, 174, 59, 51),
+            backgroundColor: const Color(0xFFAE3B33),
             colorText: Colors.white,
           );
           statusRequest = StatusRequest.failure;

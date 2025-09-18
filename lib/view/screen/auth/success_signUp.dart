@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
@@ -29,16 +31,13 @@ class SuccessSignup extends StatelessWidget {
             SizedBox(height: 30),
             Icon(Icons.check_circle, size: 150, color: AppColors.primaryColor),
             Lottie.asset(AppImageAsset.verfiySuccess, height: 250, width: 250),
-            // Icon(Icons.check_circle, size: 150, color: AppColors.primaryColor),
-            Lottie.asset(AppImageAsset.verfiySuccess, height: 250, width: 250),
-            // Icon(Icons.check_circle, size: 150, color: AppColors.primaryColor),
             SizedBox(height: 20),
             Text(
               "39".tr,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            Container(
+            SizedBox(
               width: 300,
               child: CustomButtonAuth(
                 text: "31",

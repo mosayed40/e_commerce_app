@@ -18,8 +18,8 @@ class Crud {
         return Left(StatusRequest.offlinefailure);
       }
     } catch (err) {
-      print(" catch =================================== serverExeption");
-      print(err);
+      // print(" catch =================================== serverExeption");
+      // print(err);
       return Left(StatusRequest.serverexception);
     }
   }

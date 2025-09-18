@@ -3,7 +3,7 @@ import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/auth/login.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
@@ -64,7 +64,6 @@ class LoginControllerImp extends LoginController {
           );
 
           statusRequest = StatusRequest.failure;
-          print("failure=============== Login ====================");
         }
       }
     }
@@ -78,13 +77,9 @@ class LoginControllerImp extends LoginController {
 
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      print(
-        "-============== Firebase Messaging Login =======================-",
-      );
-      String? token = value;
-      print(token);
-    });
+    // FirebaseMessaging.instance.getToken().then((value) {
+    //   String? token = value;
+    // });
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();

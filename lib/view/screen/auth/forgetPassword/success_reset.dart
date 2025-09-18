@@ -32,7 +32,7 @@ class SuccessResetPassword extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            Container(
+            SizedBox(
               child: Text(
                 "44".tr,
                 textAlign: TextAlign.center,
@@ -40,7 +40,7 @@ class SuccessResetPassword extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30),
-            Container(
+            SizedBox(
               width: 300,
               child: CustomButtonAuth(
                 text: "31",

@@ -9,7 +9,7 @@ import 'package:e_commerce_app/view/screen/auth/login.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/reset_password.dart';
 import 'package:e_commerce_app/view/screen/auth/sign_up.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/success_reset.dart';
-import 'package:e_commerce_app/view/screen/auth/success_signUp.dart';
+import 'package:e_commerce_app/view/screen/auth/success_signup.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/verfiy_code.dart';
 import 'package:e_commerce_app/view/screen/auth/verfiy_code_signup.dart';
 import 'package:e_commerce_app/view/screen/on_boarding.dart';

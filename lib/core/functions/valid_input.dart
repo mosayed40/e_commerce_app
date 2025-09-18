@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-VaildInput(String val, int min, int max, String type) {
+vaildInput(String val, int min, int max, String type) {
   if (val.isEmpty) {
     return 'Input cannot be empty';
   }

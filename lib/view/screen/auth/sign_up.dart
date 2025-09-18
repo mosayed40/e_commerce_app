@@ -1,13 +1,13 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_commerce_app/controller/auth/signUp_controller.dart';
+import 'package:e_commerce_app/controller/auth/signup_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/valid_input.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_body_auth.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_form_auth.dart';
-import 'package:e_commerce_app/view/widget/auth/custom_text_signUp.dart';
+import 'package:e_commerce_app/view/widget/auth/custom_text_signup.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_title_auth.dart';
 
 class SignUp extends StatelessWidget {
@@ -49,7 +49,7 @@ class SignUp extends StatelessWidget {
                   const SizedBox(height: 60),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 6, 50, "userName");
+                      return vaildInput(val!, 6, 50, "UserName");
                     },
                     labelText: "lintUserName",
                     hintText: "lintUserName",
@@ -60,7 +60,7 @@ class SignUp extends StatelessWidget {
                   const SizedBox(height: 15),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 11, 50, "email");
+                      return vaildInput(val!, 11, 50, "email");
                     },
                     labelText: "labelEmail",
                     hintText: "lintEmail",
@@ -70,7 +70,7 @@ class SignUp extends StatelessWidget {
                   SizedBox(height: 15),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return VaildInput(val!, 11, 15, "phone");
+                      return vaildInput(val!, 11, 15, "phone");
                     },
                     labelText: "labelPhone",
                     hintText: "lintPhone",
@@ -78,7 +78,6 @@ class SignUp extends StatelessWidget {
                     myController: myController.phone,
                   ),
                   const SizedBox(height: 15),
-
                   GetBuilder<SignUpControllerImp>(
                     builder: (controller) => CustomTextFormAuth(
                       obscureText: isShowPassword,
@@ -87,7 +86,7 @@ class SignUp extends StatelessWidget {
                         myController.update();
                       },
                       valid: (val) {
-                        return VaildInput(val!, 6, 30, "password");
+                        return vaildInput(val!, 6, 30, "password");
                       },
                       labelText: "labelPassword",
                       hintText: "lintPasword",

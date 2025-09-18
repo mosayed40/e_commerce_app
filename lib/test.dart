@@ -29,9 +29,7 @@ class _TestState extends State<Test> {
                 fieldStyle: FieldStyle.box,
                 outlineBorderRadius: 15,
                 style: TextStyle(fontSize: 17),
-                onCompleted: (pin) {
-                  print("Completed:  $pin");
-                },
+                onCompleted: (pin) {},
               ),
             ),
           ],
