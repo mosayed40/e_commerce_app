@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,9 @@ class Items extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
                     fit: BoxFit.cover,
                   ),
                 ),

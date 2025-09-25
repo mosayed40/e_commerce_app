@@ -10,9 +10,9 @@ class AppRoute {
   static const String successSignUp = "/successSignUp";
   static const String successResetPassword = "/successResetPassword";
   static const String verfiyCodeSignUp = "/verfiyCodeSignUp";
-
   // Main Routes
   static const String onBoarding = "/onBoarding";
   //Pages
   static const String home = "/home";
+  static const String items = "/items";
 }

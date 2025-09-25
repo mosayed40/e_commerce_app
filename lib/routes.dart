@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
+import 'package:e_commerce_app/view/screen/items.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:e_commerce_app/core/middle_ware/my_app_midel_ware.dart';
 import 'package:e_commerce_app/test_view.dart';
@@ -22,6 +23,8 @@ List<GetPage<dynamic>>? routes = [
     page: () => const Language(),
     middlewares: [MyAppMiddleware()],
   ),
+  // Main Routes
+  GetPage(name: AppRoute.onBoarding, page: () => const OnBoarding()),
   // Auth Routes
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
@@ -41,8 +44,7 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.verfiyCodeSignUp,
     page: () => const VerfiyCodeSignUp(),
   ),
-  // Main Routes
-  GetPage(name: AppRoute.onBoarding, page: () => const OnBoarding()),
   //Pages Routes
   GetPage(name: AppRoute.home, page: () => const HomeScreenPage()),
+  GetPage(name: AppRoute.items, page: () => const ItemsPage()),
 ];

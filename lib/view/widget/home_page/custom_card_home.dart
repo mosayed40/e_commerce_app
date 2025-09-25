@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomCardHome extends StatelessWidget {
+class CustomCardHome extends GetView<HomeControllerImp> {
   final String title;
   final String subTitle;
   const CustomCardHome({
@@ -48,7 +52,14 @@ class CustomCardHome extends StatelessWidget {
               width: 180,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(150),
-                color: AppColors.textColor_2,
+                color: Colors.white,
+              ),
+              alignment: Alignment.bottomRight,
+              clipBehavior: Clip.hardEdge,
+              child: CachedNetworkImage(
+                imageUrl:
+                    "${AppLinkApi.imagesItems}/${controller.items[1]['items_image']}",
+                fit: BoxFit.cover,
               ),
             ),
           ),
