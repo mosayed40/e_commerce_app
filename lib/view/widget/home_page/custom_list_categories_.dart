@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/categories_model.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class Categories extends CustomListCategoriesHome {
             ),
           ),
           Text(
-            "${categoriesModle.categoriesName}",
+            "${translateDatabase(categoriesModle.categoriesNameAr, categoriesModle.categoriesName)}",
             style: const TextStyle(color: AppColors.textColor_2, fontSize: 16),
           ),
         ],

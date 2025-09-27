@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 
 abstract class ItemsController extends GetxController {
   intialData();
-  changeCat(int val);
-  getItems(selectedCat);
+  changeCat(int val, int catVal);
+  getItems(int selectedCat);
   statusFavorite(int i);
 }
 
@@ -36,15 +36,18 @@ class ItemsControllerImp extends ItemsController {
   }
 
   @override
-  changeCat(val) {
+  changeCat(val, catVal) {
     selectedCat = val;
+    selectedCat = catVal - 1;
+    getItems(selectedCat!);
     update();
   }
 
   @override
   getItems(selectedCat) async {
+    data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData(selectedCat.toString());
+    var response = await itemsData.getData(selectedCat + 1);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -58,7 +61,7 @@ class ItemsControllerImp extends ItemsController {
 
   @override
   statusFavorite(i) {
-    isFavorite = !isFavorite;
+    isFavorite != isFavorite;
     index = i;
     update();
   }

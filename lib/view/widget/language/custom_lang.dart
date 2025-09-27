@@ -12,12 +12,16 @@ class CustomButtonLang extends StatelessWidget {
       padding: EdgeInsets.only(left: 50, right: 50),
       child: MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-
         color: AppColors.primaryColor,
         minWidth: double.infinity,
         onPressed: onPressed,
-
-        child: Text(textButton, style: const TextStyle(color: Colors.white)),
+        child: Text(
+          textButton,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

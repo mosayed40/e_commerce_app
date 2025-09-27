@@ -14,23 +14,22 @@ class ItemsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
     return Scaffold(
-      body: GetBuilder<ItemsControllerImp>(
-        builder: (controller) => HandlingDatatView(
-          statusRequest: controller.statusRequest,
-          widget: ListView(
-            padding: EdgeInsets.all(15),
-            children: [
-              const SizedBox(height: 60),
-              CustomAppBar(
-                titleAppBar: "Search Items",
-                onPressedSearch: () {},
-                onPressedIcon: () {},
-              ),
-              const SizedBox(height: 20),
-              const CustomListCategoriesItemsPage(),
-              GridView.builder(
+      body: ListView(
+        padding: EdgeInsets.all(15),
+        children: [
+          const SizedBox(height: 60),
+          CustomAppBar(
+            titleAppBar: "search",
+            onPressedSearch: () {},
+            onPressedIcon: () {},
+          ),
+          const SizedBox(height: 20),
+          const CustomListCategoriesItemsPage(),
+          GetBuilder<ItemsControllerImp>(
+            builder: (controller) => HandlingDatatView(
+              statusRequest: controller.statusRequest,
+              widget: GridView.builder(
                 shrinkWrap: true,
-                // Items Linght
                 itemCount: controller.data.length,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -44,9 +43,9 @@ class ItemsPage extends StatelessWidget {
                   );
                 },
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

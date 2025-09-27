@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/controller/home_controller.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/link_api.dart';
@@ -64,21 +65,24 @@ class Items extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Title
                     Text(
-                      "${itemsModel.itemsName}",
+                      "${translateDatabase(itemsModel.categoriesNameAr, itemsModel.categoriesName)}",
                       style: TextStyle(
                         color: AppColors.textColor_1,
                         fontSize: 16,
                       ),
                     ),
+                    // Dascrption
                     Text(
-                      "${itemsModel.itemsDasc}",
+                      "${translateDatabase(itemsModel.itemsDascAr, itemsModel.itemsDasc)}",
                       style: TextStyle(
                         color: AppColors.textColor_2,
                         fontSize: 14,
                       ),
                     ),
                     const SizedBox(height: 5),
+                    // Price
                     Text(
                       "${itemsModel.itemsPrice}\$",
                       style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/view/screen/home.dart';
+import 'package:e_commerce_app/view/screen/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class HomeScreenControllerImp extends HomeScreenController {
     const HomePage(),
     const Center(child: Text("Categories Page")),
     const Center(child: Text("Profile Page")),
-    const Center(child: Text("Settings Page")),
+    const Setting(),
   ];
 
   @override

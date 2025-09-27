@@ -22,9 +22,11 @@ class HomeControllerImp extends HomeController {
   late StatusRequest statusRequest;
   String? username;
   int? id;
+  String? lang;
 
   @override
   initialData() {
+    lang = myServices.sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getInt("id");
   }

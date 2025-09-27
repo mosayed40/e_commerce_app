@@ -6,7 +6,7 @@ class ItemsData {
 
   ItemsData(this.crud);
 
-  getData(String id) async {
+  getData(int id) async {
     var response = await crud.postData(AppLinkApi.items, {"id": id.toString()});
     return response.fold((l) => l, (r) => r);
   }

@@ -25,7 +25,7 @@ class HomePage extends GetView<LocaleController> {
             children: [
               const SizedBox(height: 35),
               CustomAppBar(
-                titleAppBar: "find product",
+                titleAppBar: "search",
                 onPressedSearch: () {},
                 onPressedIcon: () {},
               ),
@@ -34,9 +34,9 @@ class HomePage extends GetView<LocaleController> {
                 title: "A summer surprise",
                 subTitle: "Cash back 25%",
               ),
-              const CustomTitleHome(title: "Categories"),
+              const CustomTitleHome(title: "titleCat"),
               const CustomListCategoriesHome(),
-              const CustomTitleHome(title: "Exclusive Offers "),
+              const CustomTitleHome(title: "titleItem"),
               const CustomListItemsHome(),
             ],
           ),

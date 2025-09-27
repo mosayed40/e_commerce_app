@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/controller/items_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/categories_model.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class Categories extends CustomListCategoriesItemsPage {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.changeCat(i);
+        controller.changeCat(i, categoriesModle.categoriesId!);
       },
       child: GetBuilder<ItemsControllerImp>(
         builder: (controller) => Column(
@@ -55,6 +56,7 @@ class Categories extends CustomListCategoriesItemsPage {
                     ? AppColors.primaryColor.withValues(alpha: 0.3)
                     : Colors.grey.withValues(alpha: 0.2),
               ),
+              // Image
               child: Center(
                 child: CachedNetworkImage(
                   imageUrl:
@@ -62,8 +64,9 @@ class Categories extends CustomListCategoriesItemsPage {
                 ),
               ),
             ),
+            // Title
             Text(
-              "${categoriesModle.categoriesName}",
+              "${translateDatabase(categoriesModle.categoriesNameAr, categoriesModle.categoriesName)}",
               style: TextStyle(
                 color: controller.selectedCat == i
                     ? AppColors.primaryColor

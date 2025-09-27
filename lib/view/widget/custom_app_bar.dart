@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String titleAppBar;
@@ -25,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
                   icon: Icon(Icons.search, color: AppColors.textColor_2),
                 ),
                 // hintText: "find product",
-                hintText: titleAppBar,
+                hintText: titleAppBar.tr,
                 hintStyle: const TextStyle(
                   color: AppColors.textColor_2,
                   fontSize: 16,

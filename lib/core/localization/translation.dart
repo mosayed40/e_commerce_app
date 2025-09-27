@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class MyTranslation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
+    // Arabic Language
     "ar": {
       "1": "اختر اللغة",
       "2": "اختر المنتج",
@@ -55,9 +56,16 @@ class MyTranslation extends Translations {
       "hintConfirmPassword": "ادخل كلمة المرور للتأكيد",
       "44":
           "تم تعديل كلمة المرور بنجاح \n .يمكنك الان تسجيل الدخول باستخدام كلمة المرور الجديدة",
-      "home": "الصفحة الرئيسية",
+      // أزرار تغيير اللغة
+      "button1": "العربية",
+      "button2": "ألانجليزية",
+      // ألصفحة الرئيسية
+      "search": "البحث عن المنتجات",
+      "titleCat": "ألفئات",
+      "titleItem": "عروض حصرية",
     },
-
+    //========================================================
+    // English Language
     "en": {
       "1": "Choose Language",
       "2": "Choose Product",
@@ -110,8 +118,13 @@ class MyTranslation extends Translations {
       "hintConfirmPassword": "Enter Your Confirm Password",
       "44":
           "Password has been modified successfully \n You can now log in with your new password",
-
-      "home": "Home Page",
+      // Language change buttons
+      "button1": "A R",
+      "button2": "E N",
+      // Home Page
+      "search": "Search For products",
+      "titleCat": "Categories",
+      "titleItem": "Exclusive Offers",
     },
   };
 }

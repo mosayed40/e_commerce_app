@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/controller/items_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,9 @@ class CustomListItems extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Card(
-        color: Colors.grey.withValues(alpha: 0.1),
+        color: Colors.grey[200],
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -30,9 +31,10 @@ class CustomListItems extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey.withValues(alpha: 0.2),
+                  color: Colors.grey.withValues(alpha: 0.1),
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
+                // Image
                 child: CachedNetworkImage(
                   imageUrl:
                       "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
@@ -43,7 +45,7 @@ class CustomListItems extends StatelessWidget {
               const SizedBox(height: 10),
               // Title
               Text(
-                "${itemsModel.itemsName}",
+                "${translateDatabase(itemsModel.categoriesNameAr, itemsModel.categoriesName)}",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -52,7 +54,7 @@ class CustomListItems extends StatelessWidget {
               ),
               // Description
               Text(
-                "${itemsModel.itemsDasc}",
+                "${translateDatabase(itemsModel.itemsDascAr, itemsModel.itemsDasc)}",
                 style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
