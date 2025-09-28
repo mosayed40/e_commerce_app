@@ -10,8 +10,13 @@ ThemeData themeEnglish = ThemeData(
       color: AppColors.textColor,
       fontSize: 24,
     ),
+    bodyLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Colors.grey[600],
+    ),
     bodyMedium: TextStyle(
-      height: 2,
+      // height: 1.5,
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.grey[600],
@@ -28,8 +33,13 @@ ThemeData themeArabic = ThemeData(
       color: AppColors.textColor,
       fontSize: 24,
     ),
+    bodyLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Colors.grey[600],
+    ),
     bodyMedium: TextStyle(
-      height: 2,
+      // height: 2,
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.grey[600],

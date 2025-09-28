@@ -25,10 +25,9 @@ class CustomAppBar extends StatelessWidget {
                   onPressed: onPressedSearch,
                   icon: Icon(Icons.search, color: AppColors.textColor_2),
                 ),
-                // hintText: "find product",
                 hintText: titleAppBar.tr,
                 hintStyle: const TextStyle(
-                  color: AppColors.textColor_2,
+                  color: Color(0xFF9A9999),
                   fontSize: 16,
                 ),
                 border: OutlineInputBorder(
@@ -43,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
           SizedBox(width: 10),
           Container(
             width: 60,
-            padding: EdgeInsets.symmetric(vertical: 4),
+            padding: EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(15),

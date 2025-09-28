@@ -7,7 +7,7 @@ import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomListItems extends StatelessWidget {
+class CustomListItems extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
   final int i;
   const CustomListItems({super.key, required this.itemsModel, required this.i});
@@ -17,7 +17,9 @@ class CustomListItems extends StatelessWidget {
     ItemsControllerImp controller = Get.put(ItemsControllerImp());
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        controller.goToPageProductDetails(itemsModel);
+      },
       child: Card(
         color: Colors.grey[200],
         child: Padding(
@@ -35,11 +37,14 @@ class CustomListItems extends StatelessWidget {
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 // Image
-                child: CachedNetworkImage(
-                  imageUrl:
-                      "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
-                  height: 100,
-                  fit: BoxFit.fill,
+                child: Hero(
+                  tag: "${itemsModel.itemsId}",
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
+                    height: 100,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
