@@ -37,16 +37,14 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 // Image
-                child: Hero(
-                  tag: "${itemsModel.itemsId}",
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
-                    height: 100,
-                    fit: BoxFit.fill,
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
+                  height: 100,
+                  fit: BoxFit.fill,
                 ),
               ),
+
               const SizedBox(height: 10),
               // Title
               Text(

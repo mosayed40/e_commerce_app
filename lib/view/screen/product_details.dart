@@ -5,6 +5,7 @@ import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/view/widget/product_details/custom_product_price_and_count.dart';
 import 'package:e_commerce_app/view/widget/product_details/custom_products_color.dart';
+import 'package:e_commerce_app/view/widget/product_details/custom_show_quatity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,36 +28,29 @@ class ProductDetails extends StatelessWidget {
           children: [
             const SizedBox(height: 60),
             // Image ====>
-            Hero(
-              tag: "${controller.itemsModel.itemsId}",
-              child: CachedNetworkImage(
-                imageUrl:
-                    "${AppLinkApi.imagesItems}/${controller.itemsModel.categoriesImage}",
-                fit: BoxFit.fill,
+            CachedNetworkImage(
+              imageUrl:
+                  "${AppLinkApi.imagesItems}/${controller.itemsModel.categoriesImage}",
+              fit: BoxFit.fill,
+            ),
+            // Title ======>
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 15),
+              child: Text(
+                "${translateDatabase(controller.itemsModel.categoriesNameAr, controller.itemsModel.categoriesName)}",
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-            const SizedBox(height: 15),
-            Text(
-              "${translateDatabase(controller.itemsModel.categoriesNameAr, controller.itemsModel.categoriesName)}",
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 15),
+            // Dascreption =====>
             Text(
               "${translateDatabase("حذاء رياضي خفيف ومريح، خامة عالية الجودة وتصميم أنيق يناسب التمرين والاستخدام اليومي.", "Lightweight and comfortable sports shoes, made of high-quality materials with a stylish design suitable for workouts and everyday use.")}",
-
               // "${translateDatabase(controller.itemsModel.itemsDascAr, controller.itemsModel.itemsDasc)}",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const CustomProductPriceAndCouont(),
-            const Text(
-              "Color",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+            Text("Color", style: Theme.of(context).textTheme.titleLarge),
             const CustomProductsColor(),
+            const CustomShowQuatity(),
           ],
         ),
       ),

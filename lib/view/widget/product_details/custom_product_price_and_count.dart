@@ -3,11 +3,29 @@ import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomProductPriceAndCouont extends GetView<ProductDetailsControllerImp> {
+// class CustomProductPriceAndCouont extends GetView<ProductDetailsControllerImp> {
+//   const CustomProductPriceAndCouont({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return }
+// }
+
+class CustomProductPriceAndCouont extends StatefulWidget {
   const CustomProductPriceAndCouont({super.key});
 
   @override
+  State<CustomProductPriceAndCouont> createState() =>
+      _CustomProductPriceAndCouontState();
+}
+
+class _CustomProductPriceAndCouontState
+    extends State<CustomProductPriceAndCouont> {
+  @override
   Widget build(BuildContext context) {
+    ProductDetailsControllerImp controller = Get.put(
+      ProductDetailsControllerImp(),
+    );
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Row(
@@ -16,7 +34,9 @@ class CustomProductPriceAndCouont extends GetView<ProductDetailsControllerImp> {
             children: [
               IconButton(
                 onPressed: () {
-                  controller.addCount();
+                  setState(() {
+                    controller.addCount();
+                  });
                 },
                 icon: Icon(Icons.add),
               ),
@@ -35,7 +55,9 @@ class CustomProductPriceAndCouont extends GetView<ProductDetailsControllerImp> {
               ),
               IconButton(
                 onPressed: () {
-                  controller.removeCount();
+                  setState(() {
+                    controller.removeCount();
+                  });
                 },
                 icon: Icon(Icons.remove),
               ),
