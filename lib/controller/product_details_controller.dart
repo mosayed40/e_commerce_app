@@ -12,7 +12,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   late ItemsModel itemsModel;
   int number = 1;
   late int quantity;
-  late int price = itemsModel.itemsPrice!;
+  late int price;
+
   List data = [
     {"id": 1, "name": "black"},
     {"id": 2, "name": "red"},
@@ -35,16 +36,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   @override
   addCount() {
     if (number < itemsModel.itemsCount!) {
-      number++;
-      itemsModel.itemsPrice = number * price;
+      return itemsModel.itemsPrice;
     } else {
-      // Get.snackbar(
-      //   "خطأ",
-      //   "لا يمكن أن يكون العدد اكبر من ${itemsModel.itemsCount}",
-      //   snackPosition: SnackPosition.TOP,
-      //   backgroundColor: const Color(0xFFFB4B3E),
-      //   colorText: const Color(0xFF000000),
-      // );
       number = itemsModel.itemsCount!;
     }
     showCount();
@@ -58,13 +51,6 @@ class ProductDetailsControllerImp extends ProductDetailsController {
       itemsModel.itemsPrice = itemsModel.itemsPrice! - price;
       return itemsModel.itemsPrice;
     } else {
-      // Get.snackbar(
-      //   "خطأ",
-      //   "لا يمكن أن يكون العدد اقل من 1",
-      //   snackPosition: SnackPosition.TOP,
-      //   backgroundColor: const Color(0xFFFB4B3E),
-      //   colorText: const Color(0xFF000000),
-      // );
       number = number;
     }
     showCount();
@@ -73,7 +59,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   @override
   showCount() {
-    itemsModel.itemsCount = quantity - number;
+    itemsModel.itemsCount = quantity - (number);
     return itemsModel.itemsCount;
   }
 }

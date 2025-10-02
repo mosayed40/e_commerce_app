@@ -20,12 +20,12 @@ class CustomButtonAppBarHome extends StatelessWidget {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.production_quantity_limits),
-            label: "Products",
+            icon: Icon(Icons.shopping_cart),
+            label: "Card",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorite",
+            icon: Icon(Icons.person_4_rounded),
+            label: "profile",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

@@ -10,14 +10,15 @@ abstract class HomeController extends GetxController {
   initialData();
   getData();
   goToItems(List categories, int i);
+  goToMyfavorite();
 }
 
 class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
   HomeData homeData = HomeData(Get.find<Crud>());
   // List data = [];
-  List categories = [];
-  List items = [];
+  List categoriesList = [];
+  List itemsList = [];
 
   late StatusRequest statusRequest;
   String? username;
@@ -44,10 +45,22 @@ class HomeControllerImp extends HomeController {
     var response = await homeData.getData();
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-        categories.addAll(response['categories']['data']);
-        items.addAll(response['items']['data']);
+      if (response != null && response['status'] == "success") {
+        var categoriesResponse = response['categories'];
+        var itemsResponse = response['items'];
+
+        if (categoriesResponse != null &&
+            categoriesResponse['status'] == "success") {
+          categoriesList.clear();
+          categoriesList.addAll(categoriesResponse['data']);
+        }
+
+        if (itemsResponse != null && itemsResponse['status'] == "success") {
+          itemsList.clear();
+          itemsList.addAll(itemsResponse['data']);
+        }
       } else {
+        print("====response is null or status != success====");
         statusRequest = StatusRequest.failure;
       }
     }
@@ -60,5 +73,10 @@ class HomeControllerImp extends HomeController {
       AppRoute.items,
       arguments: {"categories": categories, "selectedCat": i},
     );
+  }
+
+  @override
+  goToMyfavorite() {
+    Get.toNamed(AppRoute.myFavorite);
   }
 }

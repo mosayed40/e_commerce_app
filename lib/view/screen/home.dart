@@ -17,8 +17,8 @@ class HomePage extends GetView<LocaleController> {
     Get.put(HomeControllerImp());
 
     return GetBuilder<HomeControllerImp>(
-      builder: (myController) => HandlingDatatView(
-        statusRequest: myController.statusRequest,
+      builder: (controller) => HandlingDatatView(
+        statusRequest: controller.statusRequest,
         widget: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
@@ -28,6 +28,9 @@ class HomePage extends GetView<LocaleController> {
                 titleAppBar: "search",
                 onPressedSearch: () {},
                 onPressedIcon: () {},
+                onPressedFavorite: () {
+                  controller.goToMyfavorite();
+                },
               ),
               const SizedBox(height: 20),
               const CustomCardHome(

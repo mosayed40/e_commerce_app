@@ -13,12 +13,14 @@ class CustomListItemsHome extends GetView<HomeControllerImp> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 330,
+      height: 280,
       child: ListView.builder(
-        itemCount: controller.items.length,
+        itemCount: controller.itemsList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, i) {
-          return Items(itemsModel: ItemsModel.fromJson(controller.items[i]));
+          return Items(
+            itemsModel: ItemsModel.fromJson(controller.itemsList[i]),
+          );
         },
       ),
     );

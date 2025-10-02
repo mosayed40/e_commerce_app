@@ -2,6 +2,7 @@ import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
+import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/items_data.dart';
 import 'package:get/get.dart';
 
@@ -9,24 +10,21 @@ abstract class ItemsController extends GetxController {
   intialData();
   changeCat(int val, int catVal);
   getItems(int selectedCat);
-  statusFavorite(int i);
   goToPageProductDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp extends ItemsController {
+  MyServices myServices = Get.find();
   ItemsData itemsData = ItemsData(Get.find<Crud>());
   late StatusRequest statusRequest;
   List data = [];
-
   List categories = [];
   int? selectedCat;
-  bool isFavorite = false;
-  int? index;
+  int? usersid;
 
   @override
   void onInit() {
     intialData();
-    getItems(selectedCat!);
     super.onInit();
   }
 
@@ -34,6 +32,7 @@ class ItemsControllerImp extends ItemsController {
   intialData() {
     categories = Get.arguments['categories'];
     selectedCat = Get.arguments['selectedCat'];
+    usersid = myServices.sharedPreferences.getInt("id");
     getItems(selectedCat!);
   }
 
@@ -49,7 +48,7 @@ class ItemsControllerImp extends ItemsController {
   getItems(selectedCat) async {
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData(selectedCat + 1);
+    var response = await itemsData.getData(selectedCat + 1, usersid!);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -58,13 +57,6 @@ class ItemsControllerImp extends ItemsController {
         statusRequest = StatusRequest.failure;
       }
     }
-    update();
-  }
-
-  @override
-  statusFavorite(i) {
-    isFavorite != isFavorite;
-    index = i;
     update();
   }
 

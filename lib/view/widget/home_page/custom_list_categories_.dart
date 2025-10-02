@@ -16,13 +16,13 @@ class CustomListCategoriesHome extends GetView<HomeControllerImp> {
       width: 150,
       height: 150,
       child: ListView.builder(
-        itemCount: controller.categories.length,
+        itemCount: controller.categoriesList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Categories(
             i: index,
             categoriesModle: CategoriesModle.fromJson(
-              controller.categories[index],
+              controller.categoriesList[index],
             ),
           );
         },
@@ -40,7 +40,7 @@ class Categories extends CustomListCategoriesHome {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.goToItems(controller.categories, i);
+        controller.goToItems(controller.categoriesList, i);
       },
       child: Column(
         children: [

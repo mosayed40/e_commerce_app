@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
-import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,11 +58,13 @@ class CustomCardHome extends GetView<HomeControllerImp> {
               alignment: Alignment.bottomRight,
               clipBehavior: Clip.hardEdge,
               child: Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      "${AppLinkApi.imagesItems}/${controller.items[3]['items_image']}",
-                  fit: BoxFit.cover,
-                ),
+                child: controller.itemsList[1]['items_image'] != null
+                    ? CachedNetworkImage(
+                        imageUrl:
+                            "${AppLinkApi.imagesItems}/${controller.itemsList[1]['items_image']}",
+                        fit: BoxFit.cover,
+                      )
+                    : Icon(Icons.image_outlined),
               ),
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/controller/items_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,8 +10,7 @@ import 'package:get/get.dart';
 
 class CustomListItems extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
-  final int i;
-  const CustomListItems({super.key, required this.itemsModel, required this.i});
+  const CustomListItems({super.key, required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Image
               Container(
                 height: 120,
                 width: double.infinity,
@@ -36,7 +37,6 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                   color: Colors.grey.withValues(alpha: 0.1),
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                // Image
                 child: CachedNetworkImage(
                   imageUrl:
                       "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
@@ -44,11 +44,10 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                   fit: BoxFit.fill,
                 ),
               ),
-
               const SizedBox(height: 10),
               // Title
               Text(
-                "${translateDatabase(itemsModel.categoriesNameAr, itemsModel.categoriesName)}",
+                "${translateDatabase(itemsModel.itemsNameAr, itemsModel.itemsName)}",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -98,16 +97,22 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                     style: const TextStyle(color: AppColors.primaryColor),
                   ),
                   const SizedBox(width: 20),
-                  IconButton(
-                    onPressed: () {
-                      controller.statusFavorite(i);
-                    },
-                    color: controller.index == i
-                        ? AppColors.errorColor
-                        : Colors.grey[900],
-                    icon: controller.index == i
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
+                  GetBuilder<FavoriteControllerImp>(
+                    builder: (controller) => IconButton(
+                      onPressed: () {
+                        if (controller.isFavorite[itemsModel.itemsId] == 1) {
+                          controller.setFavorite(itemsModel.itemsId, 0);
+                          controller.removeFavorite(itemsModel.itemsId!);
+                        } else {
+                          controller.setFavorite(itemsModel.itemsId, 1);
+                          controller.addFavorite(itemsModel.itemsId!);
+                        }
+                      },
+                      icon: controller.isFavorite[itemsModel.itemsId] == 1
+                          ? Icon(Icons.favorite)
+                          : Icon(Icons.favorite_border_outlined),
+                      color: AppColors.errorColor,
+                    ),
                   ),
                   const Icon(Icons.add_shopping_cart_outlined),
                 ],

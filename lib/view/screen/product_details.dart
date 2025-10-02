@@ -37,7 +37,7 @@ class ProductDetails extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               child: Text(
-                "${translateDatabase(controller.itemsModel.categoriesNameAr, controller.itemsModel.categoriesName)}",
+                "${translateDatabase(controller.itemsModel.itemsNameAr, controller.itemsModel.itemsName)}",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
