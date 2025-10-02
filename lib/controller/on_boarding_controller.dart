@@ -6,15 +6,19 @@ import 'package:e_commerce_app/data/data_source/static/static.dart';
 
 abstract class OnBoardingController extends GetxController {
   next();
-
   onPageChanged(int index);
 }
 
 class OnBoardingControllerImp extends OnBoardingController {
+  MyServices myServices = Get.find();
   late PageController pageController;
   int currentPage = 0;
 
-  MyServices myServices = Get.find();
+  @override
+  void onInit() {
+    pageController = PageController();
+    super.onInit();
+  }
 
   @override
   next() {
@@ -35,11 +39,5 @@ class OnBoardingControllerImp extends OnBoardingController {
   onPageChanged(int index) {
     currentPage = index;
     update();
-  }
-
-  @override
-  void onInit() {
-    pageController = PageController();
-    super.onInit();
   }
 }

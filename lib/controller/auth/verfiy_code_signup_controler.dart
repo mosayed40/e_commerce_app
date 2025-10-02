@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class VirfiyCodeSignUpController extends GetxController {
-  checkCode();
   reSend();
   goToSuccessSignUp(String verfiycodeSignup);
 }
@@ -17,10 +16,13 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
     Get.find<Crud>(),
   );
   StatusRequest statusRequest = StatusRequest.none;
-
   String? email;
+
   @override
-  void checkCode() {}
+  void onInit() {
+    email = Get.arguments['email'];
+    super.onInit();
+  }
 
   @override
   void goToSuccessSignUp(verfiycodeSignup) async {
@@ -30,7 +32,6 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
       email!,
       verfiycodeSignup,
     );
-    print("✅ Code response => $response");
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response is Map && response['status'] == "success") {
@@ -43,17 +44,10 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
           backgroundColor: const Color(0xFFAE3B33),
           colorText: Colors.white,
         );
-
         statusRequest = StatusRequest.failure;
       }
       update();
     }
-  }
-
-  @override
-  void onInit() {
-    email = Get.arguments['email'];
-    super.onInit();
   }
 
   @override

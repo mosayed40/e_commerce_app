@@ -7,18 +7,25 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class ReastPasswordController extends GetxController {
   resetPassword();
-
   goToSuccessResetPassword();
 }
 
 class ReastPasswordControllerImp extends ReastPasswordController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   ResetPassowrdData resetPassowrdData = ResetPassowrdData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   late TextEditingController password;
   late TextEditingController repassword;
   String? email;
+
+  @override
+  void onInit() {
+    email = Get.arguments['email'];
+    password = TextEditingController();
+    repassword = TextEditingController();
+    super.onInit();
+  }
+
   @override
   void resetPassword() {}
 
@@ -47,22 +54,11 @@ class ReastPasswordControllerImp extends ReastPasswordController {
             backgroundColor: const Color(0xFFAE3B33),
             colorText: Colors.white,
           );
-
           statusRequest = StatusRequest.failure;
         }
       }
     }
     update();
-  }
-
-  @override
-  void onInit() {
-    email = Get.arguments['email'];
-
-    password = TextEditingController();
-    repassword = TextEditingController();
-
-    super.onInit();
   }
 
   @override

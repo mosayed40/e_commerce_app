@@ -61,7 +61,6 @@ class ResetPassword extends StatelessWidget {
                     suffixIcon: Icons.lock_outlined,
                     myController: myController.repassword,
                   ),
-
                   const SizedBox(height: 30),
                   CustomButtonAuth(
                     text: "33",

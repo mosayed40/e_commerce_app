@@ -8,21 +8,18 @@ import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 
 abstract class SignupController extends GetxController {
   signUp();
-
   goToSignIN();
 }
 
 class SignUpControllerImp extends SignupController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+  SignUpData signUpData = SignUpData(Get.find<Crud>());
+  StatusRequest statusRequest = StatusRequest.none;
 
   late TextEditingController username;
   late TextEditingController email;
   late TextEditingController phone;
   late TextEditingController password;
-  StatusRequest statusRequest = StatusRequest.none;
-
-  SignUpData signUpData = SignUpData(Get.find<Crud>());
-
   List data = [];
 
   @override

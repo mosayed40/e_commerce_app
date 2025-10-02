@@ -14,29 +14,27 @@ abstract class HomeController extends GetxController {
 }
 
 class HomeControllerImp extends HomeController {
-  MyServices myServices = Get.find();
   HomeData homeData = HomeData(Get.find<Crud>());
-  // List data = [];
+  MyServices myServices = Get.find();
+  late StatusRequest statusRequest;
   List categoriesList = [];
   List itemsList = [];
-
-  late StatusRequest statusRequest;
   String? username;
-  int? id;
   String? lang;
-
-  @override
-  initialData() {
-    lang = myServices.sharedPreferences.getString("lang");
-    username = myServices.sharedPreferences.getString("username");
-    id = myServices.sharedPreferences.getInt("id");
-  }
+  int? id;
 
   @override
   void onInit() {
     getData();
     initialData();
     super.onInit();
+  }
+
+  @override
+  initialData() {
+    lang = myServices.sharedPreferences.getString("lang");
+    username = myServices.sharedPreferences.getString("username");
+    id = myServices.sharedPreferences.getInt("id");
   }
 
   @override
@@ -48,19 +46,17 @@ class HomeControllerImp extends HomeController {
       if (response != null && response['status'] == "success") {
         var categoriesResponse = response['categories'];
         var itemsResponse = response['items'];
-
         if (categoriesResponse != null &&
             categoriesResponse['status'] == "success") {
           categoriesList.clear();
           categoriesList.addAll(categoriesResponse['data']);
         }
-
         if (itemsResponse != null && itemsResponse['status'] == "success") {
           itemsList.clear();
           itemsList.addAll(itemsResponse['data']);
         }
       } else {
-        print("====response is null or status != success====");
+        // print("====response is null or status != success====");
         statusRequest = StatusRequest.failure;
       }
     }

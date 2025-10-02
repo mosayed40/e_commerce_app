@@ -16,6 +16,12 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
   late TextEditingController email;
 
   @override
+  void onInit() {
+    email = TextEditingController();
+    super.onInit();
+  }
+
+  @override
   void checkEmail() async {
     var formData = formState.currentState;
     if (formData!.validate()) {
@@ -25,8 +31,6 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          // print("==========success forget password==============");
-
           Get.offNamed(
             AppRoute.verfiyCodeForgetPassword,
             arguments: {"email": email.text},
@@ -39,19 +43,11 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
             backgroundColor: const Color(0xFFAE3B33),
             colorText: Colors.white,
           );
-          // print("==========failure forget password==============");
           statusRequest = StatusRequest.failure;
         }
       }
     }
     update();
-  }
-
-  @override
-  void onInit() {
-    email = TextEditingController();
-
-    super.onInit();
   }
 
   @override

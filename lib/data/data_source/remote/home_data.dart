@@ -3,18 +3,10 @@ import 'package:e_commerce_app/link_api.dart';
 
 class HomeData {
   Crud crud;
-
   HomeData(this.crud);
 
   getData() async {
     var response = await crud.postData(AppLinkApi.homepage, {});
-    return response.fold(
-      (l) {
-        return l;
-      },
-      (r) {
-        return r;
-      },
-    );
+    return response.fold((l) => l, (r) => r);
   }
 }

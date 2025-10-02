@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class SignUpData {
   Crud crud;
-
   SignUpData(this.crud);
 
   postData(String username, String password, String email, String phone) async {
@@ -13,9 +12,6 @@ class SignUpData {
       "email": email,
       "phone": phone,
     });
-    return response.fold(
-      (l) => l, // Handle failure
-      (r) => r, // Handle success
-    );
+    return response.fold((l) => l, (r) => r);
   }
 }

@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class ItemsData {
   Crud crud;
-
   ItemsData(this.crud);
 
   getData(int id, int usersid) async {

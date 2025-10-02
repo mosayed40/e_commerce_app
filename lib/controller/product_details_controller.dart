@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
-// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController extends GetxController {
@@ -10,9 +9,9 @@ abstract class ProductDetailsController extends GetxController {
 
 class ProductDetailsControllerImp extends ProductDetailsController {
   late ItemsModel itemsModel;
-  int number = 1;
   late int quantity;
   late int price;
+  int number = 1;
 
   List data = [
     {"id": 1, "name": "black"},
@@ -21,16 +20,16 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     {"id": 4, "name": "white"},
   ];
 
-  intialData() {
+  @override
+  void onInit() {
+    intilData();
+    super.onInit();
+  }
+
+  intilData() {
     itemsModel = Get.arguments['itemsModel'];
     quantity = itemsModel.itemsCount!;
     price = itemsModel.itemsPrice!;
-  }
-
-  @override
-  void onInit() {
-    intialData();
-    super.onInit();
   }
 
   @override

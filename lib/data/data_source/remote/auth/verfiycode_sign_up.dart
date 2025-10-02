@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class VerfiycodeSignUpData {
   Crud crud;
-
   VerfiycodeSignUpData(this.crud);
 
   postData(String email, String verfiycode) async {

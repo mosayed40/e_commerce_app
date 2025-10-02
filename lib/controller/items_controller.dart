@@ -17,8 +17,8 @@ class ItemsControllerImp extends ItemsController {
   MyServices myServices = Get.find();
   ItemsData itemsData = ItemsData(Get.find<Crud>());
   late StatusRequest statusRequest;
-  List data = [];
   List categories = [];
+  List data = [];
   int? selectedCat;
   int? usersid;
 

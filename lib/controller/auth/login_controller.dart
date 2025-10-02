@@ -3,16 +3,14 @@ import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/auth/login.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class LoginController extends GetxController {
   login();
-
   goToSignUp();
-
   goToForgetPassword();
 }
 
@@ -21,10 +19,19 @@ class LoginControllerImp extends LoginController {
   LoginData loginData = LoginData(Get.find<Crud>());
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
-
-  List data = [];
-  late TextEditingController email;
   late TextEditingController password;
+  late TextEditingController email;
+  List data = [];
+
+  @override
+  void onInit() {
+    // FirebaseMessaging.instance.getToken().then((value) {
+    //   String? token = value;
+    // });
+    email = TextEditingController();
+    password = TextEditingController();
+    super.onInit();
+  }
 
   @override
   void login() async {
@@ -36,7 +43,7 @@ class LoginControllerImp extends LoginController {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          if (response['data']['users_approve'] == "1") {
+          if (response['data']['users_approve'] == 1) {
             myServices.sharedPreferences.setInt(
               "id",
               response['data']['users_id'],
@@ -69,7 +76,6 @@ class LoginControllerImp extends LoginController {
             backgroundColor: const Color(0xFFAE3B33),
             colorText: Colors.white,
           );
-
           statusRequest = StatusRequest.failure;
         }
       }
@@ -78,26 +84,15 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  void goToSignUp() {
-    Get.toNamed(AppRoute.signUp);
-  }
-
-  @override
-  void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      String? token = value;
-      print(token);
-    });
-    email = TextEditingController();
-    password = TextEditingController();
-    super.onInit();
-  }
-
-  @override
   void onClose() {
     email.dispose();
     password.dispose();
     super.onClose();
+  }
+
+  @override
+  void goToSignUp() {
+    Get.toNamed(AppRoute.signUp);
   }
 
   @override

@@ -7,16 +7,21 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class VirfiyCodeController extends GetxController {
   checkCode();
-
   goToReastPassword(String verfiycode);
 }
 
 class VirfiyCodeControllerImp extends VirfiyCodeController {
-  String? email;
-  String? verifycode;
   VerfiyCodeForgetPassowrdData verfiycodeForgetPassword =
       VerfiyCodeForgetPassowrdData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
+  String? email;
+  String? verifycode;
+
+  @override
+  void onInit() {
+    email = Get.arguments['email'];
+    super.onInit();
+  }
 
   @override
   void checkCode() {}
@@ -38,17 +43,10 @@ class VirfiyCodeControllerImp extends VirfiyCodeController {
           backgroundColor: const Color.fromARGB(255, 174, 59, 51),
           colorText: Colors.white,
         );
-
         statusRequest = StatusRequest.failure;
       }
       update();
     }
     Get.offNamed(AppRoute.resetPassword);
-  }
-
-  @override
-  void onInit() {
-    email = Get.arguments['email'];
-    super.onInit();
   }
 }

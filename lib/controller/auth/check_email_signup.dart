@@ -4,21 +4,24 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class CheckEamilController extends GetxController {
   checkEmail();
-
   goToVerfiyCodeSignUp();
 }
 
 class CheckEamilControllerImp extends CheckEamilController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   late TextEditingController email;
+
+  @override
+  void onInit() {
+    email = TextEditingController();
+    super.onInit();
+  }
 
   @override
   void checkEmail() {
     var formData = formState.currentState;
     if (formData!.validate()) {
-      // print("Email Check Successful");
-      Get.toNamed(AppRoute.verfiyCodeSignUp);
+      goToVerfiyCodeSignUp();
     } else {
       Get.snackbar("Error", "Please fill in the email correctly");
     }
@@ -27,13 +30,6 @@ class CheckEamilControllerImp extends CheckEamilController {
   @override
   void goToVerfiyCodeSignUp() {
     Get.offNamed(AppRoute.verfiyCodeSignUp);
-  }
-
-  @override
-  void onInit() {
-    email = TextEditingController();
-
-    super.onInit();
   }
 
   @override

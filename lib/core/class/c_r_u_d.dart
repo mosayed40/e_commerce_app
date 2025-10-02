@@ -11,7 +11,7 @@ class Crud {
         var response = await http.post(Uri.parse(linkUrl), body: data);
         if (response.statusCode == 200 || response.statusCode == 201) {
           Map responsebody = jsonDecode(response.body);
-          print("🔍 Verify Response Raw => ${response.body}");
+          // print("🔍 Verify Response Raw => ${response.body}");
           return Right(responsebody);
         } else {}
         return Left(StatusRequest.serverfailure);
@@ -19,7 +19,7 @@ class Crud {
         return Left(StatusRequest.offlinefailure);
       }
     } catch (err) {
-      print(" catch =================================== serverExeption");
+      print(" =================catch ================== ");
       print(err);
       return Left(StatusRequest.serverexception);
     }

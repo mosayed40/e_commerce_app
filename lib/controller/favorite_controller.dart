@@ -1,6 +1,5 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
-import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/myfavorite_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
@@ -58,14 +57,6 @@ class FavoriteControllerImp extends FavoriteController {
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        Get.rawSnackbar(
-          title: "تنبية",
-          message: "تم اضافة المنتج الي المفضلة",
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: AppColors.textColor_2,
-          borderRadius: 10,
-          duration: const Duration(seconds: 3),
-        );
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -79,14 +70,6 @@ class FavoriteControllerImp extends FavoriteController {
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        Get.rawSnackbar(
-          title: "تنبية",
-          message: "تم حذف المنتج من المفضلة",
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: AppColors.textColor_2,
-          borderRadius: 10,
-          duration: const Duration(seconds: 3),
-        );
       } else {
         statusRequest = StatusRequest.failure;
       }

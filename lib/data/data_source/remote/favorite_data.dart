@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class FavoriteData {
   Crud crud;
-
   FavoriteData(this.crud);
 
   addFavorite(int usersid, int itemsid) async {

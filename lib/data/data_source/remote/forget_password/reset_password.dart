@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class ResetPassowrdData {
   Crud crud;
-
   ResetPassowrdData(this.crud);
 
   postData(String email, String password) async {
@@ -11,9 +10,6 @@ class ResetPassowrdData {
       "email": email,
       "password": password,
     });
-    return response.fold(
-      (l) => l, // Handle failure
-      (r) => r, // Handle success
-    );
+    return response.fold((l) => l, (r) => r);
   }
 }

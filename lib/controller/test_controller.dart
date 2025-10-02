@@ -6,10 +6,14 @@ import 'package:e_commerce_app/data/data_source/remote/test_data.dart';
 
 class TestController extends GetxController {
   TestData testData = TestData(Get.find<Crud>());
-
+  late StatusRequest statusRequest;
   List data = [];
 
-  late StatusRequest statusRequest;
+  @override
+  void onInit() {
+    getData();
+    super.onInit();
+  }
 
   getData() async {
     statusRequest = StatusRequest.loading;
@@ -23,11 +27,5 @@ class TestController extends GetxController {
       }
     }
     update();
-  }
-
-  @override
-  void onInit() {
-    getData();
-    super.onInit();
   }
 }

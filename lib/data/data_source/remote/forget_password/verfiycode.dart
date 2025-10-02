@@ -3,7 +3,6 @@ import 'package:e_commerce_app/link_api.dart';
 
 class VerfiyCodeForgetPassowrdData {
   Crud crud;
-
   VerfiyCodeForgetPassowrdData(this.crud);
 
   postData(String email, String verifycode) async {
@@ -11,9 +10,6 @@ class VerfiyCodeForgetPassowrdData {
       "email": email,
       "verifycode": verifycode,
     });
-    return response.fold(
-      (l) => l, // Handle failure
-      (r) => r, // Handle success
-    );
+    return response.fold((l) => l, (r) => r);
   }
 }

@@ -4,19 +4,9 @@ import 'package:e_commerce_app/core/services/services.dart';
 import 'package:get/get.dart';
 
 class LocaleController extends GetxController {
-  Locale? language;
-
   MyServices myServices = Get.find();
-
   ThemeData appThemeLanguage = themeEnglish;
-
-  changeLange(String langcode) {
-    Locale locale = Locale(langcode);
-    myServices.sharedPreferences.setString("lang", langcode);
-    appThemeLanguage = langcode == "ar" ? themeArabic : themeEnglish;
-    Get.changeTheme(appThemeLanguage);
-    Get.updateLocale(locale);
-  }
+  Locale? language;
 
   @override
   void onInit() {
@@ -32,5 +22,13 @@ class LocaleController extends GetxController {
       appThemeLanguage = themeEnglish;
     }
     super.onInit();
+  }
+
+  changeLange(String langcode) {
+    Locale locale = Locale(langcode);
+    myServices.sharedPreferences.setString("lang", langcode);
+    appThemeLanguage = langcode == "ar" ? themeArabic : themeEnglish;
+    Get.changeTheme(appThemeLanguage);
+    Get.updateLocale(locale);
   }
 }

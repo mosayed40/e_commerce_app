@@ -5,7 +5,7 @@ import 'package:e_commerce_app/core/localization/changelocal.dart';
 import 'package:e_commerce_app/view/widget/language/custom_lang.dart';
 
 class Setting extends GetView<LocaleController> {
-  const Setting({Key? key}) : super(key: key);
+  const Setting({super.key});
 
   @override
   Widget build(BuildContext context) {
