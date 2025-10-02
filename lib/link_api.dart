@@ -10,6 +10,7 @@ class AppLinkApi {
   static const String signUp = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
   static const String verfiycodeSignUp = "$server/auth/verfiycode.php";
+  static const String resendVarfiyCode = "$server/auth/resend.php";
 
   //Forget Password
   static const String checkemail = "$server/forgetpassword/checkemail.php";

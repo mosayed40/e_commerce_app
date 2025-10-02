@@ -8,7 +8,7 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class VirfiyCodeSignUpController extends GetxController {
   checkCode();
-
+  reSend();
   goToSuccessSignUp(String verfiycodeSignup);
 }
 
@@ -30,16 +30,17 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
       email!,
       verfiycodeSignup,
     );
+    print("✅ Code response => $response");
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
+      if (response is Map && response['status'] == "success") {
         Get.offNamed(AppRoute.successSignUp);
       } else {
         Get.snackbar(
           "Warning",
           "Verfiycode Not Correct",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: const Color.fromARGB(255, 174, 59, 51),
+          backgroundColor: const Color(0xFFAE3B33),
           colorText: Colors.white,
         );
 
@@ -53,5 +54,12 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
   void onInit() {
     email = Get.arguments['email'];
     super.onInit();
+  }
+
+  @override
+  reSend() {
+    if (email != null) {
+      verfiycodeSignUpData.ersendData(email!);
+    }
   }
 }

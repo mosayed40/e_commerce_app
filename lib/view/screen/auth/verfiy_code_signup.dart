@@ -16,6 +16,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(VirfiyCodeSignUpControllerImp());
+    OtpFieldController otpController = Get.put(OtpFieldController());
 
     return Scaffold(
       appBar: AppBar(
@@ -29,10 +30,10 @@ class VerfiyCodeSignUp extends StatelessWidget {
         ),
       ),
       body: GetBuilder<VirfiyCodeSignUpControllerImp>(
-        builder: (myController) => HandlingDatatRequest(
-          statusRequest: myController.statusRequest,
+        builder: (controller) => HandlingDatatRequest(
+          statusRequest: controller.statusRequest,
           widget: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
             alignment: Alignment.center,
             child: ListView(
               children: [
@@ -40,7 +41,13 @@ class VerfiyCodeSignUp extends StatelessWidget {
                 const CustomTextTitleAuth(textTitle: "40"),
                 const SizedBox(height: 20),
                 const CustomTextBodyAuth(textBody: "41"),
-                const SizedBox(height: 50),
+                Container(
+                  margin: EdgeInsets.only(top: 5, bottom: 50),
+                  child: Text(
+                    "${controller.email}",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 Lottie.asset(
                   AppImageAsset.verfiyEmail,
                   height: 150,
@@ -48,16 +55,32 @@ class VerfiyCodeSignUp extends StatelessWidget {
                 ),
                 const SizedBox(height: 50),
                 OTPTextField(
+                  controller: otpController,
                   length: 5,
                   width: MediaQuery.of(context).size.width,
                   textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldWidth: 45,
+                  fieldWidth: 50,
                   fieldStyle: FieldStyle.box,
                   outlineBorderRadius: 15,
                   style: TextStyle(fontSize: 17),
                   onCompleted: (String verfiycantionCode) {
-                    myController.goToSuccessSignUp(verfiycantionCode);
+                    controller.goToSuccessSignUp(verfiycantionCode);
                   },
+                ),
+                SizedBox(height: 50),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      controller.reSend();
+                    },
+                    child: Text(
+                      "resendVerfiyCode".tr,
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

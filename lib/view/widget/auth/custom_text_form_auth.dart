@@ -28,6 +28,7 @@ class CustomTextFormAuth extends StatelessWidget {
       validator: valid,
       controller: myController,
       obscureText: obscureText == null || obscureText == false ? false : true,
+      style: TextStyle(color: Colors.black, fontSize: 18),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -36,9 +37,10 @@ class CustomTextFormAuth extends StatelessWidget {
         suffixIcon: InkWell(onTap: onTapIcon, child: Icon(suffixIcon)),
         labelText: labelText.tr,
         labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.buttonColor),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
         ),
       ),
     );

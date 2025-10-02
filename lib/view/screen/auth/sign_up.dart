@@ -54,7 +54,6 @@ class SignUp extends StatelessWidget {
                     labelText: "lintUserName",
                     hintText: "lintUserName",
                     suffixIcon: Icons.person_outline,
-
                     myController: myController.username,
                   ),
                   const SizedBox(height: 15),

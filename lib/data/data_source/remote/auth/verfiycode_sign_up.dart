@@ -9,11 +9,15 @@ class VerfiycodeSignUpData {
   postData(String email, String verfiycode) async {
     var response = await crud.postData(AppLinkApi.verfiycodeSignUp, {
       "email": email,
-      "verfiycode": verfiycode,
+      "verifycode": verfiycode,
     });
-    return response.fold(
-      (l) => l, // Handle failure
-      (r) => r, // Handle success
-    );
+    return response.fold((l) => l, (r) => r);
+  }
+
+  ersendData(String email) async {
+    var response = await crud.postData(AppLinkApi.resendVarfiyCode, {
+      "email": email,
+    });
+    return response.fold((l) => l, (r) => r);
   }
 }
