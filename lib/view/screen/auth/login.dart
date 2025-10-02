@@ -32,13 +32,13 @@ class Login extends StatelessWidget {
         ),
       ),
       body: GetBuilder<LoginControllerImp>(
-        builder: (myController) => HandlingDatatRequest(
-          statusRequest: myController.statusRequest,
+        builder: (controller) => HandlingDatatRequest(
+          statusRequest: controller.statusRequest,
           widget: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(
-              key: myController.formState,
+              key: controller.loginFormState,
               child: ListView(
                 children: [
                   Lottie.asset(
@@ -58,7 +58,7 @@ class Login extends StatelessWidget {
                     labelText: "labelEmail",
                     hintText: "lintEmail",
                     suffixIcon: Icons.email_outlined,
-                    myController: myController.email,
+                    controller: controller.email,
                   ),
                   SizedBox(height: 15),
                   GetBuilder<LoginControllerImp>(
@@ -66,7 +66,7 @@ class Login extends StatelessWidget {
                       obscureText: isShowPassword,
                       onTapIcon: () {
                         isShowPassword = isShowPassword == true ? false : true;
-                        myController.update();
+                        controller.update();
                       },
                       valid: (val) {
                         return vaildInput(val!, 6, 30, "password");
@@ -74,7 +74,7 @@ class Login extends StatelessWidget {
                       labelText: "labelPassword",
                       hintText: "lintPasword",
                       suffixIcon: Icons.lock_outlined,
-                      myController: myController.password,
+                      controller: controller.password,
                     ),
                   ),
                   Row(
@@ -82,7 +82,7 @@ class Login extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          myController.goToForgetPassword();
+                          controller.goToForgetPassword();
                         },
                         child: Text(
                           "forgetPassword".tr,
@@ -96,7 +96,7 @@ class Login extends StatelessWidget {
                   CustomButtonAuth(
                     text: "login".tr,
                     onPressed: () {
-                      myController.login();
+                      controller.login();
                     },
                   ),
                   const SizedBox(height: 20),
@@ -104,7 +104,7 @@ class Login extends StatelessWidget {
                     textBody: "textPageSignIn".tr,
                     textLink: "linkPageSignIn".tr,
                     onPressed: () {
-                      myController.goToSignUp();
+                      controller.goToSignUp();
                     },
                   ),
                 ],

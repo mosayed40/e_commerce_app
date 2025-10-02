@@ -12,7 +12,7 @@ abstract class SignupController extends GetxController {
 }
 
 class SignUpControllerImp extends SignupController {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  GlobalKey<FormState> signUpFormState = GlobalKey<FormState>();
   SignUpData signUpData = SignUpData(Get.find<Crud>());
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -24,7 +24,7 @@ class SignUpControllerImp extends SignupController {
 
   @override
   void signUp() async {
-    var formData = formState.currentState;
+    var formData = signUpFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
       update();

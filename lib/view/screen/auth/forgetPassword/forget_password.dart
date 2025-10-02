@@ -28,13 +28,13 @@ class ForgetPassword extends StatelessWidget {
         ),
       ),
       body: GetBuilder<ForgetPasswordControllerImp>(
-        builder: (myController) => HandlingDatatRequest(
-          statusRequest: myController.statusRequest,
+        builder: (controller) => HandlingDatatRequest(
+          statusRequest: controller.statusRequest,
           widget: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(
-              key: myController.formState,
+              key: controller.forgetPassfFormState,
               child: ListView(
                 children: [
                   const SizedBox(height: 80),
@@ -49,13 +49,13 @@ class ForgetPassword extends StatelessWidget {
                     labelText: "labelEmail",
                     hintText: "lintEmail",
                     suffixIcon: Icons.email_outlined,
-                    myController: myController.email,
+                    controller: controller.email,
                   ),
                   const SizedBox(height: 30),
                   CustomButtonAuth(
                     text: "30",
                     onPressed: () {
-                      myController.checkEmail();
+                      controller.checkEmail();
                     },
                   ),
                 ],

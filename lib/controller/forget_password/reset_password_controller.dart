@@ -7,11 +7,10 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 
 abstract class ReastPasswordController extends GetxController {
   resetPassword();
-  goToSuccessResetPassword();
 }
 
 class ReastPasswordControllerImp extends ReastPasswordController {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  GlobalKey<FormState> resetPasswordFormState = GlobalKey<FormState>();
   ResetPassowrdData resetPassowrdData = ResetPassowrdData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   late TextEditingController password;
@@ -27,17 +26,14 @@ class ReastPasswordControllerImp extends ReastPasswordController {
   }
 
   @override
-  void resetPassword() {}
-
-  @override
-  void goToSuccessResetPassword() async {
+  void resetPassword() async {
     if (password.text != repassword.text) {
       return Get.defaultDialog(
         title: "Error",
         middleText: "Password Not Match",
       );
     }
-    var formData = formState.currentState;
+    var formData = resetPasswordFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
       update();

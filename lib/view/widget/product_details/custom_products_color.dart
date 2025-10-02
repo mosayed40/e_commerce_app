@@ -16,10 +16,11 @@ class CustomProductsColor extends GetView<ProductDetailsControllerImp> {
               Container(
                 width: 25,
                 height: 25,
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 decoration: BoxDecoration(
+                  border: BoxBorder.all(color: Colors.grey),
                   borderRadius: BorderRadius.all(Radius.circular(50)),
-                  color: Colors.grey,
+                  color: Color(controller.data[index]["color"]),
                 ),
               ),
               Text("${controller.data[index]["name"]}"),

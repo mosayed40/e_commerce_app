@@ -25,7 +25,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
         title: Center(
           child: Text(
             "42".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
+            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
           ),
         ),
       ),
@@ -42,7 +42,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
                 const SizedBox(height: 20),
                 const CustomTextBodyAuth(textBody: "41"),
                 Container(
-                  margin: EdgeInsets.only(top: 5, bottom: 50),
+                  margin: const EdgeInsets.only(top: 5, bottom: 50),
                   child: Text(
                     "${controller.email}",
                     textAlign: TextAlign.center,
@@ -67,7 +67,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
                     controller.goToSuccessSignUp(verfiycantionCode);
                   },
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Center(
                   child: InkWell(
                     onTap: () {
@@ -75,7 +75,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
                     },
                     child: Text(
                       "resendVerfiyCode".tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 20,
                       ),

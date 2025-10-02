@@ -15,7 +15,7 @@ abstract class LoginController extends GetxController {
 }
 
 class LoginControllerImp extends LoginController {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  GlobalKey<FormState> loginFormState = GlobalKey<FormState>();
   LoginData loginData = LoginData(Get.find<Crud>());
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
@@ -35,7 +35,7 @@ class LoginControllerImp extends LoginController {
 
   @override
   void login() async {
-    var formData = formState.currentState;
+    var formData = loginFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
       update();

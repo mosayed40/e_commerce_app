@@ -13,7 +13,7 @@ class CheckEamil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CheckEamilControllerImp myController = Get.put(CheckEamilControllerImp());
+    CheckEamilControllerImp controller = Get.put(CheckEamilControllerImp());
 
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +30,7 @@ class CheckEamil extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         alignment: Alignment.center,
         child: Form(
-          key: myController.formState,
+          key: controller.checkEmailFormState,
           child: ListView(
             children: [
               const SizedBox(height: 80),
@@ -38,7 +38,6 @@ class CheckEamil extends StatelessWidget {
               const SizedBox(height: 10),
               const CustomTextBodyAuth(textBody: "29"),
               const SizedBox(height: 60),
-
               CustomTextFormAuth(
                 valid: (val) {
                   return vaildInput(val!, 6, 50, "email");
@@ -46,16 +45,13 @@ class CheckEamil extends StatelessWidget {
                 labelText: "labelEmail",
                 hintText: "lintEmail",
                 suffixIcon: Icons.email_outlined,
-                myController: myController.email,
+                controller: controller.email,
               ),
-              SizedBox(height: 15),
-
-              const SizedBox(height: 30),
+              const SizedBox(height: 35),
               CustomButtonAuth(
                 text: "30",
                 onPressed: () {
-                  myController.checkEmail();
-                  // myController.goToVerfiyCodeSignUp();
+                  controller.checkEmail();
                 },
               ),
             ],

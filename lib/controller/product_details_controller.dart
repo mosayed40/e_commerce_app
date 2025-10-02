@@ -14,10 +14,10 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   int number = 1;
 
   List data = [
-    {"id": 1, "name": "black"},
-    {"id": 2, "name": "red"},
-    {"id": 3, "name": "grey"},
-    {"id": 4, "name": "white"},
+    {"id": 1, "name": "black", "color": 0xFF000000},
+    {"id": 2, "name": "red", "color": 0xFFFD1414},
+    {"id": 3, "name": "white", "color": 0xFFFFFFFF},
+    {"id": 4, "name": "grey", "color": 0xFF9E9E9E},
   ];
 
   @override

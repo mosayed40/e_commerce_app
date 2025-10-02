@@ -6,7 +6,7 @@ class CustomTextFormAuth extends StatelessWidget {
   final String labelText;
   final String hintText;
   final IconData? suffixIcon;
-  final TextEditingController myController;
+  final TextEditingController controller;
   final String? Function(String?)? valid;
   final bool? obscureText;
   final void Function()? onTapIcon;
@@ -16,7 +16,7 @@ class CustomTextFormAuth extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.suffixIcon,
-    required this.myController,
+    required this.controller,
     required this.valid,
     this.obscureText,
     this.onTapIcon,
@@ -26,7 +26,7 @@ class CustomTextFormAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: valid,
-      controller: myController,
+      controller: controller,
       obscureText: obscureText == null || obscureText == false ? false : true,
       style: TextStyle(color: Colors.black, fontSize: 18),
       decoration: InputDecoration(

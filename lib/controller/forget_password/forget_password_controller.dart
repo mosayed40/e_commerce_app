@@ -10,7 +10,7 @@ abstract class ForgetPasswordController extends GetxController {
 }
 
 class ForgetPasswordControllerImp extends ForgetPasswordController {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  GlobalKey<FormState> forgetPassfFormState = GlobalKey<FormState>();
   CheckEmailData checkEamilDatat = CheckEmailData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   late TextEditingController email;
@@ -23,7 +23,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
 
   @override
   void checkEmail() async {
-    var formData = formState.currentState;
+    var formData = forgetPassfFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
       update();

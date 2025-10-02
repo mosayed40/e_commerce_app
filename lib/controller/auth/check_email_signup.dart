@@ -8,7 +8,7 @@ abstract class CheckEamilController extends GetxController {
 }
 
 class CheckEamilControllerImp extends CheckEamilController {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  GlobalKey<FormState> checkEmailFormState = GlobalKey<FormState>();
   late TextEditingController email;
 
   @override
@@ -19,7 +19,7 @@ class CheckEamilControllerImp extends CheckEamilController {
 
   @override
   void checkEmail() {
-    var formData = formState.currentState;
+    var formData = checkEmailFormState.currentState;
     if (formData!.validate()) {
       goToVerfiyCodeSignUp();
     } else {

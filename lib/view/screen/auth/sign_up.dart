@@ -13,12 +13,9 @@ import 'package:e_commerce_app/view/widget/auth/custom_text_title_auth.dart';
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
 
-  SignUpControllerImp get myController => SignUpControllerImp();
-
   @override
   Widget build(BuildContext context) {
     Get.put(SignUpControllerImp());
-
     bool isShowPassword = true;
 
     return Scaffold(
@@ -33,13 +30,13 @@ class SignUp extends StatelessWidget {
         ),
       ),
       body: GetBuilder<SignUpControllerImp>(
-        builder: (myController) => HandlingDatatRequest(
-          statusRequest: myController.statusRequest,
+        builder: (controller) => HandlingDatatRequest(
+          statusRequest: controller.statusRequest,
           widget: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(
-              key: myController.formState,
+              key: controller.signUpFormState,
               child: ListView(
                 children: [
                   const SizedBox(height: 20),
@@ -54,7 +51,7 @@ class SignUp extends StatelessWidget {
                     labelText: "lintUserName",
                     hintText: "lintUserName",
                     suffixIcon: Icons.person_outline,
-                    myController: myController.username,
+                    controller: controller.username,
                   ),
                   const SizedBox(height: 15),
                   CustomTextFormAuth(
@@ -64,7 +61,7 @@ class SignUp extends StatelessWidget {
                     labelText: "labelEmail",
                     hintText: "lintEmail",
                     suffixIcon: Icons.email_outlined,
-                    myController: myController.email,
+                    controller: controller.email,
                   ),
                   SizedBox(height: 15),
                   CustomTextFormAuth(
@@ -74,7 +71,7 @@ class SignUp extends StatelessWidget {
                     labelText: "labelPhone",
                     hintText: "lintPhone",
                     suffixIcon: Icons.phone_outlined,
-                    myController: myController.phone,
+                    controller: controller.phone,
                   ),
                   const SizedBox(height: 15),
                   GetBuilder<SignUpControllerImp>(
@@ -82,7 +79,7 @@ class SignUp extends StatelessWidget {
                       obscureText: isShowPassword,
                       onTapIcon: () {
                         isShowPassword = isShowPassword == true ? false : true;
-                        myController.update();
+                        controller.update();
                       },
                       valid: (val) {
                         return vaildInput(val!, 6, 30, "password");
@@ -90,7 +87,7 @@ class SignUp extends StatelessWidget {
                       labelText: "labelPassword",
                       hintText: "lintPasword",
                       suffixIcon: Icons.lock_outlined,
-                      myController: myController.password,
+                      controller: controller.password,
                     ),
                   ),
 
@@ -98,7 +95,7 @@ class SignUp extends StatelessWidget {
                   CustomButtonAuth(
                     text: "signUp",
                     onPressed: () {
-                      myController.signUp();
+                      controller.signUp();
                     },
                   ),
                   const SizedBox(height: 20),
@@ -106,7 +103,7 @@ class SignUp extends StatelessWidget {
                     textBody: "textPageSignUp",
                     textLink: "linkPageSignUp",
                     onPressed: () {
-                      myController.goToSignIN();
+                      controller.goToSignIN();
                     },
                   ),
                 ],

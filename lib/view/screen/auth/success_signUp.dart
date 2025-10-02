@@ -20,23 +20,27 @@ class SuccessSignup extends StatelessWidget {
         title: Center(
           child: Text(
             "32".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
+            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
           ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            SizedBox(height: 30),
-            Icon(Icons.check_circle, size: 150, color: AppColors.primaryColor),
+            const SizedBox(height: 30),
+            const Icon(
+              Icons.check_circle,
+              size: 150,
+              color: AppColors.primaryColor,
+            ),
             Lottie.asset(AppImageAsset.verfiySuccess, height: 250, width: 250),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "39".tr,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SizedBox(
               width: 300,
               child: CustomButtonAuth(

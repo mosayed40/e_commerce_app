@@ -12,7 +12,7 @@ class VerfiyCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VirfiyCodeControllerImp myController = Get.put(VirfiyCodeControllerImp());
+    VirfiyCodeControllerImp controller = Get.put(VirfiyCodeControllerImp());
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +21,7 @@ class VerfiyCode extends StatelessWidget {
         title: Center(
           child: Text(
             "42".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
+            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
           ),
         ),
       ),
@@ -35,7 +35,6 @@ class VerfiyCode extends StatelessWidget {
             const SizedBox(height: 20),
             const CustomTextBodyAuth(textBody: "41"),
             const SizedBox(height: 50),
-
             OTPTextField(
               length: 5,
               width: MediaQuery.of(context).size.width,
@@ -45,7 +44,7 @@ class VerfiyCode extends StatelessWidget {
               outlineBorderRadius: 15,
               style: TextStyle(fontSize: 17),
               onCompleted: (verfiycode) {
-                myController.goToReastPassword(verfiycode);
+                controller.goToReastPassword(verfiycode);
               },
             ),
           ],

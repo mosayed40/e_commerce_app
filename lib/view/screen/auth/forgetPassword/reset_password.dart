@@ -28,13 +28,13 @@ class ResetPassword extends StatelessWidget {
         ),
       ),
       body: GetBuilder<ReastPasswordControllerImp>(
-        builder: (myController) => HandlingDatatRequest(
-          statusRequest: myController.statusRequest,
+        builder: (controller) => HandlingDatatRequest(
+          statusRequest: controller.statusRequest,
           widget: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(
-              key: myController.formState,
+              key: controller.resetPasswordFormState,
               child: ListView(
                 children: [
                   const SizedBox(height: 20),
@@ -49,7 +49,7 @@ class ResetPassword extends StatelessWidget {
                     labelText: "labelPassword",
                     hintText: "lintPasword",
                     suffixIcon: Icons.lock_outlined,
-                    myController: myController.password,
+                    controller: controller.password,
                   ),
                   const SizedBox(height: 15),
                   CustomTextFormAuth(
@@ -59,13 +59,13 @@ class ResetPassword extends StatelessWidget {
                     labelText: "labelConfirmPassword",
                     hintText: "hintConfirmPassword",
                     suffixIcon: Icons.lock_outlined,
-                    myController: myController.repassword,
+                    controller: controller.repassword,
                   ),
                   const SizedBox(height: 30),
                   CustomButtonAuth(
                     text: "33",
                     onPressed: () {
-                      myController.resetPassword();
+                      controller.resetPassword();
                     },
                   ),
                 ],

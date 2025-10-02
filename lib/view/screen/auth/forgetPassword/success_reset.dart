@@ -16,22 +16,26 @@ class SuccessResetPassword extends StatelessWidget {
         title: Center(
           child: Text(
             "32".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
+            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
           ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            SizedBox(height: 30),
-            Icon(Icons.check_circle, size: 150, color: AppColors.primaryColor),
-            SizedBox(height: 20),
+            const SizedBox(height: 30),
+            const Icon(
+              Icons.check_circle,
+              size: 150,
+              color: AppColors.primaryColor,
+            ),
+            const SizedBox(height: 20),
             Text(
               "37".tr,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SizedBox(
               child: Text(
                 "44".tr,
@@ -39,7 +43,7 @@ class SuccessResetPassword extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SizedBox(
               width: 300,
               child: CustomButtonAuth(
