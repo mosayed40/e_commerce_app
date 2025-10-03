@@ -1,6 +1,7 @@
-import 'package:e_commerce_app/controller/setting_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/image_asset.dart';
+import 'package:e_commerce_app/view/widget/setting/Custom_setting_page_optins.dart';
+import 'package:e_commerce_app/view/widget/setting/custom_lang_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/localization/changelocal.dart';
@@ -9,28 +10,7 @@ class Setting extends GetView<LocaleController> {
   const Setting({super.key});
   @override
   Widget build(BuildContext context) {
-    SettingControllerImp settingController = Get.put(SettingControllerImp());
-    List data = [
-      {
-        "id": "1",
-        "titel": "Disable Notifications",
-        "icon": Switch(onChanged: (val) {}, value: true),
-      },
-      {"id": "2", "titel": "Address", "icon": Icon(Icons.location_on_outlined)},
-      {
-        "id": "3",
-        "titel": "About us",
-        "icon": Icon(Icons.help_outline_outlined),
-      },
-      {
-        "id": "4",
-        "titel": "Contact us",
-        "icon": Icon(Icons.phone_callback_outlined),
-      },
-      {"id": "5", "titel": "LogOut", "icon": Icon(Icons.exit_to_app)},
-    ];
-
-    return Container(
+    return SizedBox(
       child: ListView(
         children: [
           Stack(
@@ -46,40 +26,72 @@ class Setting extends GetView<LocaleController> {
                   backgroundImage: AssetImage(AppImageAsset.avatar),
                 ),
               ),
-              // IconButton(
-              //   onPressed: () {
-              //     controller.changeLange("en");
-              //     Get.toNamed(AppRoute.home);
-              //   },
-              //   icon: Icon(Icons.language, color: Colors.white, size: 28),
-              // ),
+              Positioned(
+                top: 40,
+                left: 10,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Mustafa Sayed",
+                      style: const TextStyle(color: Colors.white, fontSize: 35),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "moustafa.2950@gmail.com",
+                      style: const TextStyle(color: Colors.grey, fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        controller.changeLange("ar");
+                      },
+                      icon: Container(
+                        width: 35,
+                        height: 35,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF2F1E49),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text("ع", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        controller.changeLange("en");
+                      },
+                      icon: Container(
+                        width: 35,
+                        height: 35,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF2F1E49),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "En",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 100),
-          ...List.generate(
-            data.length,
-            (i) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  ListTile(
-                    onTap: () {
-                      if (data[i]['id'] == "1") {
-                      } else if (data[i]['id'] == "2") {
-                      } else if (data[i]['id'] == "3") {
-                      } else if (data[i]['id'] == "3") {
-                      } else if (data[i]['id'] == "5") {
-                        settingController.logOut();
-                      }
-                    },
-                    title: Text("${data[i]['titel']}"),
-                    trailing: data[i]['icon'],
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-          ),
+          CustomSettingPageOptins(),
+          CustomLangSetting(),
         ],
       ),
     );

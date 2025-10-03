@@ -10,17 +10,20 @@ class CustomProductsColor extends GetView<ProductDetailsControllerImp> {
     return Row(
       children: [
         ...List.generate(
-          4,
+          controller.data.length,
           (index) => Column(
             children: [
-              Container(
-                width: 25,
-                height: 25,
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                  border: BoxBorder.all(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
-                  color: Color(controller.data[index]["color"]),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  decoration: BoxDecoration(
+                    border: BoxBorder.all(color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    color: Color(controller.data[index]["color"]),
+                  ),
                 ),
               ),
               Text("${controller.data[index]["name"]}"),

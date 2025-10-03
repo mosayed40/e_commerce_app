@@ -1,16 +1,16 @@
+import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController extends GetxController {
-  addCount();
-  removeCount();
+  addCount(int itemsId);
+  removeCount(int itemsId);
   showCount();
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
+  ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
   late ItemsModel itemsModel;
-  late int quantity;
-  late int price;
   int number = 1;
 
   List data = [
@@ -28,13 +28,12 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   intilData() {
     itemsModel = Get.arguments['itemsModel'];
-    quantity = itemsModel.itemsCount!;
-    price = itemsModel.itemsPrice!;
   }
 
   @override
-  addCount() {
+  addCount(itemsId) {
     if (number < itemsModel.itemsCount!) {
+      number++;
       return itemsModel.itemsPrice;
     } else {
       number = itemsModel.itemsCount!;
@@ -44,10 +43,10 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   }
 
   @override
-  removeCount() {
+  removeCount(itemsId) {
     if (number > 1) {
       number--;
-      itemsModel.itemsPrice = itemsModel.itemsPrice! - price;
+      itemsModel.itemsPrice = itemsModel.itemsPrice! - itemsModel.itemsPrice!;
       return itemsModel.itemsPrice;
     } else {
       number = number;
@@ -58,7 +57,8 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   @override
   showCount() {
-    itemsModel.itemsCount = quantity - (number);
-    return itemsModel.itemsCount;
+    var countItem = itemsModel.itemsCount! - number;
+    update();
+    return countItem;
   }
 }

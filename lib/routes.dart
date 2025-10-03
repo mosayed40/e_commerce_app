@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
+import 'package:e_commerce_app/view/screen/cart.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
 import 'package:e_commerce_app/view/screen/myfavorite.dart';
@@ -53,4 +54,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.setting, page: () => const Setting()),
   GetPage(name: AppRoute.productDetails, page: () => const ProductDetails()),
   GetPage(name: AppRoute.myFavorite, page: () => const MyFavorite()),
+  GetPage(
+    name: AppRoute.shoppingCartPage,
+    page: () => const ShoppingCartPage(),
+  ),
 ];

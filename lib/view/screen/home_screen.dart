@@ -33,7 +33,7 @@ class HomeScreenPage extends StatelessWidget {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart),
-                label: "Card",
+                label: "Cart",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_4_rounded),
