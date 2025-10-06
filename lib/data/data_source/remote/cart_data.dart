@@ -21,17 +21,17 @@ class CartData {
     return response.fold((l) => l, (r) => r);
   }
 
-  // cartCountItems(int usersid, int itemsid) async {
-  //   var response = await crud.postData(AppLinkApi.cartCountItems, {
-  //     "users_id": usersid.toString(),
-  //     "items_id": itemsid.toString(),
-  //   });
-  //   return response.fold((l) => l, (r) => r);
-  // }
+  cartCountItems(int usersid, int itemsid) async {
+    var response = await crud.postData(AppLinkApi.cartCountItems, {
+      "users_id": usersid.toString(),
+      "items_id": itemsid.toString(),
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
-  cartView(int id) async {
+  cartView(int usersid) async {
     var response = await crud.postData(AppLinkApi.cartView, {
-      "id": id.toString(),
+      "users_id": usersid.toString(),
     });
     return response.fold((l) => l, (r) => r);
   }

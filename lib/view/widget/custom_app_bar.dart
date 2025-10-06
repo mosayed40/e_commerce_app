@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/view/widget/custom_search_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,24 +22,9 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: IconButton(
-                  onPressed: onPressedSearch,
-                  icon: Icon(Icons.search, color: AppColors.textColor_2),
-                ),
-                hintText: titleAppBar.tr,
-                hintStyle: const TextStyle(
-                  color: Color(0xFF9A9999),
-                  fontSize: 16,
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                filled: true,
-                fillColor: Colors.grey[300],
-              ),
+            child: CustomSearchTextFormField(
+              hintText: titleAppBar.tr,
+              onPressed: () {},
             ),
           ),
           const SizedBox(width: 10),

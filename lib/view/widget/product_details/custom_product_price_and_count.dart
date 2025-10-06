@@ -1,17 +1,14 @@
-import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomProductPriceAndCouont extends StatelessWidget {
   final void Function()? iconAdd;
   final void Function()? iconRemove;
-  final String price;
   final String count;
 
   const CustomProductPriceAndCouont({
     super.key,
     required this.iconAdd,
     required this.iconRemove,
-    required this.price,
     required this.count,
   });
 
@@ -38,11 +35,6 @@ class CustomProductPriceAndCouont extends StatelessWidget {
               // Remove
               IconButton(onPressed: iconRemove, icon: Icon(Icons.remove)),
             ],
-          ),
-          const Spacer(),
-          Text(
-            price,
-            style: TextStyle(color: AppColors.primaryColor, fontSize: 24),
           ),
         ],
       ),

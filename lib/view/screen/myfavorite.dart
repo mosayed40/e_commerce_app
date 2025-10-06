@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
 import 'package:e_commerce_app/view/widget/myfavorite/custom_list_favortie_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,19 +13,21 @@ class MyFavorite extends StatelessWidget {
     Get.put(FavoriteControllerImp());
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          alignment: Alignment.center,
-          child: Text(
-            "Favorite",
-            style: TextStyle(fontSize: 30, color: Colors.grey[600]),
+        automaticallyImplyLeading: false,
+        toolbarHeight: 70,
+        actions: [
+          SizedBox(width: 25),
+          CustomIconBack(),
+          Spacer(),
+          Container(
+            width: 300,
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              "Favorite",
+              style: TextStyle(fontSize: 30, color: Colors.grey[600]),
+            ),
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.grey[600], size: 30),
-        ),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

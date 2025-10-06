@@ -1,17 +1,20 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController extends GetxController {
-  addCount(int itemsId);
-  removeCount(int itemsId);
+  addCount();
+  removeCount();
   showCount();
+  showPrice();
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
-  ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
+  ControllerInCartImp cartController = Get.put(ControllerInCartImp());
   late ItemsModel itemsModel;
-  int number = 1;
+  late StatusRequest statusRequest;
+  int countItems = 0;
 
   List data = [
     {"id": 1, "name": "black", "color": 0xFF000000},
@@ -26,39 +29,44 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     super.onInit();
   }
 
-  intilData() {
+  intilData() async {
+    statusRequest = StatusRequest.loading;
     itemsModel = Get.arguments['itemsModel'];
-  }
-
-  @override
-  addCount(itemsId) {
-    if (number < itemsModel.itemsCount!) {
-      number++;
-      return itemsModel.itemsPrice;
-    } else {
-      number = itemsModel.itemsCount!;
-    }
-    showCount();
+    countItems = await cartController.getCartCountItems(itemsModel.itemsId!);
+    statusRequest = StatusRequest.success;
     update();
   }
 
   @override
-  removeCount(itemsId) {
-    if (number > 1) {
-      number--;
-      itemsModel.itemsPrice = itemsModel.itemsPrice! - itemsModel.itemsPrice!;
-      return itemsModel.itemsPrice;
+  addCount() {
+    if (countItems < itemsModel.itemsCount!) {
+      countItems++;
     } else {
-      number = number;
+      return itemsModel.itemsCount;
     }
-    showCount();
+    update();
+  }
+
+  @override
+  removeCount() {
+    if (countItems > 1) {
+      countItems--;
+    } else {
+      countItems = countItems;
+    }
     update();
   }
 
   @override
   showCount() {
-    var countItem = itemsModel.itemsCount! - number;
+    itemsModel.itemsCount = itemsModel.itemsCount! - countItems;
+    return itemsModel.itemsCount;
+  }
+
+  @override
+  showPrice() {
+    itemsModel.itemsPrice = itemsModel.itemsPrice! * countItems;
     update();
-    return countItem;
+    return itemsModel.itemsPrice;
   }
 }

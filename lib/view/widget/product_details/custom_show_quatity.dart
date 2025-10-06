@@ -1,8 +1,6 @@
-import 'package:e_commerce_app/controller/product_details_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CustomShowQuatity extends GetView<ProductDetailsControllerImp> {
+class CustomShowQuatity extends StatelessWidget {
   final String count;
   const CustomShowQuatity({super.key, required this.count});
 
@@ -18,7 +16,7 @@ class CustomShowQuatity extends GetView<ProductDetailsControllerImp> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 15.0),
             child: Text(count, style: Theme.of(context).textTheme.titleLarge),
           ),
         ],

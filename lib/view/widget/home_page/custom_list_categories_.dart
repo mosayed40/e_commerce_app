@@ -45,8 +45,8 @@ class Categories extends CustomListCategoriesHome {
       child: Column(
         children: [
           Container(
-            height: 100,
-            width: 125,
+            height: 90,
+            width: 105,
             margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),

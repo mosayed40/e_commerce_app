@@ -2,6 +2,7 @@ import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
+import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/home_data.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ abstract class HomeController extends GetxController {
   getData();
   goToItems(List categories, int i);
   goToMyfavorite();
+  goToPageProductDetails(ItemsModel itemsModel);
 }
 
 class HomeControllerImp extends HomeController {
@@ -74,5 +76,10 @@ class HomeControllerImp extends HomeController {
   @override
   goToMyfavorite() {
     Get.toNamed(AppRoute.myFavorite);
+  }
+
+  @override
+  goToPageProductDetails(itemsModel) {
+    Get.toNamed("productDetails", arguments: {"itemsModel": itemsModel});
   }
 }

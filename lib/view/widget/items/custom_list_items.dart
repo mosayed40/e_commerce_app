@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/controller/items_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
@@ -14,7 +15,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    ItemsControllerImp controller = Get.put(ItemsControllerImp());
+    ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
 
     return InkWell(
       onTap: () {
@@ -25,7 +26,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Image
@@ -34,17 +35,17 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey.withValues(alpha: 0.1),
+                  color: Colors.grey[100],
                 ),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: CachedNetworkImage(
                   imageUrl:
                       "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
                   height: 100,
-                  fit: BoxFit.fill,
+                  // fit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(height: 10),
+              const Spacer(),
               // Title
               Text(
                 "${translateDatabase(itemsModel.itemsNameAr, itemsModel.itemsName)}",
@@ -53,18 +54,30 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
+                textAlign: TextAlign.start,
               ),
+              const Spacer(),
               // Description
-              Text(
-                "${translateDatabase(itemsModel.itemsDascAr, itemsModel.itemsDasc)}",
-                style: const TextStyle(fontSize: 14),
-                textAlign: TextAlign.center,
+              SizedBox(
+                width: 200,
+                height: 60,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Text(
+                    "${translateDatabase(itemsModel.itemsDascAr, itemsModel.itemsDasc)}",
+                    style: const TextStyle(fontSize: 14),
+                    textAlign: TextAlign.start,
+                    maxLines: 3,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
               ),
+              const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text("Rating"),
-                  const SizedBox(width: 5),
+                  const SizedBox(width: 15),
                   const Text(
                     "4.5",
                     style: TextStyle(
@@ -88,8 +101,9 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                   ),
                 ],
               ),
+              const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // Price
                   Text(
@@ -114,7 +128,13 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                       color: AppColors.errorColor,
                     ),
                   ),
-                  const Icon(Icons.add_shopping_cart_outlined),
+                  // Add To Cart
+                  IconButton(
+                    onPressed: () {
+                      controllerCart.addToCart(itemsModel.itemsId!);
+                    },
+                    icon: const Icon(Icons.add_shopping_cart_outlined),
+                  ),
                 ],
               ),
             ],

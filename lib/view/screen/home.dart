@@ -23,7 +23,7 @@ class HomePage extends GetView<LocaleController> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
             children: [
-              const SizedBox(height: 35),
+              const SizedBox(height: 25),
               CustomAppBar(
                 titleAppBar: "search",
                 onPressedSearch: () {},
