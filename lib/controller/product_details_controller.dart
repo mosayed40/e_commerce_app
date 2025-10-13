@@ -1,24 +1,31 @@
-import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
+import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
+import 'package:e_commerce_app/core/services/services.dart';
+import 'package:e_commerce_app/data/data_source/remote/cart_data.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController extends GetxController {
   addCount();
   removeCount();
-  showCount();
-  showPrice();
+  addToCart(int itemsid);
+  deleteFromCart(int itemsid);
+  getCountItemsCart(int iremsid);
 }
 
 class ProductDetailsControllerImp extends ProductDetailsController {
-  ControllerInCartImp cartController = Get.put(ControllerInCartImp());
+  CartData cartData = CartData(Get.find<Crud>());
+  MyServices myServices = Get.find();
   late ItemsModel itemsModel;
   late StatusRequest statusRequest;
+  late int usersid = myServices.sharedPreferences.getInt("id")!;
   int countItems = 0;
 
   List data = [
     {"id": 1, "name": "black", "color": 0xFF000000},
-    {"id": 2, "name": "red", "color": 0xFFFD1414},
+    // {"id": 2, "name": "red", "color": 0xFFFD1414},
     {"id": 3, "name": "white", "color": 0xFFFFFFFF},
     {"id": 4, "name": "grey", "color": 0xFF9E9E9E},
   ];
@@ -32,7 +39,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   intilData() async {
     statusRequest = StatusRequest.loading;
     itemsModel = Get.arguments['itemsModel'];
-    countItems = await cartController.getCartCountItems(itemsModel.itemsId!);
+    countItems = await getCountItemsCart(itemsModel.itemsId!);
     statusRequest = StatusRequest.success;
     update();
   }
@@ -41,6 +48,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   addCount() {
     if (countItems < itemsModel.itemsCount!) {
       countItems++;
+      addToCart(itemsModel.itemsId!);
     } else {
       return itemsModel.itemsCount;
     }
@@ -51,6 +59,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   removeCount() {
     if (countItems > 1) {
       countItems--;
+      deleteFromCart(itemsModel.itemsId!);
     } else {
       countItems = countItems;
     }
@@ -58,15 +67,60 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   }
 
   @override
-  showCount() {
-    itemsModel.itemsCount = itemsModel.itemsCount! - countItems;
-    return itemsModel.itemsCount;
+  addToCart(itemsid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.addToCart(usersid, itemsid);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Get.snackbar(
+          "نبية",
+          "تم اضافة المنتج",
+          backgroundColor: Color(0xFF3199EE),
+        );
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 
   @override
-  showPrice() {
-    itemsModel.itemsPrice = itemsModel.itemsPrice! * countItems;
+  deleteFromCart(itemsid) async {
+    statusRequest = StatusRequest.loading;
     update();
-    return itemsModel.itemsPrice;
+    var response = await cartData.deleteFromCart(usersid, itemsid);
+    statusRequest = handingData(response);
+    // print("🧾 deleteFromCart Response: $response");
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Get.snackbar(
+          "نبية",
+          "تم حذف المنتج",
+          backgroundColor: Color(0xFF3199EE),
+        );
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
+  @override
+  getCountItemsCart(itemsid) async {
+    statusRequest = StatusRequest.loading;
+    var response = await cartData.countItemsCart(usersid, itemsid);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        int countItems = 0;
+        countItems = response['data'];
+        return countItems;
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 }

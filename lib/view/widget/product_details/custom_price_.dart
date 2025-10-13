@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomPrice extends StatelessWidget {
@@ -8,14 +7,18 @@ class CustomPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(210, 185, 227, 250),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        color: const Color(0x2A6300EE),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
         price,
-        style: TextStyle(color: AppColors.primaryColor, fontSize: 24),
+        style: TextStyle(
+          color: const Color(0xFF40009A),
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

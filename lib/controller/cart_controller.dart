@@ -1,81 +1,100 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
-import 'package:e_commerce_app/core/middle_ware/items_model.dart';
+import 'package:e_commerce_app/core/middle_ware/cart_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/cart_data.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class ControllerInCart extends GetxController {
-  // getData();
+  getViewCartData();
   addToCart(int itemsid);
   deleteFromCart(int itemsid);
-  getCartCountItems(int itemsid);
-  // cartView(int catId);
+  getCountItemsCart(int itemsid);
+  refresData();
 }
 
 class ControllerInCartImp extends ControllerInCart {
-  late ItemsModel itemsModel;
+  late CartModel cartModel;
   MyServices myServices = Get.find();
   CartData cartData = CartData(Get.find<Crud>());
   late StatusRequest statusRequest;
   late int usersid = myServices.sharedPreferences.getInt("id")!;
-  List data = [];
-
-  // @override
-  // void onInit() {
-  //   getData();
-  //   super.onInit();
-  // }
-
-  // @override
-  // getData() async {
-  //   statusRequest = StatusRequest.loading;
-  //   var response = await cartData.cartView(usersid);
-  //   statusRequest = handingData(response);
-  //   if (statusRequest == StatusRequest.success) {
-  //     if (response['status'] == "success") {
-  //       List responseData = response['data'];
-  //       data.addAll(responseData);
-  //       // data.addAll(responseData.map((e) => MyfavoriteModel.fromJson(e)));
-  //     } else {
-  //       statusRequest = StatusRequest.failure;
-  //     }
-  //   }
-  //   update();
-  // }
+  List<CartModel> data = [];
 
   @override
-  addToCart(itemsid) async {
+  void onInit() {
+    getViewCartData();
+    super.onInit();
+  }
+
+  @override
+  getViewCartData() async {
     statusRequest = StatusRequest.loading;
-    var response = await cartData.addToCart(usersid, itemsid);
+    update();
+    data.clear();
+    var response = await cartData.viewCartData(usersid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        Get.snackbar("نبية", "تم اضافة المنتج");
+        if (response['data']['status'] == "success") {
+          List responseData = response['data']['data'];
+          data.clear();
+          data.addAll(responseData.map((e) => CartModel.fromJson(e)));
+        }
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
+  }
+
+  @override
+  addToCart(itemsid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cartData.addToCart(usersid, itemsid);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Get.snackbar(
+          "نبية",
+          "تم اضافة المنتج",
+          backgroundColor: Color(0xFF3199EE),
+        );
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 
   @override
   deleteFromCart(itemsid) async {
     statusRequest = StatusRequest.loading;
+    update();
     var response = await cartData.deleteFromCart(usersid, itemsid);
     statusRequest = handingData(response);
+    // print("🧾 deleteFromCart Response: $response");
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
+        Get.snackbar(
+          "نبية",
+          "تم حذف المنتج",
+          backgroundColor: Color(0xFF3199EE),
+        );
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
   @override
-  getCartCountItems(itemsid) async {
+  getCountItemsCart(itemsid) async {
     statusRequest = StatusRequest.loading;
-    var response = await cartData.cartCountItems(usersid, itemsid);
+    var response = await cartData.countItemsCart(usersid, itemsid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -86,12 +105,12 @@ class ControllerInCartImp extends ControllerInCart {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
+  }
 
-    //   @override
-    //   cartView(catId) {
-    //     cartData.cartView(catId);
-    //     data.removeWhere((element) => element.favoriteId == catId);
-    //     update();
-    //   }
+  @override
+  refresData() {
+    data.clear();
+    getViewCartData();
   }
 }

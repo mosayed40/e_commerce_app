@@ -1,6 +1,7 @@
 // import 'package:e_commerce_app/controller/favorite_controller.dart';
 // import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/translate_database.dart';
@@ -14,8 +15,11 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
   const CustomListFavoriteItems({super.key, required this.favoriteModel});
   @override
   Widget build(BuildContext context) {
+    ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        controller.goToCartPage();
+      },
       child: Card(
         color: Colors.grey[200],
         child: Padding(
@@ -65,7 +69,6 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
                   ),
                 ),
               ),
-
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,7 +85,12 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
                     },
                     icon: Icon(Icons.delete, color: Colors.red[700]),
                   ),
-                  const Icon(Icons.add_shopping_cart_outlined),
+                  IconButton(
+                    onPressed: () {
+                      controllerCart.addToCart(favoriteModel.itemsId!);
+                    },
+                    icon: const Icon(Icons.add_shopping_cart_outlined),
+                  ),
                 ],
               ),
             ],

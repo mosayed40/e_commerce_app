@@ -7,7 +7,6 @@ import 'package:e_commerce_app/view/screen/product_details.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:e_commerce_app/core/middle_ware/my_app_midel_ware.dart';
-// import 'package:e_commerce_app/test_view.dart';
 import 'package:e_commerce_app/view/screen/auth/check_email.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/forget_password.dart';
 import 'package:e_commerce_app/view/screen/auth/login.dart';
@@ -21,7 +20,6 @@ import 'package:e_commerce_app/view/screen/on_boarding.dart';
 import 'package:e_commerce_app/view/screen/language.dart';
 
 List<GetPage<dynamic>>? routes = [
-  // GetPage(name: AppRoute.test, page: () => const TestView()),
   GetPage(
     name: "/",
     page: () => const Language(),

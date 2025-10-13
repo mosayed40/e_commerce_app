@@ -6,7 +6,7 @@ class CartData {
   CartData(this.crud);
 
   addToCart(int usersid, int itemsid) async {
-    var response = await crud.postData(AppLinkApi.cartAdd, {
+    var response = await crud.postData(AppLinkApi.addToCart, {
       "users_id": usersid.toString(),
       "items_id": itemsid.toString(),
     });
@@ -14,22 +14,22 @@ class CartData {
   }
 
   deleteFromCart(int usersid, int itemsid) async {
-    var response = await crud.postData(AppLinkApi.cartdelete, {
+    var response = await crud.postData(AppLinkApi.deleteFromCart, {
       "users_id": usersid.toString(),
       "items_id": itemsid.toString(),
     });
     return response.fold((l) => l, (r) => r);
   }
 
-  cartCountItems(int usersid, int itemsid) async {
-    var response = await crud.postData(AppLinkApi.cartCountItems, {
+  countItemsCart(int usersid, int itemsid) async {
+    var response = await crud.postData(AppLinkApi.countItemsCart, {
       "users_id": usersid.toString(),
       "items_id": itemsid.toString(),
     });
     return response.fold((l) => l, (r) => r);
   }
 
-  cartView(int usersid) async {
+  viewCartData(int usersid) async {
     var response = await crud.postData(AppLinkApi.cartView, {
       "users_id": usersid.toString(),
     });

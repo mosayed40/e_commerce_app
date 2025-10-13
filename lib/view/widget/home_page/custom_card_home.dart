@@ -46,8 +46,8 @@ class CustomCardHome extends GetView<HomeControllerImp> {
           ),
           Positioned(
             top: -20,
-            left: controller.lang == "ar" ? -22 : null,
             right: controller.lang == "en" ? -22 : null,
+            left: controller.lang == "ar" ? -22 : null,
             child: Container(
               height: 180,
               width: 180,
@@ -59,8 +59,8 @@ class CustomCardHome extends GetView<HomeControllerImp> {
               alignment: Alignment.bottomRight,
               clipBehavior: Clip.hardEdge,
               child: Center(
-                child: controller.itemsList[1]['items_image'] == null
-                    ? Icon(Icons.image_outlined)
+                child: controller.itemsList.isEmpty
+                    ? Icon(Icons.image_outlined, size: 130)
                     : Container(
                         margin: EdgeInsets.only(top: 15),
                         child: CachedNetworkImage(

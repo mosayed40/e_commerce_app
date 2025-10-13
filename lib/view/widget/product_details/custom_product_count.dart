@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CustomProductPriceAndCouont extends StatelessWidget {
-  final void Function()? iconAdd;
-  final void Function()? iconRemove;
+class CustomProductCouont extends StatelessWidget {
+  final void Function()? onAdd;
+  final void Function()? onRemove;
   final String count;
 
-  const CustomProductPriceAndCouont({
+  const CustomProductCouont({
     super.key,
-    required this.iconAdd,
-    required this.iconRemove,
+    required this.onAdd,
+    required this.onRemove,
     required this.count,
   });
 
@@ -21,7 +21,7 @@ class CustomProductPriceAndCouont extends StatelessWidget {
           Row(
             children: [
               // Add
-              IconButton(onPressed: iconAdd, icon: Icon(Icons.add)),
+              IconButton(onPressed: onAdd, icon: Icon(Icons.add)),
               Container(
                 width: 40,
                 height: 40,
@@ -33,7 +33,7 @@ class CustomProductPriceAndCouont extends StatelessWidget {
                 child: Text(count, style: TextStyle(color: Colors.black)),
               ),
               // Remove
-              IconButton(onPressed: iconRemove, icon: Icon(Icons.remove)),
+              IconButton(onPressed: onRemove, icon: Icon(Icons.remove)),
             ],
           ),
         ],

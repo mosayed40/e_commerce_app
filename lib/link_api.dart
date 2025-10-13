@@ -29,8 +29,8 @@ class AppLinkApi {
   static const String favoriteDelete =
       "$server/favorite/deletefromfavroite.php";
   // Cart
-  static const String cartAdd = "$server/cart/add.php";
-  static const String cartdelete = "$server/cart/delete.php";
+  static const String addToCart = "$server/cart/add.php";
+  static const String deleteFromCart = "$server/cart/delete.php";
   static const String cartView = "$server/cart/view.php";
-  static const String cartCountItems = "$server/cart/getcountitems.php";
+  static const String countItemsCart = "$server/cart/getcountitems.php";
 }

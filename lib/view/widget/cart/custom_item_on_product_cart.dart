@@ -1,48 +1,75 @@
-import 'package:e_commerce_app/core/constant/image_asset.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/middle_ware/cart_model.dart';
+import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomItemOnProductCart extends StatelessWidget {
-  const CustomItemOnProductCart({super.key});
+  final CartModel cartModel;
+  const CustomItemOnProductCart({super.key, required this.cartModel});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ...List.generate(
-          5,
-          (i) => Card(
-            child: Row(
-              children: [
-                // image
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        AppImageAsset.avatar,
-                        width: 100,
-                        fit: BoxFit.cover,
+    ControllerInCartImp controller = Get.put(ControllerInCartImp());
+    return InkWell(
+      onTap: () {},
+      child: Card(
+        child: Row(
+          children: [
+            // image
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${AppLinkApi.imagesItems}/${cartModel.itemsImage}",
+                    width: 20,
+                  ),
+                ),
+              ),
+            ),
+            // title && price
+            Expanded(
+              flex: 4,
+              child: ListTile(
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text("${cartModel.itemsName}"),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      "${cartModel.totalprice}.00\$",
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 18,
                       ),
                     ),
-                  ),
+                    Spacer(),
+                    Text("Count: ${cartModel.totalcount}"),
+                  ],
                 ),
-                // title && price
-                Expanded(
-                  flex: 3,
-                  child: ListTile(
-                    title: Text("Laptop PHP"),
-                    subtitle: Text("200.00 \$"),
-                  ),
-                ),
-                //
-                Expanded(child: Text("expanded $i")),
-              ],
+              ),
             ),
-          ),
+            //delete
+            Expanded(
+              flex: 1,
+              child: IconButton(
+                onPressed: () {
+                  controller.deleteFromCart(cartModel.itemsId!);
+                  controller.refresData();
+                },
+                icon: Icon(Icons.delete, color: Colors.red[700]),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

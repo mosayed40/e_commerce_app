@@ -58,7 +58,6 @@ class HomeControllerImp extends HomeController {
           itemsList.addAll(itemsResponse['data']);
         }
       } else {
-        // print("====response is null or status != success====");
         statusRequest = StatusRequest.failure;
       }
     }

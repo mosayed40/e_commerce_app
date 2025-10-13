@@ -5,12 +5,9 @@ import 'package:e_commerce_app/binding/initial_binding.dart';
 import 'package:e_commerce_app/core/localization/changelocal.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/routes.dart';
-// import 'package:e_commerce_app/test.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // print("Handling a background message: ${message.messageId}");
-}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +30,6 @@ class MyApp extends StatelessWidget {
       locale: myController.language,
       theme: myController.appThemeLanguage,
       initialBinding: Initialbinding(),
-      // initialRoute: "/test",
       initialRoute: "/",
       getPages: routes,
     );

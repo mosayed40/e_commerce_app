@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
+import 'package:e_commerce_app/view/widget/product_details/custom_price_.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
@@ -129,21 +130,7 @@ class Items extends StatelessWidget {
           Positioned(
             top: 120,
             right: 15,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-              decoration: BoxDecoration(
-                color: const Color(0x2A6300EE),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                "${itemsModel.itemsPrice} \$",
-                style: TextStyle(
-                  color: const Color(0xFF40009A),
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            child: CustomPrice(price: "${itemsModel.itemsPrice} \$"),
           ),
         ],
       ),

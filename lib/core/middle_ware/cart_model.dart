@@ -1,7 +1,9 @@
-class MyfavoriteModel {
-  int? favoriteId;
-  int? favoriteUsersId;
-  int? favoriteitemsId;
+class CartModel {
+  int? totalprice;
+  int? totalcount;
+  int? cartId;
+  int? cartUsersId;
+  int? cartItemsId;
   int? itemsId;
   String? itemsName;
   String? itemsNameAr;
@@ -14,17 +16,13 @@ class MyfavoriteModel {
   int? itemsDiscount;
   String? itemsDate;
   int? itemsCat;
-  int? categoriesId;
-  String? categoriesName;
-  String? categoriesNameAr;
-  String? categoriesImage;
-  String? categoriesDatetime;
-  int? usersId;
 
-  MyfavoriteModel({
-    this.favoriteId,
-    this.favoriteUsersId,
-    this.favoriteitemsId,
+  CartModel({
+    this.totalprice,
+    this.totalcount,
+    this.cartId,
+    this.cartUsersId,
+    this.cartItemsId,
     this.itemsId,
     this.itemsName,
     this.itemsNameAr,
@@ -37,18 +35,14 @@ class MyfavoriteModel {
     this.itemsDiscount,
     this.itemsDate,
     this.itemsCat,
-    this.categoriesId,
-    this.categoriesName,
-    this.categoriesNameAr,
-    this.categoriesImage,
-    this.categoriesDatetime,
-    this.usersId,
   });
 
-  MyfavoriteModel.fromJson(Map<String, dynamic> json) {
-    favoriteId = json['favorite_id'];
-    favoriteUsersId = json['favorite_users_id'];
-    favoriteitemsId = json['favorite_items_id'];
+  CartModel.fromJson(Map<String, dynamic> json) {
+    totalprice = (json['totalprice'] as num?)?.toInt();
+    totalcount = json['totalcount'];
+    cartId = json['cart_id'];
+    cartUsersId = json['cart_users_id'];
+    cartItemsId = json['cart_items_id'];
     itemsId = json['items_id'];
     itemsName = json['items_name'];
     itemsNameAr = json['items_name_ar'];
@@ -61,19 +55,15 @@ class MyfavoriteModel {
     itemsDiscount = json['items_discount'];
     itemsDate = json['items_date'];
     itemsCat = json['items_cat'];
-    categoriesId = json['categories_id'];
-    categoriesName = json['categories_name'];
-    categoriesNameAr = json['categories_name_ar'];
-    categoriesImage = json['categories_image'];
-    categoriesDatetime = json['categories_datetime'];
-    usersId = json['users_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['favorite_id'] = favoriteId;
-    data['favorite_users_id'] = favoriteUsersId;
-    data['favorite_items_id'] = favoriteitemsId;
+    data['totalprice'] = totalprice;
+    data['totalcount'] = totalcount;
+    data['cart_id'] = cartId;
+    data['cart_users_id'] = cartUsersId;
+    data['cart_items_id'] = cartItemsId;
     data['items_id'] = itemsId;
     data['items_name'] = itemsName;
     data['items_name_ar'] = itemsNameAr;
@@ -86,12 +76,6 @@ class MyfavoriteModel {
     data['items_discount'] = itemsDiscount;
     data['items_date'] = itemsDate;
     data['items_cat'] = itemsCat;
-    data['categories_id'] = categoriesId;
-    data['categories_name'] = categoriesName;
-    data['categories_name_ar'] = categoriesNameAr;
-    data['categories_image'] = categoriesImage;
-    data['categories_datetime'] = categoriesDatetime;
-    data['users_id'] = usersId;
     return data;
   }
 }
