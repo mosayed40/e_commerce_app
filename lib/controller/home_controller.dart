@@ -5,6 +5,7 @@ import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/items_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/home_data.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class HomeController extends GetxController {
@@ -13,6 +14,9 @@ abstract class HomeController extends GetxController {
   goToItems(List categories, int i);
   goToMyfavorite();
   goToPageProductDetails(ItemsModel itemsModel);
+  checkSearch(val);
+  onSearch();
+  searchData();
 }
 
 class HomeControllerImp extends HomeController {
@@ -21,9 +25,12 @@ class HomeControllerImp extends HomeController {
   late StatusRequest statusRequest;
   List categoriesList = [];
   List itemsList = [];
+  List<ItemsModel> listData = [];
+  TextEditingController? search;
   String? username;
   String? lang;
   int? id;
+  bool isSearch = false;
 
   @override
   void onInit() {
@@ -34,6 +41,7 @@ class HomeControllerImp extends HomeController {
 
   @override
   initialData() {
+    search = TextEditingController();
     lang = myServices.sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getInt("id");
@@ -79,6 +87,41 @@ class HomeControllerImp extends HomeController {
 
   @override
   goToPageProductDetails(itemsModel) {
-    Get.toNamed("productDetails", arguments: {"itemsModel": itemsModel});
+    Get.toNamed(AppRoute.productDetails, arguments: {"itemsModel": itemsModel});
+  }
+
+  @override
+  checkSearch(val) {
+    if (val == "") {
+      isSearch = false;
+    }
+    update();
+  }
+
+  @override
+  onSearch() {
+    if (search!.text != "") {
+      isSearch = true;
+    } else {
+      isSearch = false;
+    }
+    searchData();
+    update();
+  }
+
+  @override
+  searchData() async {
+    var response = await homeData.searchData(search!.text);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        listData.clear();
+        List responseData = response['data'];
+        listData.addAll(responseData.map((e) => ItemsModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 }

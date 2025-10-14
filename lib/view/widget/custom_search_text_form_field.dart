@@ -1,21 +1,28 @@
-import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
+
+import 'package:e_commerce_app/core/constant/colors.dart';
 
 class CustomSearchTextFormField extends StatelessWidget {
   final String hintText;
-  final void Function()? onPressed;
+  final void Function()? onPressedSearch;
+  final void Function(String)? onChanged;
+  final TextEditingController myController;
   const CustomSearchTextFormField({
-    super.key,
+    Key? key,
     required this.hintText,
-    this.onPressed,
-  });
+    required this.onPressedSearch,
+    required this.onChanged,
+    required this.myController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: myController,
+      onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: IconButton(
-          onPressed: onPressed,
+          onPressed: onPressedSearch,
           icon: Icon(Icons.search, color: AppColors.textColor_2),
         ),
         hintText: hintText,

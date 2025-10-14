@@ -13,7 +13,6 @@ class CustomListCategoriesHome extends GetView<HomeControllerImp> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150,
       height: 150,
       child: ListView.builder(
         itemCount: controller.categoriesList.length,

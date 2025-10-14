@@ -18,9 +18,9 @@ abstract class ProductDetailsController extends GetxController {
 class ProductDetailsControllerImp extends ProductDetailsController {
   CartData cartData = CartData(Get.find<Crud>());
   MyServices myServices = Get.find();
-  late ItemsModel itemsModel;
-  late StatusRequest statusRequest;
-  late int usersid = myServices.sharedPreferences.getInt("id")!;
+  StatusRequest statusRequest = StatusRequest.none;
+  ItemsModel? itemsModel;
+  int? usersid;
   int countItems = 0;
 
   List data = [
@@ -32,25 +32,31 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
   @override
   void onInit() {
-    intilData();
+    initialData();
     super.onInit();
   }
 
-  intilData() async {
+  initialData() async {
     statusRequest = StatusRequest.loading;
+    update();
     itemsModel = Get.arguments['itemsModel'];
-    countItems = await getCountItemsCart(itemsModel.itemsId!);
+    usersid = myServices.sharedPreferences.getInt("id");
+
+    if (itemsModel != null && usersid != null) {
+      countItems = await getCountItemsCart(itemsModel!.itemsId!);
+    }
+    // countItems = await getCountItemsCart(itemsModel.itemsId!);
     statusRequest = StatusRequest.success;
     update();
   }
 
   @override
   addCount() {
-    if (countItems < itemsModel.itemsCount!) {
+    if (countItems < itemsModel!.itemsCount!) {
       countItems++;
-      addToCart(itemsModel.itemsId!);
+      addToCart(itemsModel!.itemsId!);
     } else {
-      return itemsModel.itemsCount;
+      return itemsModel!.itemsCount;
     }
     update();
   }
@@ -59,7 +65,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   removeCount() {
     if (countItems > 1) {
       countItems--;
-      deleteFromCart(itemsModel.itemsId!);
+      deleteFromCart(itemsModel!.itemsId!);
     } else {
       countItems = countItems;
     }
@@ -70,7 +76,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   addToCart(itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cartData.addToCart(usersid, itemsid);
+    var response = await cartData.addToCart(usersid!, itemsid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -90,7 +96,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   deleteFromCart(itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cartData.deleteFromCart(usersid, itemsid);
+    var response = await cartData.deleteFromCart(usersid!, itemsid);
     statusRequest = handingData(response);
     // print("🧾 deleteFromCart Response: $response");
     if (statusRequest == StatusRequest.success) {
@@ -110,7 +116,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   @override
   getCountItemsCart(itemsid) async {
     statusRequest = StatusRequest.loading;
-    var response = await cartData.countItemsCart(usersid, itemsid);
+    var response = await cartData.countItemsCart(usersid!, itemsid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

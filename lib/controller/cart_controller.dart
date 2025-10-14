@@ -33,7 +33,6 @@ class ControllerInCartImp extends ControllerInCart {
   getViewCartData() async {
     statusRequest = StatusRequest.loading;
     update();
-    data.clear();
     var response = await cartData.viewCartData(usersid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {

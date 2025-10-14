@@ -1,19 +1,11 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
-import 'package:e_commerce_app/controller/product_details_controller.dart';
-import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
-import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_button.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_image_product_details.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_price_.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_product_count.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_products_color.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_show_quatity.dart';
-import 'package:e_commerce_app/view/widget/product_details/custom_title_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:e_commerce_app/controller/product_details_controller.dart';
 
 class ProductDetails extends StatelessWidget {
   const ProductDetails({super.key});
@@ -21,83 +13,108 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductDetailsControllerImp());
-
+    ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          CustomIconBack(),
+          SizedBox(width: 100),
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(right: 90),
+            child: Text(
+              "تفاصيل المنتج",
+              style: TextStyle(color: Colors.grey[600], fontSize: 30),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-        child: GetBuilder<ControllerInCartImp>(
-          builder: (controller) => CustomIconButton(
-            onPressed: () {
-              controller.refresData();
-              Get.toNamed(AppRoute.shoppingCartPage);
-            },
-            icon: const Icon(Icons.add_shopping_cart_outlined),
-          ),
+        child: CustomIconButton(
+          onPressed: () {
+            controllerCart.refresData();
+            Get.toNamed(AppRoute.shoppingCartPage);
+          },
+          icon: const Icon(Icons.add_shopping_cart_outlined),
         ),
       ),
 
       body: GetBuilder<ProductDetailsControllerImp>(
-        builder: (controller) => HandlingDatatView(
-          statusRequest: controller.statusRequest,
-          widget: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ListView(
-              children: [
-                const SizedBox(height: 20),
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    CustomImageProductDetails(
-                      linkImage:
-                          "${AppLinkApi.imagesItems}/${controller.itemsModel.itemsImage}",
-                    ),
-                    const Positioned(
-                      top: -25,
-                      left: 10,
-                      child: CustomIconBack(),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      left: 10,
-                      child: CustomPrice(
-                        price: "${controller.itemsModel.itemsPrice}.00 \$",
+        builder: (controller) {
+          if (controller.itemsModel == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final item = controller.itemsModel!;
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 250,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.grey.shade200,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          "${AppLinkApi.imagesItems}/${item.itemsImage}",
+                        ),
                       ),
                     ),
-                  ],
-                ),
-                CustomTitleProductDetails(
-                  title:
-                      "${translateDatabase(controller.itemsModel.itemsNameAr, controller.itemsModel.itemsName)}",
-                ),
-                Text(
-                  "${translateDatabase(controller.itemsModel.itemsDascAr, controller.itemsModel.itemsDasc)}",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Count",
-                      style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    item.itemsName ?? "بدون اسم",
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
-                    CustomProductCouont(
-                      onAdd: () {
-                        controller.addCount();
-                      },
-                      count: "${controller.countItems}",
-                      onRemove: () {
-                        controller.removeCount();
-                      },
-                    ),
-                  ],
-                ),
-                Text("Color", style: Theme.of(context).textTheme.titleLarge),
-                const CustomProductsColor(),
-                CustomShowQuatity(count: "${controller.itemsModel.itemsCount}"),
-              ],
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    item.itemsDasc ?? "لا يوجد وصف متاح",
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "السعر: ${item.itemsPrice ?? 0} جنيه",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: () => controller.removeCount(),
+                          ),
+                          Text("${controller.countItems}"),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () => controller.addCount(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

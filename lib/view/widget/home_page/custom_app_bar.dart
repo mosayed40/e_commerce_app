@@ -5,15 +5,19 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String titleAppBar;
-  final void Function()? onPressedIcon;
-  final void Function()? onPressedSearch;
+  final TextEditingController myController;
+  final void Function()? onPressedNotifications;
   final void Function()? onPressedFavorite;
+  final void Function()? onPressedSearch;
+  final void Function(String)? onChanged;
   const CustomAppBar({
     super.key,
     required this.titleAppBar,
-    required this.onPressedIcon,
+    this.onPressedNotifications,
+    this.onPressedFavorite,
     required this.onPressedSearch,
-    required this.onPressedFavorite,
+    required this.onChanged,
+    required this.myController,
   });
 
   @override
@@ -23,11 +27,14 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Expanded(
             child: CustomSearchTextFormField(
+              myController: myController,
               hintText: titleAppBar.tr,
-              onPressed: () {},
+              onPressedSearch: onPressedSearch,
+              onChanged: onChanged,
             ),
           ),
           const SizedBox(width: 10),
+          // notifications
           Container(
             width: 60,
             padding: const EdgeInsets.symmetric(vertical: 8),
@@ -36,7 +43,7 @@ class CustomAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             child: IconButton(
-              onPressed: onPressedIcon,
+              onPressed: onPressedNotifications,
               icon: Icon(
                 Icons.notifications_active_outlined,
                 size: 30,
@@ -45,6 +52,7 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
+          //Favorite
           Container(
             width: 60,
             padding: const EdgeInsets.symmetric(vertical: 8),
