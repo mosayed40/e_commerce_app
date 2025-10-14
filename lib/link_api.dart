@@ -34,4 +34,9 @@ class AppLinkApi {
   static const String deleteFromCart = "$server/cart/delete.php";
   static const String cartView = "$server/cart/view.php";
   static const String countItemsCart = "$server/cart/getcountitems.php";
+  // address
+  static const String addAddress = "$server/address/add.php";
+  static const String eidtAddress = "$server/address/eidt.php";
+  static const String deleteAddress = "$server/address/delete.php";
+  static const String viewAddress = "$server/address/view.php";
 }

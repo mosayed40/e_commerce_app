@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/controller/setting_controller.dart';
+import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,15 +40,21 @@ class CustomSettingPageOptins extends StatelessWidget {
                 ListTile(
                   onTap: () {
                     if (data[i]['id'] == "1") {
+                      print("Notifications");
                     } else if (data[i]['id'] == "2") {
+                      Get.toNamed(AppRoute.viewAddress);
+                      print("Address");
                     } else if (data[i]['id'] == "3") {
-                    } else if (data[i]['id'] == "3") {
+                      print("About us");
+                    } else if (data[i]['id'] == "4") {
+                      print("Contact us");
                     } else if (data[i]['id'] == "5") {
                       settingController.logOut();
                     }
                   },
                   title: Text("${data[i]['titel']}"),
                   trailing: data[i]['icon'],
+                  iconColor: data[i]['id'] == "5" ? Colors.red : Colors.black,
                 ),
                 const SizedBox(height: 10),
               ],
