@@ -6,7 +6,9 @@ class AppImageAsset {
   static const String slider1 = '$pathImage/slider_1.jpg';
   static const String slider3 = '$pathImage/slider_3.jpg';
   static const String slider2 = '$pathImage/slider_2.jpg';
+  // Images
   static const String avatar = '$pathImage/person.png';
+  static const String discount = '$pathImage/discount.png';
 
   // Assets Animation =====
   static const String lottieAnimation = "assets/lottie_animation";
