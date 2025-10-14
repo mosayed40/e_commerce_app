@@ -93,6 +93,7 @@ class HomeControllerImp extends HomeController {
   @override
   checkSearch(val) {
     if (val == "") {
+      statusRequest = StatusRequest.none;
       isSearch = false;
     }
     update();
@@ -102,8 +103,6 @@ class HomeControllerImp extends HomeController {
   onSearch() {
     if (search!.text != "") {
       isSearch = true;
-    } else {
-      isSearch = false;
     }
     searchData();
     update();

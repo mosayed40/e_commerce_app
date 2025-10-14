@@ -74,43 +74,61 @@ class CustomListItems extends GetView<ItemsControllerImp> {
               ),
               const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text("Rating"),
-                  const SizedBox(width: 15),
-                  const Text(
-                    "4.5",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  ...List.generate(
+                    5,
+                    (index) => Icon(
+                      Icons.star,
+                      color: index < 3 ? Colors.amber : Colors.black,
+                      size: 18,
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Row(
-                    children: [
-                      ...List.generate(
-                        5,
-                        (index) => const Icon(
-                          Icons.star,
-                          // color: Colors.amber,
-                          size: 18,
-                        ),
-                      ),
-                    ],
+                  const SizedBox(width: 25),
+                  // Add To Cart
+                  IconButton(
+                    onPressed: () {
+                      controllerCart.addToCart(itemsModel.itemsId!);
+                    },
+                    icon: const Icon(Icons.add_shopping_cart_outlined),
                   ),
                 ],
               ),
               const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // Price
-                  Text(
-                    "${itemsModel.itemsPrice} \$",
-                    style: const TextStyle(color: AppColors.primaryColor),
-                  ),
-                  const SizedBox(width: 20),
+                  itemsModel.itemsDiscount! > 0
+                      ? Column(
+                          children: [
+                            // السعر بعد الخصم
+                            Text(
+                              "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)} ج.م",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                            // السعر قبل الخصم
+                            Text(
+                              "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)}ج.م",
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Text(
+                          "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)}ج.م",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: AppColors.primaryColor,
+                            // decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                  const SizedBox(width: 25),
                   GetBuilder<FavoriteControllerImp>(
                     builder: (controller) => IconButton(
                       onPressed: () {
@@ -127,13 +145,6 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                           : Icon(Icons.favorite_border_outlined),
                       color: AppColors.errorColor,
                     ),
-                  ),
-                  // Add To Cart
-                  IconButton(
-                    onPressed: () {
-                      controllerCart.addToCart(itemsModel.itemsId!);
-                    },
-                    icon: const Icon(Icons.add_shopping_cart_outlined),
                   ),
                 ],
               ),

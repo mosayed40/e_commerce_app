@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
@@ -88,10 +89,9 @@ class ProductDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "السعر: ${item.itemsPrice ?? 0} جنيه",
+                        "Count",
                         style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.green,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -108,6 +108,41 @@ class ProductDetails extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Price",
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+
+                  Row(
+                    children: [
+                      // السعر بعد الخصم
+                      Text(
+                        "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)}  ج.م",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      // السعر قبل الخصم
+                      item.itemsDiscount! > 0
+                          ? Text(
+                              "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)} ج.م",
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            )
+                          : Text(""),
                     ],
                   ),
                 ],

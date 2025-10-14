@@ -80,6 +80,7 @@ class ItemsControllerImp extends ItemsController {
   @override
   checkSearch(val) {
     if (val == "") {
+      statusRequest = StatusRequest.none;
       isSearch = false;
     }
     update();
@@ -89,8 +90,6 @@ class ItemsControllerImp extends ItemsController {
   onSearch() {
     if (search!.text != "") {
       isSearch = true;
-    } else {
-      isSearch = false;
     }
     searchData();
     update();
