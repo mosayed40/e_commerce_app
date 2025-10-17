@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
+// import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/address_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
@@ -10,37 +11,34 @@ import 'package:get/get.dart';
 
 abstract class ControllerInAddress extends GetxController {
   getViewAddressData();
-  addAddress();
+  // addAddress();
   editAddress();
   deleteAddress(int addressid);
 }
 
 class ControllerInAddressImp extends ControllerInAddress {
-  GlobalKey<FormState> addressFormState = GlobalKey<FormState>();
+  // GlobalKey<FormState> addressFormState = GlobalKey<FormState>();
   AddressData addressData = AddressData(Get.find<Crud>());
   MyServices myServices = Get.find();
   StatusRequest statusRequest = StatusRequest.none;
   List<AddressModel> data = [];
   AddressModel? addressModel;
   late int usersid = myServices.sharedPreferences.getInt("id")!;
-  late TextEditingController addressid;
-  late TextEditingController phone;
   late TextEditingController name;
+  late TextEditingController phone;
   late TextEditingController city;
   late TextEditingController street;
-  late TextEditingController lat;
-  late TextEditingController long;
+  int? addressid;
+  double? lat;
+  double? long;
 
   @override
   void onInit() {
-    addressid = TextEditingController();
-    phone = TextEditingController();
+    getViewAddressData();
     name = TextEditingController();
+    phone = TextEditingController();
     city = TextEditingController();
     street = TextEditingController();
-    lat = TextEditingController();
-    long = TextEditingController();
-    getViewAddressData();
     super.onInit();
   }
 
@@ -64,50 +62,17 @@ class ControllerInAddressImp extends ControllerInAddress {
   }
 
   @override
-  addAddress() async {
-    var formData = addressFormState.currentState;
-    if (formData!.validate()) {
-      statusRequest = StatusRequest.loading;
-      update();
-      var response = await addressData.addAddress(
-        usersid,
-        phone.text,
-        name.text,
-        city.text,
-        street.text,
-        lat.text,
-        long.text,
-      );
-      statusRequest = handingData(response);
-      if (statusRequest == StatusRequest.success) {
-        if (response['status'] == "success") {
-          Get.snackbar(
-            "نبية",
-            "تم اضافة العنوان",
-            backgroundColor: Color(0xFF3199EE),
-          );
-          getViewAddressData();
-          Get.offAllNamed(AppRoute.viewAddress);
-        } else {
-          statusRequest = StatusRequest.failure;
-        }
-      }
-      update();
-    }
-  }
-
-  @override
   editAddress() async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await addressData.editAddress(
-      addressid.text,
-      phone.text,
+      addressid.toString(),
       name.text,
+      phone.text,
       city.text,
       street.text,
-      lat.text,
-      long.text,
+      lat.toString(),
+      long.toString(),
     );
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
@@ -116,6 +81,7 @@ class ControllerInAddressImp extends ControllerInAddress {
           "نبية",
           "تم تعديل العنوان",
           backgroundColor: Color(0xFF3199EE),
+          duration: const Duration(seconds: 1),
         );
         getViewAddressData();
       } else {
@@ -131,14 +97,16 @@ class ControllerInAddressImp extends ControllerInAddress {
     update();
     var response = await addressData.deleteAddress(addressid);
     statusRequest = handingData(response);
-    print("🧾 deleteAddress Response: $response");
+    // print("🧾 deleteAddress Response: $response");
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         Get.snackbar(
           "نبية",
           "تم حذف العنوان",
           backgroundColor: Color(0xFFF04628),
+          duration: const Duration(seconds: 1),
         );
+        Get.offNamed(AppRoute.viewAddress);
         getViewAddressData();
       } else {
         statusRequest = StatusRequest.failure;
@@ -149,12 +117,10 @@ class ControllerInAddressImp extends ControllerInAddress {
 
   @override
   void onClose() {
-    phone.dispose();
     name.dispose();
+    phone.dispose();
     city.dispose();
     street.dispose();
-    lat.dispose();
-    long.dispose();
     super.onClose();
   }
 }

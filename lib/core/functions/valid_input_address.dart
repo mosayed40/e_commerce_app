@@ -1,50 +1,41 @@
 import 'package:get/get.dart';
 
-vaildInputAddress(String val, int min, int max, String type) {
+String? validInputAddress(String val, int min, int max, String type) {
   if (val.isEmpty) {
-    return 'Input cannot be empty';
+    return 'الحقل لا يمكن أن يكون فارغاً';
   }
 
   if (type == "UserName") {
     if (!GetUtils.isUsername(val)) {
-      return 'Invalid username';
+      return 'اسم المستخدم غير صالح';
     }
   }
 
   if (type == "Phone") {
     if (!GetUtils.isPhoneNumber(val)) {
-      return 'Invalid phone number';
+      return 'رقم الهاتف غير صالح';
     }
   }
 
   if (type == "City") {
-    if (!GetUtils.isUsername(val)) {
-      return 'Invalid City';
+    if (val.length < 3) {
+      return 'اسم المدينة قصير جداً';
     }
   }
 
   if (type == "Street") {
-    if (!GetUtils.isUsername(val)) {
-      return 'Invalid Street';
-    }
-  }
-
-  if (type == "Latitude") {
-    if (!GetUtils.isNum(val)) {
-      return 'Invalid Latitude';
-    }
-  }
-  if (type == "longitude") {
-    if (!GetUtils.isNum(val)) {
-      return 'Invalid longitude';
+    if (val.length < 3) {
+      return 'اسم الشارع قصير جداً';
     }
   }
 
   if (val.length < min) {
-    return 'Input must be at least $min characters long';
+    return 'يجب ألا يقل الإدخال عن $min حروف';
   }
 
   if (val.length > max) {
-    return 'Input must be at most $max characters long';
+    return 'يجب ألا يزيد الإدخال عن $max حروف';
   }
+
+  return null;
 }

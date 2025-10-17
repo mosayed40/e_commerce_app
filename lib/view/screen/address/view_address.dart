@@ -45,7 +45,7 @@
 //     );
 //   }
 // }
-import 'package:e_commerce_app/controller/address_controller.dart';
+import 'package:e_commerce_app/controller/address/address_controller.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
@@ -81,7 +81,7 @@ class ViewAddress extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.buttonColor,
         onPressed: () {
-          Get.toNamed(AppRoute.addAddress);
+          Get.toNamed(AppRoute.mapDemo);
         },
         child: Icon(Icons.add, color: Colors.white, size: 30),
       ),
@@ -118,8 +118,14 @@ class ViewAddress extends StatelessWidget {
                     address.addressName ?? "بدون اسم",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
-                    "${address.addressCity ?? ''} - ${address.addressStreet ?? ''}",
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${address.addressPhone}"),
+                      Text(
+                        "${address.addressCity ?? ''} - ${address.addressStreet ?? ''}",
+                      ),
+                    ],
                   ),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete, color: Colors.red),

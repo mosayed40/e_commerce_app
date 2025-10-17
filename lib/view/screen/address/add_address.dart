@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/controller/address_controller.dart';
+import 'package:e_commerce_app/controller/address/add_address_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/functions/valid_input_address.dart';
 import 'package:e_commerce_app/view/widget/address/custom_text_form.dart';
@@ -12,6 +12,7 @@ class AddAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ControllerAddAddressImp());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -30,7 +31,7 @@ class AddAddress extends StatelessWidget {
           ),
         ],
       ),
-      body: GetBuilder<ControllerInAddressImp>(
+      body: GetBuilder<ControllerAddAddressImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
@@ -45,7 +46,7 @@ class AddAddress extends StatelessWidget {
                     labelText: "Name",
                     hintText: " user name",
                     valid: (val) {
-                      return vaildInputAddress(val!, 6, 50, "UserName");
+                      return validInputAddress(val!, 6, 50, "UserName");
                     },
                   ),
                   const SizedBox(height: 15),
@@ -54,16 +55,16 @@ class AddAddress extends StatelessWidget {
                     labelText: "Phone",
                     hintText: "phone number",
                     valid: (val) {
-                      return vaildInputAddress(val!, 10, 11, "Phone");
+                      return validInputAddress(val!, 10, 11, "Phone");
                     },
                   ),
                   const SizedBox(height: 15),
                   CustomTextForm(
                     controller: controller.city,
                     labelText: "City",
-                    hintText: "city",
+                    hintText: "city name",
                     valid: (val) {
-                      return vaildInputAddress(val!, 5, 50, "City");
+                      return validInputAddress(val!, 3, 50, "City");
                     },
                   ),
                   const SizedBox(height: 15),
@@ -72,25 +73,7 @@ class AddAddress extends StatelessWidget {
                     labelText: "Street",
                     hintText: "street name",
                     valid: (val) {
-                      return vaildInputAddress(val!, 6, 50, "Street");
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextForm(
-                    controller: controller.lat,
-                    labelText: "Latitude",
-                    hintText: "Latitude",
-                    valid: (val) {
-                      return vaildInputAddress(val!, 4, 50, "Latitude");
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextForm(
-                    controller: controller.long,
-                    labelText: "longitude",
-                    hintText: "longitude",
-                    valid: (val) {
-                      return vaildInputAddress(val!, 4, 50, "longitude");
+                      return validInputAddress(val!, 3, 50, "Street");
                     },
                   ),
                   const SizedBox(height: 30),

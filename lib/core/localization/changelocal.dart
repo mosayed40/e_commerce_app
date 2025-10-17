@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/core/constant/app_theme.dart';
 import 'package:e_commerce_app/core/services/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class LocaleController extends GetxController {
@@ -10,6 +11,7 @@ class LocaleController extends GetxController {
 
   @override
   void onInit() {
+    requestPermissionLocation();
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
     if (sharedPrefLang == "ar") {
       language = const Locale("ar");
@@ -30,5 +32,27 @@ class LocaleController extends GetxController {
     appThemeLanguage = langcode == "ar" ? themeArabic : themeEnglish;
     Get.changeTheme(appThemeLanguage);
     Get.updateLocale(locale);
+  }
+
+  requestPermissionLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    // التحقق من تفعيل خدمة الموقع
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Get.snackbar("تنبية", "الرجاء تفعيل خدمة تحدد الموقع");
+    }
+    // طلب الإذن من النظام
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Get.snackbar("تنبية", "الرجاء اعطاء صلاحية الموقع للتطبيق");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Get.snackbar("تنبية", "لا يمكن استخدام التطبيق بدون اللوكيشن ");
+    }
   }
 }

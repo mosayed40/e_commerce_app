@@ -61,6 +61,7 @@ class ControllerInCartImp extends ControllerInCart {
           "نبية",
           "تم اضافة المنتج",
           backgroundColor: Color(0xFF3199EE),
+          duration: const Duration(seconds: 1),
         );
       } else {
         statusRequest = StatusRequest.failure;
@@ -81,7 +82,8 @@ class ControllerInCartImp extends ControllerInCart {
         Get.snackbar(
           "نبية",
           "تم حذف المنتج",
-          backgroundColor: Color(0xFF3199EE),
+          backgroundColor: Color(0xFFD53939),
+          duration: const Duration(seconds: 1),
         );
       } else {
         statusRequest = StatusRequest.failure;

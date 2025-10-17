@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/view/screen/address/add_address.dart';
 import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
+import 'package:e_commerce_app/view/screen/address/map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/view_address.dart';
 import 'package:e_commerce_app/view/screen/cart.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
@@ -60,6 +61,7 @@ List<GetPage<dynamic>>? routes = [
     page: () => const ShoppingCartPage(),
   ),
   // Address
+  GetPage(name: AppRoute.mapDemo, page: () => const MapSample()),
   GetPage(name: AppRoute.addAddress, page: () => const AddAddress()),
   GetPage(name: AppRoute.eidtAddress, page: () => const EidtAddress()),
   GetPage(name: AppRoute.viewAddress, page: () => const ViewAddress()),
