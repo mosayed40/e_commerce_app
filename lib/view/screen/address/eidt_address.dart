@@ -1,9 +1,8 @@
-import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
 import 'package:flutter/material.dart';
 
-class ViewAddress extends StatelessWidget {
-  const ViewAddress({super.key});
+class EidtAddress extends StatelessWidget {
+  const EidtAddress({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,24 +12,19 @@ class ViewAddress extends StatelessWidget {
         actionsPadding: EdgeInsets.symmetric(horizontal: 15),
         actions: [
           CustomIconBack(),
-          SizedBox(width: 30),
+          SizedBox(width: 20),
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 50),
+            padding: EdgeInsets.symmetric(horizontal: 60),
             child: Text(
-              "View Addresses",
+              "Edit Addresses",
               style: TextStyle(color: Colors.grey[600], fontSize: 30),
               textAlign: TextAlign.center,
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.buttonColor,
-        onPressed: () {},
-        child: Icon(Icons.add, color: Colors.white, size: 30),
-      ),
-      body: Center(child: Text("Hello world")),
+      body: Center(child: Text("Edit")),
     );
   }
 }

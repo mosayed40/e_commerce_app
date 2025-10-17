@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
-import 'package:e_commerce_app/view/address/add_address.dart';
-import 'package:e_commerce_app/view/address/eidt_address.dart';
-import 'package:e_commerce_app/view/address/view_address.dart';
+import 'package:e_commerce_app/view/screen/address/add_address.dart';
+import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
+import 'package:e_commerce_app/view/screen/address/view_address.dart';
 import 'package:e_commerce_app/view/screen/cart.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
