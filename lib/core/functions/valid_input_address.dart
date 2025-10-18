@@ -5,9 +5,9 @@ String? validInputAddress(String val, int min, int max, String type) {
     return 'الحقل لا يمكن أن يكون فارغاً';
   }
 
-  if (type == "UserName") {
-    if (!GetUtils.isUsername(val)) {
-      return 'اسم المستخدم غير صالح';
+  if (type == "AddressName") {
+    if (val.length < 5) {
+      return 'اسم العنوان غير صالح';
     }
   }
 
@@ -24,7 +24,7 @@ String? validInputAddress(String val, int min, int max, String type) {
   }
 
   if (type == "Street") {
-    if (val.length < 3) {
+    if (val.length < 5) {
       return 'اسم الشارع قصير جداً';
     }
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:e_commerce_app/core/constant/routes.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -49,6 +50,15 @@ class ControllerMapImp extends ControllerMap {
 
   @override
   goToAddAddressDataPage() {
+    if (lat == null || long == null) {
+      Get.snackbar(
+        "تنبيه",
+        "الرجاء تحديد الموقع قبل إضافة العنوان",
+        duration: const Duration(seconds: 1),
+        backgroundColor: const Color(0x88F2524D),
+      );
+      return;
+    }
     Get.toNamed(AppRoute.addAddress, arguments: {"lat": lat, "long": long});
   }
 }

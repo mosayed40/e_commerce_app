@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/controller/address/add_address_controller.dart';
+import 'package:e_commerce_app/controller/address/add_map_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/functions/valid_input_address.dart';
 import 'package:e_commerce_app/view/widget/address/custom_text_form.dart';
@@ -6,6 +7,7 @@ import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddAddress extends StatelessWidget {
   const AddAddress({super.key});
@@ -37,54 +39,94 @@ class AddAddress extends StatelessWidget {
           widget: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
             alignment: Alignment.center,
-            child: Form(
-              key: controller.addressFormState,
-              child: ListView(
-                children: [
-                  CustomTextForm(
-                    controller: controller.name,
-                    labelText: "Name",
-                    hintText: " user name",
-                    valid: (val) {
-                      return validInputAddress(val!, 6, 50, "UserName");
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextForm(
-                    controller: controller.phone,
-                    labelText: "Phone",
-                    hintText: "phone number",
-                    valid: (val) {
-                      return validInputAddress(val!, 10, 11, "Phone");
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextForm(
-                    controller: controller.city,
-                    labelText: "City",
-                    hintText: "city name",
-                    valid: (val) {
-                      return validInputAddress(val!, 3, 50, "City");
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextForm(
-                    controller: controller.street,
-                    labelText: "Street",
-                    hintText: "street name",
-                    valid: (val) {
-                      return validInputAddress(val!, 3, 50, "Street");
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                  CustomButtonAuth(
+            child: Stack(
+              alignment: AlignmentGeometry.center,
+              children: [
+                ListView(
+                  children: [
+                    Form(
+                      key: controller.addressFormState,
+                      child: Column(
+                        children: [
+                          CustomTextForm(
+                            controller: controller.name,
+                            labelText: "Name",
+                            hintText: " address name",
+                            valid: (val) {
+                              return validInputAddress(
+                                val!,
+                                6,
+                                50,
+                                "AddressName",
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 15),
+                          CustomTextForm(
+                            controller: controller.phone,
+                            labelText: "Phone",
+                            hintText: "phone number",
+                            valid: (val) {
+                              return validInputAddress(val!, 10, 11, "Phone");
+                            },
+                          ),
+                          const SizedBox(height: 15),
+                          CustomTextForm(
+                            controller: controller.city,
+                            labelText: "City",
+                            hintText: "city name",
+                            valid: (val) {
+                              return validInputAddress(val!, 3, 50, "City");
+                            },
+                          ),
+                          const SizedBox(height: 15),
+                          CustomTextForm(
+                            controller: controller.street,
+                            labelText: "Street",
+                            hintText: "street name",
+                            valid: (val) {
+                              return validInputAddress(val!, 3, 50, "Street");
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                      height: Get.height / 2.2,
+                      decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                      ),
+                      child: GetBuilder<ControllerMapImp>(
+                        builder: (mapConroller) => GoogleMap(
+                          onTap: (latLng) {
+                            mapConroller.addMarkers(latLng);
+                          },
+                          mapType: MapType.normal,
+                          markers: mapConroller.markers.toSet(),
+                          myLocationEnabled: true,
+                          initialCameraPosition: mapConroller.kGooglePlex!,
+                          onMapCreated: (GoogleMapController controllerMap) {
+                            mapConroller.controllerMap.complete(controllerMap);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+                Positioned(
+                  width: Get.width / 1.5,
+                  bottom: 0,
+                  child: CustomButtonAuth(
                     text: "Add",
                     onPressed: () {
                       controller.addAddress();
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -21,6 +21,7 @@ class CustomTextForm extends StatelessWidget {
     return TextFormField(
       validator: valid,
       controller: controller,
+      keyboardType: TextInputType.multiline,
       style: TextStyle(color: Colors.black, fontSize: 18),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 30),

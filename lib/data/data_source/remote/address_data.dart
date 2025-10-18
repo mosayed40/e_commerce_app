@@ -6,22 +6,22 @@ class AddressData {
   AddressData(this.crud);
 
   addAddress(
-    int usersid,
-    String phone,
+    String usersid,
     String name,
+    String phone,
     String city,
     String street,
     String lat,
     String long,
   ) async {
     var response = await crud.postData(AppLinkApi.addAddress, {
-      "users_id": usersid.toString(),
-      "name": name.toString(),
-      "phone": phone.toString(),
-      "city": city.toString(),
-      "street": street.toString(),
-      "lat": lat.toString(),
-      "long": long.toString(),
+      "users_id": usersid,
+      "name": name,
+      "phone": phone,
+      "city": city,
+      "street": street,
+      "lat": lat,
+      "long": long,
     });
     return response.fold((l) => l, (r) => r);
   }

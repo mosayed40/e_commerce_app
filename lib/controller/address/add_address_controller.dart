@@ -43,18 +43,10 @@ class ControllerAddAddressImp extends ControllerAddAddress {
   addAddress() async {
     var formData = addressFormState.currentState;
     if (formData!.validate()) {
-      if (lat == null || long == null) {
-        Get.snackbar(
-          "تنبيه",
-          "الرجاء تحديد الموقع قبل إضافة العنوان",
-          duration: const Duration(seconds: 1),
-        );
-        return;
-      }
       statusRequest = StatusRequest.loading;
       update();
       var response = await addressData.addAddress(
-        usersid,
+        usersid.toString(),
         name.text,
         phone.text,
         city.text,
