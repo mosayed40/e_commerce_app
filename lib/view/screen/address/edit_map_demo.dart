@@ -1,26 +1,29 @@
+import 'package:e_commerce_app/controller/address/edit_map_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
-import 'package:e_commerce_app/controller/address/add_map_controller.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
 
-class MapSample extends StatelessWidget {
-  const MapSample({super.key});
+class EditMapDemo extends StatelessWidget {
+  const EditMapDemo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ControllerMapImp());
+    Get.put(EditMapControllerImp());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Map Sample", style: TextStyle(color: Colors.grey[600])),
+        title: Text(
+          "Edit Map Sample",
+          style: TextStyle(color: Colors.grey[600]),
+        ),
         leading: Padding(
           padding: const EdgeInsets.all(2.0),
           child: CustomIconBack(),
         ),
         centerTitle: true,
       ),
-      body: GetBuilder<ControllerMapImp>(
+      body: GetBuilder<EditMapControllerImp>(
         builder: (controller) => HandlingDatatView(
           statusRequest: controller.statusRequest,
           widget: Column(
@@ -32,7 +35,7 @@ class MapSample extends StatelessWidget {
                     children: [
                       GoogleMap(
                         onTap: (latLng) {
-                          controller.addMarkers(latLng);
+                          controller.editMarkers(latLng);
                         },
                         mapType: MapType.normal,
                         markers: controller.markers.toSet(),
@@ -43,7 +46,6 @@ class MapSample extends StatelessWidget {
                         },
                       ),
                       Positioned(
-                        // right: 0,
                         bottom: 20,
                         child: Container(
                           margin: EdgeInsets.all(8.0),
@@ -57,10 +59,10 @@ class MapSample extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () {
-                              controller.goToAddAddressDataPage();
+                              controller.goToEditAddressDataPage();
                             },
                             child: Text(
-                              "أكمال",
+                              "أكمال التعديل",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24,

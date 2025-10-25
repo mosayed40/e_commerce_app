@@ -37,7 +37,7 @@ class AddAddress extends StatelessWidget {
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            padding: const EdgeInsets.only(top: 40, bottom: 20),
             alignment: Alignment.center,
             child: Stack(
               alignment: AlignmentGeometry.center,
@@ -45,70 +45,75 @@ class AddAddress extends StatelessWidget {
                 ListView(
                   children: [
                     Form(
-                      key: controller.addressFormState,
-                      child: Column(
-                        children: [
-                          CustomTextForm(
-                            controller: controller.name,
-                            labelText: "Name",
-                            hintText: " address name",
-                            valid: (val) {
-                              return validInputAddress(
-                                val!,
-                                6,
-                                50,
-                                "AddressName",
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 15),
-                          CustomTextForm(
-                            controller: controller.phone,
-                            labelText: "Phone",
-                            hintText: "phone number",
-                            valid: (val) {
-                              return validInputAddress(val!, 10, 11, "Phone");
-                            },
-                          ),
-                          const SizedBox(height: 15),
-                          CustomTextForm(
-                            controller: controller.city,
-                            labelText: "City",
-                            hintText: "city name",
-                            valid: (val) {
-                              return validInputAddress(val!, 3, 50, "City");
-                            },
-                          ),
-                          const SizedBox(height: 15),
-                          CustomTextForm(
-                            controller: controller.street,
-                            labelText: "Street",
-                            hintText: "street name",
-                            valid: (val) {
-                              return validInputAddress(val!, 3, 50, "Street");
-                            },
-                          ),
-                        ],
+                      key: controller.addAddressFormState,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            CustomTextForm(
+                              controller: controller.name,
+                              labelText: "Name",
+                              hintText: " address name",
+                              valid: (val) {
+                                return validInputAddress(
+                                  val!,
+                                  6,
+                                  50,
+                                  "AddressName",
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 15),
+                            CustomTextForm(
+                              controller: controller.phone,
+                              labelText: "Phone",
+                              hintText: "phone number",
+                              valid: (val) {
+                                return validInputAddress(val!, 10, 11, "Phone");
+                              },
+                            ),
+                            const SizedBox(height: 15),
+                            CustomTextForm(
+                              controller: controller.city,
+                              labelText: "City",
+                              hintText: "city name",
+                              valid: (val) {
+                                return validInputAddress(val!, 3, 50, "City");
+                              },
+                            ),
+                            const SizedBox(height: 15),
+                            CustomTextForm(
+                              controller: controller.street,
+                              labelText: "Street",
+                              hintText: "street name",
+                              valid: (val) {
+                                return validInputAddress(val!, 3, 50, "Street");
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 15),
-                    Container(
-                      height: Get.height / 2.2,
-                      decoration: BoxDecoration(
-                        // borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                      ),
-                      child: GetBuilder<ControllerMapImp>(
-                        builder: (mapConroller) => GoogleMap(
-                          onTap: (latLng) {
-                            mapConroller.addMarkers(latLng);
-                          },
-                          mapType: MapType.normal,
-                          markers: mapConroller.markers.toSet(),
-                          myLocationEnabled: true,
-                          initialCameraPosition: mapConroller.kGooglePlex!,
-                          onMapCreated: (GoogleMapController controllerMap) {
-                            mapConroller.controllerMap.complete(controllerMap);
-                          },
+                    SizedBox(
+                      height: Get.height / 1.9,
+
+                      child: Center(
+                        child: GetBuilder<ControllerMapImp>(
+                          builder: (mapConroller) => GoogleMap(
+                            onTap: (latLng) {
+                              mapConroller.addMarkers(latLng);
+                            },
+                            mapType: MapType.normal,
+                            markers: mapConroller.markers.toSet(),
+                            myLocationEnabled: true,
+                            initialCameraPosition: mapConroller.kGooglePlex!,
+                            onMapCreated: (GoogleMapController controllerMap) {
+                              mapConroller.controllerMap.complete(
+                                controllerMap,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),

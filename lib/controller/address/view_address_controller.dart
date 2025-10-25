@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
@@ -7,25 +9,57 @@ import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/address_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class ControllerViewAddress extends GetxController {
+  setInitialMarker(double latl, double longl);
   getViewAddressData();
   deleteAddress(int addressid);
+  goToEditAddress();
 }
 
 class ControllerViewAddressImp extends ControllerViewAddress {
   AddressData addressData = AddressData(Get.find<Crud>());
   MyServices myServices = Get.find();
-  StatusRequest statusRequest = StatusRequest.none;
+  StatusRequest statusRequest = StatusRequest.loading;
   List<AddressModel> data = [];
   AddressModel? addressModel;
   late int usersid = myServices.sharedPreferences.getInt("id")!;
+  Completer<GoogleMapController> controllerMap = Completer();
+  List<Marker> markers = [];
+  CameraPosition? kGooglePlex;
+  double? lat;
+  double? long;
 
   @override
   void onInit() {
     addressModel = AddressModel();
+    controllerMap = Completer<GoogleMapController>();
     getViewAddressData();
+    update();
+    statusRequest = StatusRequest.none;
     super.onInit();
+  }
+
+  @override
+  setInitialMarker(lat, long) async {
+    markers.clear();
+    markers.add(
+      Marker(markerId: const MarkerId("1"), position: LatLng(lat, long)),
+    );
+    kGooglePlex = CameraPosition(target: LatLng(lat, long), zoom: 14.4746);
+    this.lat = lat;
+    this.long = long;
+    if (controllerMap.isCompleted) {
+      final GoogleMapController mapController = await controllerMap.future;
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: LatLng(lat, long), zoom: 14.4746),
+        ),
+      );
+    }
+
+    update();
   }
 
   @override
@@ -64,5 +98,13 @@ class ControllerViewAddressImp extends ControllerViewAddress {
       }
     }
     update();
+  }
+
+  @override
+  goToEditAddress() {
+    Get.toNamed(
+      AppRoute.editMapDemo,
+      arguments: {"addressModel": addressModel},
+    );
   }
 }

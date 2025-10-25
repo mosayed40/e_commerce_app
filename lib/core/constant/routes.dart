@@ -19,9 +19,11 @@ class AppRoute {
   static const String productDetails = "/productDetails";
   static const String myFavorite = "/myFavorite";
   static const String shoppingCartPage = "/ShoppingCartPage";
+  static const String cartProductsDetails = "/cartProductDetailsPage";
   // address
+  static const String addMapDemo = "/addMapDemo";
   static const String addAddress = "/addAddress";
-  static const String mapDemo = "/mapDemo";
-  static const String eidtAddress = "/eidtAddress";
+  static const String editMapDemo = "/editMapDemo";
+  static const String editAddress = "/eidtAddress";
   static const String viewAddress = "/viewAddress";
 }

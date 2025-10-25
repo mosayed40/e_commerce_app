@@ -12,7 +12,7 @@ abstract class ControllerAddAddress extends GetxController {
 }
 
 class ControllerAddAddressImp extends ControllerAddAddress {
-  GlobalKey<FormState> addressFormState = GlobalKey<FormState>();
+  GlobalKey<FormState> addAddressFormState = GlobalKey<FormState>();
   AddressData addressData = AddressData(Get.find<Crud>());
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
@@ -41,7 +41,7 @@ class ControllerAddAddressImp extends ControllerAddAddress {
 
   @override
   addAddress() async {
-    var formData = addressFormState.currentState;
+    var formData = addAddressFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
       update();

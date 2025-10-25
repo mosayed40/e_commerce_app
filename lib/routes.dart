@@ -1,9 +1,11 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/view/screen/address/add_address.dart';
+import 'package:e_commerce_app/view/screen/address/edit_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
-import 'package:e_commerce_app/view/screen/address/map_demo.dart';
+import 'package:e_commerce_app/view/screen/address/add_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/view_address.dart';
 import 'package:e_commerce_app/view/screen/cart.dart';
+import 'package:e_commerce_app/view/screen/cart_products_details_.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
 import 'package:e_commerce_app/view/screen/myfavorite.dart';
@@ -54,15 +56,21 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.home, page: () => const HomeScreenPage()),
   GetPage(name: AppRoute.items, page: () => const ItemsPage()),
   GetPage(name: AppRoute.setting, page: () => const Setting()),
-  GetPage(name: AppRoute.productDetails, page: () => const ProductDetails()),
   GetPage(name: AppRoute.myFavorite, page: () => const MyFavorite()),
+  GetPage(name: AppRoute.productDetails, page: () => const ProductDetails()),
+  GetPage(
+    name: AppRoute.cartProductsDetails,
+    page: () => const CartProductsDetails(),
+  ),
+
   GetPage(
     name: AppRoute.shoppingCartPage,
     page: () => const ShoppingCartPage(),
   ),
   // Address
-  GetPage(name: AppRoute.mapDemo, page: () => const MapSample()),
+  GetPage(name: AppRoute.addMapDemo, page: () => const AddMapDemo()),
   GetPage(name: AppRoute.addAddress, page: () => const AddAddress()),
-  GetPage(name: AppRoute.eidtAddress, page: () => const EidtAddress()),
+  GetPage(name: AppRoute.editMapDemo, page: () => const EditMapDemo()),
+  GetPage(name: AppRoute.editAddress, page: () => const EditAddress()),
   GetPage(name: AppRoute.viewAddress, page: () => const ViewAddress()),
 ];
