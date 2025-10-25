@@ -136,12 +136,12 @@ class ControllerInCartImp extends ControllerInCart {
         couponModel = CouponModel.fromJson(datacoupon);
         descountCoupon = couponModel.couponDiscount!;
         couponName = couponModel.couponName;
-        Get.snackbar(
-          "نبية",
-          "تم اضافة الكوبون",
-          backgroundColor: Color(0xFF31EED8),
-          duration: const Duration(seconds: 1),
-        );
+        // Get.snackbar(
+        //   "نبية",
+        //   "تم اضافة الكوبون",
+        //   backgroundColor: Color(0xFF31EED8),
+        //   duration: const Duration(seconds: 1),
+        // );
       } else {
         descountCoupon = 0;
         couponName = null;

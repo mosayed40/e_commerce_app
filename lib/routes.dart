@@ -5,7 +5,7 @@ import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
 import 'package:e_commerce_app/view/screen/address/add_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/view_address.dart';
 import 'package:e_commerce_app/view/screen/cart.dart';
-import 'package:e_commerce_app/view/screen/cart_products_details_.dart';
+import 'package:e_commerce_app/view/screen/cart_check_out.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
 import 'package:e_commerce_app/view/screen/myfavorite.dart';

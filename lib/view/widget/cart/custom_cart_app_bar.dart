@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:flutter/material.dart';
 
 class CustomCartAppBar extends StatelessWidget {
@@ -8,22 +7,16 @@ class CustomCartAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 80,
+      centerTitle: true,
       automaticallyImplyLeading: false,
-      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
-      actions: [
-        CustomIconBack(),
-        Spacer(),
-        Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(right: 90),
-          child: Text(
-            title,
-            style: TextStyle(color: Colors.grey[600], fontSize: 30),
-            textAlign: TextAlign.center,
-          ),
+      title: Container(
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: TextStyle(color: Colors.grey[600], fontSize: 30),
+          textAlign: TextAlign.center,
         ),
-      ],
+      ),
     );
   }
 }
