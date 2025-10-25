@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:flutter/material.dart';
 
 class CustomCartAppBar extends StatelessWidget {

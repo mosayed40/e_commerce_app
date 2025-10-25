@@ -42,27 +42,6 @@ class ShoppingCartPage extends StatelessWidget {
         ),
       ),
 
-      // Container(
-      //   margin: EdgeInsets.symmetric(horizontal: 50),
-      //   decoration: BoxDecoration(
-      //     color: AppColors.buttonColor,
-      //     borderRadius: BorderRadius.all(Radius.circular(15)),
-      //   ),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Text("click", style: TextStyle(color: Colors.white, fontSize: 20)),
-      //       IconButton(
-      //         onPressed: () {
-      //           Get.toNamed(AppRoute.cartProductsDetails);
-      //         },
-      //         icon: Row(
-      //           children: [Icon(Icons.arrow_forward_ios, color: Colors.white)],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<ControllerInCartImp>(

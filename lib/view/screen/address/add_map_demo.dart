@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/controller/address/add_map_controller.dart';
-import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 
 class AddMapDemo extends StatelessWidget {
   const AddMapDemo({super.key});

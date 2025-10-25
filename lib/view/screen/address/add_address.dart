@@ -4,7 +4,7 @@ import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/functions/valid_input_address.dart';
 import 'package:e_commerce_app/view/widget/address/custom_text_form.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
-import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

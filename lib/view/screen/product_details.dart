@@ -3,7 +3,7 @@ import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/image_asset.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/link_api.dart';
-import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

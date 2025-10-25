@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:e_commerce_app/controller/forget_password/verfiy_code_controller.dart';
+import 'package:e_commerce_app/controller/auth/forget_password/verfiy_code_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_body_auth.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_text_title_auth.dart';

@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_commerce_app/controller/forget_password/forget_password_controller.dart';
+import 'package:e_commerce_app/controller/auth/forget_password/forget_password_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/valid_input.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';

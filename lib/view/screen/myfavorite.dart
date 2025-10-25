@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
-import 'package:e_commerce_app/view/widget/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/view/widget/myfavorite/custom_list_favortie_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
