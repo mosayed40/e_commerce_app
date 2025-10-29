@@ -44,14 +44,14 @@ class CustomItemOnProductCart extends StatelessWidget {
                 subtitle: Row(
                   children: [
                     Text(
-                      "${cartModel.totalprice}.00\$",
+                      "${cartModel.askPrice} \$",
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 18,
                       ),
                     ),
                     Spacer(),
-                    Text("Count: ${cartModel.totalcount}"),
+                    Text("Count: ${cartModel.numberOfPieces}"),
                   ],
                 ),
               ),

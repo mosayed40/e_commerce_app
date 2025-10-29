@@ -19,7 +19,7 @@ class HandlingDatatView extends StatelessWidget {
             child: Lottie.asset(AppImageAsset.loading, width: 300, height: 300),
           )
         : statusRequest == StatusRequest.offlinefailure
-        ? const Center(child: Text("offline failure___"))
+        ? const Center(child: Text("offline failure..."))
         : statusRequest == StatusRequest.serverfailure
         ? Center(
             child: Lottie.asset(
@@ -29,7 +29,10 @@ class HandlingDatatView extends StatelessWidget {
             ),
           )
         : statusRequest == StatusRequest.failure
-        ? const Center(child: Text("No Data "))
+        ? const Center(
+            heightFactor: 25.0,
+            child: Text("No Data ", style: TextStyle(fontSize: 24)),
+          )
         : widget;
   }
 }

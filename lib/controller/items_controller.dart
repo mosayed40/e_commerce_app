@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class ItemsController extends GetxController {
-  intialData();
   changeCat(int val, int catVal);
   getItems(int selectedCat);
   goToPageProductDetails(ItemsModel itemsModel);
@@ -39,7 +38,6 @@ class ItemsControllerImp extends ItemsController {
     super.onInit();
   }
 
-  @override
   intialData() {
     search = TextEditingController();
     categories = Get.arguments['categories'];

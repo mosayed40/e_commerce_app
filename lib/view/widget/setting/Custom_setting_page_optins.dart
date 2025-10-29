@@ -16,18 +16,23 @@ class CustomSettingPageOptins extends StatelessWidget {
         "titel": "Disable Notifications",
         "icon": Switch(onChanged: (val) {}, value: true),
       },
-      {"id": "2", "titel": "Address", "icon": Icon(Icons.location_on_outlined)},
       {
-        "id": "3",
+        "id": "2",
+        "titel": "My Orders",
+        "icon": Icon(Icons.shopping_cart_checkout_outlined),
+      },
+      {"id": "3", "titel": "Address", "icon": Icon(Icons.location_on_outlined)},
+      {
+        "id": "4",
         "titel": "About us",
         "icon": Icon(Icons.help_outline_outlined),
       },
       {
-        "id": "4",
+        "id": "5",
         "titel": "Contact us",
         "icon": Icon(Icons.phone_callback_outlined),
       },
-      {"id": "5", "titel": "LogOut", "icon": Icon(Icons.exit_to_app)},
+      {"id": "6", "titel": "LogOut", "icon": Icon(Icons.exit_to_app)},
     ];
     return Column(
       children: [
@@ -42,13 +47,14 @@ class CustomSettingPageOptins extends StatelessWidget {
                     if (data[i]['id'] == "1") {
                       print("Notifications");
                     } else if (data[i]['id'] == "2") {
-                      Get.toNamed(AppRoute.viewAddress);
-                      print("Address");
+                      Get.toNamed(AppRoute.pendingOrder);
                     } else if (data[i]['id'] == "3") {
-                      print("About us");
+                      Get.toNamed(AppRoute.viewAddress);
                     } else if (data[i]['id'] == "4") {
-                      print("Contact us");
+                      print("About us");
                     } else if (data[i]['id'] == "5") {
+                      print("Contact us");
+                    } else if (data[i]['id'] == "6") {
                       settingController.logOut();
                     }
                   },

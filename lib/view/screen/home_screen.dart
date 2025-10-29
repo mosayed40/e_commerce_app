@@ -12,17 +12,9 @@ class HomeScreenPage extends StatelessWidget {
     return GetBuilder<HomeScreenControllerImp>(
       builder: (controller) => Scaffold(
         backgroundColor: Colors.grey.shade100,
-        // floatingActionButtonLocation:
-        //     FloatingActionButtonLocation.miniCenterDocked,
-        // floatingActionButton: FloatingActionButton(
-        //   hoverElevation: 10,
-        //   backgroundColor: Colors.blue,
-        //   onPressed: () {},
-        //   child: const Icon(Icons.shopping_cart, color: Colors.white),
-        // ),
         bottomNavigationBar: GetBuilder<HomeScreenControllerImp>(
           builder: (controller) => BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
+            // type: BottomNavigationBarType.fixed,
             currentIndex: controller.currentPage,
             selectedItemColor: AppColors.primaryColor,
             unselectedItemColor: Colors.grey,

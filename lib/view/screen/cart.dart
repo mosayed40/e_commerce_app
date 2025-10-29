@@ -1,13 +1,12 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
-import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/view/widget/cart/custom_button_shopping_cart.dart';
 import 'package:e_commerce_app/view/widget/cart/custom_cart_app_bar.dart';
 import 'package:e_commerce_app/view/widget/cart/custom_item_on_product_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShoppingCartPage extends StatelessWidget {
+class ShoppingCartPage extends GetView<ControllerInCartImp> {
   const ShoppingCartPage({super.key});
 
   @override
@@ -18,7 +17,7 @@ class ShoppingCartPage extends StatelessWidget {
       bottomNavigationBar: CustomButtonShoppingCart(
         labelText: "Go To Check Out",
         onPressed: () {
-          Get.toNamed(AppRoute.cartProductsDetails);
+          controller.goToCheckOut();
         },
       ),
       body: Padding(

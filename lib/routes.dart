@@ -9,6 +9,7 @@ import 'package:e_commerce_app/view/screen/cart_check_out.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
 import 'package:e_commerce_app/view/screen/myfavorite.dart';
+import 'package:e_commerce_app/view/screen/pending_order.dart';
 import 'package:e_commerce_app/view/screen/product_details.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -67,10 +68,12 @@ List<GetPage<dynamic>>? routes = [
     name: AppRoute.shoppingCartPage,
     page: () => const ShoppingCartPage(),
   ),
-  // Address
+  // Address Routes
   GetPage(name: AppRoute.addMapDemo, page: () => const AddMapDemo()),
   GetPage(name: AppRoute.addAddress, page: () => const AddAddress()),
   GetPage(name: AppRoute.editMapDemo, page: () => const EditMapDemo()),
   GetPage(name: AppRoute.editAddress, page: () => const EditAddress()),
   GetPage(name: AppRoute.viewAddress, page: () => const ViewAddress()),
+  // Orders Routes
+  GetPage(name: AppRoute.pendingOrder, page: () => const PendingOrder()),
 ];

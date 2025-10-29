@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/view/screen/cart.dart';
 import 'package:e_commerce_app/view/screen/home.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';
@@ -9,6 +11,8 @@ abstract class HomeScreenController extends GetxController {
 }
 
 class HomeScreenControllerImp extends HomeScreenController {
+  ControllerInCartImp cartController = Get.put(ControllerInCartImp());
+  StatusRequest statusRequest = StatusRequest.loading;
   int currentPage = 0;
 
   List<Widget> pages = [
@@ -21,6 +25,10 @@ class HomeScreenControllerImp extends HomeScreenController {
   @override
   changePage(int index) {
     currentPage = index;
+    if (index == 1) {
+      cartController.onInit();
+    }
+    statusRequest = StatusRequest.none;
     update();
   }
 }

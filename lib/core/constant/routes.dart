@@ -26,4 +26,6 @@ class AppRoute {
   static const String editMapDemo = "/editMapDemo";
   static const String editAddress = "/eidtAddress";
   static const String viewAddress = "/viewAddress";
+  // Orders
+  static const String pendingOrder = "/pendingOrder";
 }

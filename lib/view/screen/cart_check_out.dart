@@ -10,7 +10,7 @@ import 'package:e_commerce_app/view/widget/check_out.dart/custom_total_price.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CartProductsDetails extends StatelessWidget {
+class CartProductsDetails extends GetView<CartCheckOutControllerImp> {
   const CartProductsDetails({super.key});
 
   @override
@@ -24,10 +24,12 @@ class CartProductsDetails extends StatelessWidget {
       ),
       bottomNavigationBar: CustomButtonCheckOut(
         text: "Check Out",
-        onPressed: () {},
+        onPressed: () {
+          controller.checkOut();
+        },
       ),
 
-      body: GetBuilder<ControllerInCartImp>(
+      body: GetBuilder<CartCheckOutControllerImp>(
         builder: (cartController) => Container(
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -70,11 +72,11 @@ class CartProductsDetails extends StatelessWidget {
                   children: [
                     CustomDisplayValues(
                       title: "Product price : ",
-                      value: "${cartController.totalPrice} ج.م",
+                      value: "${cartController.orderPrice} ج.م",
                     ),
                     CustomDisplayValues(
                       title: "Delivery value : ",
-                      value: "150 ج.م",
+                      value: "${cartController.deliveryPrice} ج.م",
                     ),
                     CustomDisplayValues(
                       title: "Descount Couopon : ",
@@ -87,7 +89,7 @@ class CartProductsDetails extends StatelessWidget {
                     ),
                     CustomTotalPrice(
                       title: "Total Parice :",
-                      price: "${cartController.getTotalPrice() + 150} ج.م",
+                      price: "${cartController.getTotalPrice()} ج.م",
                     ),
                   ],
                 ),
@@ -139,7 +141,7 @@ class CartProductsDetails extends StatelessWidget {
                       (i) => CustomDeliveryAddress(
                         onTap: () {
                           controller.chooseAddressId(
-                            "${controller.data[i].addressId}",
+                            controller.data[i].addressId!,
                           );
                         },
                         titleAddress: "${controller.data[i].addressName}",
@@ -147,8 +149,7 @@ class CartProductsDetails extends StatelessWidget {
                         address: "${controller.data[i].addressStreet}",
                         phone: "${controller.data[i].addressPhone}",
                         active:
-                            controller.addressId ==
-                                "${controller.data[i].addressId}"
+                            controller.addressId == controller.data[i].addressId
                             ? true
                             : false,
                       ),

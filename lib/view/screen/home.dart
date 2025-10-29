@@ -36,9 +36,7 @@ class HomePage extends GetView<LocaleController> {
               onPressedSearch: () {
                 controller.onSearch();
               },
-              onPressedNotifications: () {
-                print("=====Notification");
-              },
+              onPressedNotifications: () {},
               onPressedFavorite: () {
                 controller.goToMyfavorite();
               },

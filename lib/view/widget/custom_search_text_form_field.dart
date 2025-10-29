@@ -37,23 +37,3 @@ class CustomSearchTextFormField extends StatelessWidget {
     );
   }
 }
-
-//  TextFormField(
-//               decoration: InputDecoration(
-//                 prefixIcon: IconButton(
-//                   onPressed: onPressedSearch,
-//                   icon: Icon(Icons.search, color: AppColors.textColor_2),
-//                 ),
-//                 hintText: titleAppBar.tr,
-//                 hintStyle: const TextStyle(
-//                   color: Color(0xFF9A9999),
-//                   fontSize: 16,
-//                 ),
-//                 border: OutlineInputBorder(
-//                   borderSide: BorderSide.none,
-//                   borderRadius: BorderRadius.circular(15),
-//                 ),
-//                 filled: true,
-//                 fillColor: Colors.grey[300],
-//               ),
-//             ),

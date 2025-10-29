@@ -21,14 +21,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LocaleController myController = Get.put(LocaleController());
-
+    LocaleController controller = Get.put(LocaleController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-commerce App',
       translations: MyTranslation(),
-      locale: myController.language,
-      theme: myController.appThemeLanguage,
+      locale: controller.language,
+      theme: controller.appThemeLanguage,
       initialBinding: Initialbinding(),
       initialRoute: "/",
       getPages: routes,

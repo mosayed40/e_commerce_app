@@ -1,8 +1,8 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
+import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/cart_model.dart';
-import 'package:e_commerce_app/core/middle_ware/coupon_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/cart_data.dart';
 import 'package:flutter/material.dart';
@@ -14,27 +14,25 @@ abstract class ControllerInCart extends GetxController {
   deleteFromCart(int itemsid);
   getCountItemsCart(int itemsid);
   refresData();
-  checkCoupon(String coupon);
-  getTotalPrice();
+
+  goToCheckOut();
 }
 
 class ControllerInCartImp extends ControllerInCart {
   CartData cartData = CartData(Get.find<Crud>());
   MyServices myServices = Get.find();
   late int usersid = myServices.sharedPreferences.getInt("id")!;
-  late TextEditingController couponCode;
-  late StatusRequest statusRequest;
-  late CartModel cartModel;
-  late CouponModel couponModel;
-  int descountCoupon = 0;
-  double totalPrice = 1225;
-  String? couponName;
+  StatusRequest statusRequest = StatusRequest.loading;
+  CartModel? cartModel;
+  TotalValueOfTheCardProductModel? totalValueModel;
+  double totalPrice = 0.0;
   List<CartModel> data = [];
+  Map totalValue = {};
 
   @override
   void onInit() {
-    couponCode = TextEditingController();
     getViewCartData();
+    cartModel = CartModel();
     super.onInit();
   }
 
@@ -48,8 +46,13 @@ class ControllerInCartImp extends ControllerInCart {
       if (response['status'] == "success") {
         if (response['data']['status'] == "success") {
           List responseData = response['data']['data'];
+          Map<String, dynamic> responseTotalValue = response['countprice'];
           data.clear();
           data.addAll(responseData.map((e) => CartModel.fromJson(e)));
+          totalValueModel = TotalValueOfTheCardProductModel.fromJson(
+            responseTotalValue,
+          );
+          totalPrice = totalValueModel!.totalprice!;
         }
       } else {
         statusRequest = StatusRequest.failure;
@@ -82,10 +85,8 @@ class ControllerInCartImp extends ControllerInCart {
   @override
   deleteFromCart(itemsid) async {
     statusRequest = StatusRequest.loading;
-    update();
     var response = await cartData.deleteFromCart(usersid, itemsid);
     statusRequest = handingData(response);
-    // print("🧾 deleteFromCart Response: $response");
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         Get.snackbar(
@@ -94,6 +95,7 @@ class ControllerInCartImp extends ControllerInCart {
           backgroundColor: Color(0xFFD53939),
           duration: const Duration(seconds: 1),
         );
+        update();
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -122,36 +124,15 @@ class ControllerInCartImp extends ControllerInCart {
   refresData() {
     data.clear();
     getViewCartData();
-  }
-
-  @override
-  checkCoupon(coupon) async {
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await cartData.checkCoupon(coupon);
-    statusRequest = handingData(response);
-    if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-        Map<String, dynamic> datacoupon = response['data'];
-        couponModel = CouponModel.fromJson(datacoupon);
-        descountCoupon = couponModel.couponDiscount!;
-        couponName = couponModel.couponName;
-        // Get.snackbar(
-        //   "نبية",
-        //   "تم اضافة الكوبون",
-        //   backgroundColor: Color(0xFF31EED8),
-        //   duration: const Duration(seconds: 1),
-        // );
-      } else {
-        descountCoupon = 0;
-        couponName = null;
-      }
-    }
     update();
   }
 
   @override
-  getTotalPrice() {
-    return (totalPrice - totalPrice * descountCoupon / 100);
+  goToCheckOut() {
+    if (data.isEmpty) return Get.snackbar("تنبية", "السلة فارغة");
+    Get.toNamed(
+      AppRoute.cartProductsDetails,
+      arguments: {"cartModel": cartModel, "totalValueModel": totalValueModel},
+    );
   }
 }
