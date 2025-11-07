@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
+import 'package:e_commerce_app/data/data_source/remote/forget_password/check_email.dart';
 import 'package:e_commerce_app/data/data_source/remote/forget_password/verfiycode.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,11 +12,11 @@ abstract class VirfiyCodeController extends GetxController {
 }
 
 class VirfiyCodeControllerImp extends VirfiyCodeController {
+  CheckEmailData checkEmailData = CheckEmailData(Get.find());
   VerfiyCodeForgetPassowrdData verfiycodeForgetPassword =
       VerfiyCodeForgetPassowrdData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   String? email;
-  String? verifycode;
 
   @override
   void onInit() {
@@ -30,7 +31,7 @@ class VirfiyCodeControllerImp extends VirfiyCodeController {
   void goToReastPassword(verfiycode) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await verfiycodeForgetPassword.postData(email!, verifycode!);
+    var response = await verfiycodeForgetPassword.postData(email!, verfiycode);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -40,13 +41,12 @@ class VirfiyCodeControllerImp extends VirfiyCodeController {
           "Warning",
           "Verfiycode Not Correct",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: const Color.fromARGB(255, 174, 59, 51),
+          backgroundColor: const Color(0xFFAE3B33),
           colorText: Colors.white,
         );
         statusRequest = StatusRequest.failure;
       }
-      update();
     }
-    Get.offNamed(AppRoute.resetPassword);
+    update();
   }
 }

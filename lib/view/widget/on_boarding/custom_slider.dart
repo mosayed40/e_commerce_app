@@ -16,18 +16,20 @@ class CustomSilder extends GetView<OnBoardingControllerImp> {
       itemCount: onBoardingList.length,
       itemBuilder: (context, i) => Column(
         children: [
-          SizedBox(height: 150),
+          SizedBox(height: 120),
           Text(
             "${onBoardingList[i].title}",
             style: Theme.of(context).textTheme.headlineLarge,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           Image.asset(
             onBoardingList[i].image!,
-            height: 300,
+            height: 400,
             width: double.infinity,
           ),
+          Spacer(),
           Container(
+            margin: EdgeInsetsDirectional.symmetric(vertical: 30),
             alignment: Alignment.center,
             child: Text(
               '${onBoardingList[i].body}',

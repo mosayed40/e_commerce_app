@@ -57,13 +57,13 @@ class ControllerAddAddressImp extends ControllerAddAddress {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
+          Get.offNamed(AppRoute.setting);
           Get.snackbar(
             "نبية",
             "تم اضافة العنوان",
             duration: const Duration(seconds: 1),
             backgroundColor: Color(0xFF3199EE),
           );
-          Get.offAllNamed(AppRoute.viewAddress);
         } else {
           statusRequest = StatusRequest.failure;
         }

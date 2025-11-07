@@ -34,7 +34,7 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  void login() async {
+  login() async {
     var formData = loginFormState.currentState;
     if (formData!.validate()) {
       statusRequest = StatusRequest.loading;
@@ -48,6 +48,7 @@ class LoginControllerImp extends LoginController {
               "id",
               response['data']['users_id'],
             );
+            // int usersId = myServices.sharedPreferences.getInt("id")!;
             myServices.sharedPreferences.setString(
               "username",
               response['data']['users_name'],
@@ -61,6 +62,12 @@ class LoginControllerImp extends LoginController {
               response['data']['users_phone'],
             );
             myServices.sharedPreferences.setString("step", "2");
+
+            // FirebaseMessaging.instance.subscribeToTopic("users");
+            // FirebaseMessaging.instance.subscribeToTopic(
+            //   "user:${usersId.toString()}",
+            // );
+
             Get.offNamed(AppRoute.home);
           } else {
             Get.toNamed(
@@ -84,19 +91,19 @@ class LoginControllerImp extends LoginController {
   }
 
   @override
-  void onClose() {
+  goToSignUp() {
+    Get.offNamed(AppRoute.signUp);
+  }
+
+  @override
+  goToForgetPassword() {
+    Get.toNamed(AppRoute.forgetPassword);
+  }
+
+  @override
+  onClose() {
     email.dispose();
     password.dispose();
     super.onClose();
-  }
-
-  @override
-  void goToSignUp() {
-    Get.toNamed(AppRoute.signUp);
-  }
-
-  @override
-  void goToForgetPassword() {
-    Get.toNamed(AppRoute.forgetPassword);
   }
 }

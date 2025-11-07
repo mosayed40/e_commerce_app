@@ -20,7 +20,7 @@ class OnBoarding extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 80),
               child: Column(
                 children: const [
                   CustomDotController(),

@@ -31,15 +31,14 @@ class ResetPassword extends StatelessWidget {
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 150),
             alignment: Alignment.center,
             child: Form(
               key: controller.resetPasswordFormState,
               child: ListView(
                 children: [
-                  const SizedBox(height: 20),
                   const CustomTextTitleAuth(textTitle: "35"),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
                   const CustomTextBodyAuth(textBody: "34"),
                   const SizedBox(height: 60),
                   CustomTextFormAuth(
@@ -51,7 +50,7 @@ class ResetPassword extends StatelessWidget {
                     suffixIcon: Icons.lock_outlined,
                     controller: controller.password,
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                   CustomTextFormAuth(
                     valid: (val) {
                       return vaildInput(val!, 5, 30, "password");
@@ -61,7 +60,7 @@ class ResetPassword extends StatelessWidget {
                     suffixIcon: Icons.lock_outlined,
                     controller: controller.repassword,
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 40),
                   CustomButtonAuth(
                     text: "33",
                     onPressed: () {

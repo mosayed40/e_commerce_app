@@ -97,7 +97,6 @@ class AddAddress extends StatelessWidget {
                     const SizedBox(height: 15),
                     SizedBox(
                       height: Get.height / 1.9,
-
                       child: Center(
                         child: GetBuilder<ControllerMapImp>(
                           builder: (mapConroller) => GoogleMap(

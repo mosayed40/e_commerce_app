@@ -42,7 +42,7 @@ class Items extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.symmetric(horizontal: 5),
-            width: 220,
+            width: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.grey[200],
@@ -58,6 +58,7 @@ class Items extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.grey[300],
                   ),
+
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Padding(
@@ -136,7 +137,7 @@ class Items extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)} ج.م",
+                "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)} \$",
                 style: TextStyle(
                   color: const Color(0xFF40009A),
                   fontSize: 18,

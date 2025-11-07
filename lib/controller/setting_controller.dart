@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/services/services.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 abstract class SettingController extends GetxController {
@@ -11,6 +12,11 @@ class SettingControllerImp extends SettingController {
 
   @override
   logOut() {
+    // int usersId = myServices.sharedPreferences.getInt("id")!;
+    // FirebaseMessaging.instance.unsubscribeFromTopic("users");
+    // FirebaseMessaging.instance.unsubscribeFromTopic(
+    //   "user:${usersId.toString()}",
+    // );
     myServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoute.login);
   }

@@ -24,12 +24,11 @@ class Login extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Center(
-          child: Text(
-            "9".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
-          ),
+        title: Text(
+          "9".tr,
+          style: TextStyle(color: AppColors.textColor_2, fontSize: 24),
         ),
+        centerTitle: true,
       ),
       body: GetBuilder<LoginControllerImp>(
         builder: (controller) => HandlingDatatRequest(

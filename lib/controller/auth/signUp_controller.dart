@@ -23,6 +23,15 @@ class SignUpControllerImp extends SignupController {
   List data = [];
 
   @override
+  void onInit() {
+    username = TextEditingController();
+    email = TextEditingController();
+    phone = TextEditingController();
+    password = TextEditingController();
+    super.onInit();
+  }
+
+  @override
   void signUp() async {
     var formData = signUpFormState.currentState;
     if (formData!.validate()) {
@@ -59,15 +68,6 @@ class SignUpControllerImp extends SignupController {
   @override
   void goToSignIN() {
     Get.offNamed(AppRoute.login);
-  }
-
-  @override
-  void onInit() {
-    username = TextEditingController();
-    email = TextEditingController();
-    phone = TextEditingController();
-    password = TextEditingController();
-    super.onInit();
   }
 
   @override

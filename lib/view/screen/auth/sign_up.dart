@@ -20,14 +20,14 @@ class SignUp extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Center(
-          child: Text(
-            "signUp".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
-          ),
+        title: Text(
+          "signUp".tr,
+          style: TextStyle(color: AppColors.textColor_2, fontSize: 24),
         ),
+        centerTitle: true,
       ),
       body: GetBuilder<SignUpControllerImp>(
         builder: (controller) => HandlingDatatRequest(
@@ -41,19 +41,19 @@ class SignUp extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   const CustomTextTitleAuth(textTitle: "titleSignPages"),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   const CustomTextBodyAuth(textBody: "bodySignUpPage"),
                   const SizedBox(height: 60),
                   CustomTextFormAuth(
                     valid: (val) {
-                      return vaildInput(val!, 6, 50, "UserName");
+                      return vaildInput(val!, 5, 50, "UserName");
                     },
                     labelText: "lintUserName",
                     hintText: "lintUserName",
                     suffixIcon: Icons.person_outline,
                     controller: controller.username,
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                   CustomTextFormAuth(
                     valid: (val) {
                       return vaildInput(val!, 11, 50, "email");
@@ -63,7 +63,7 @@ class SignUp extends StatelessWidget {
                     suffixIcon: Icons.email_outlined,
                     controller: controller.email,
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 20),
                   CustomTextFormAuth(
                     valid: (val) {
                       return vaildInput(val!, 11, 15, "phone");
@@ -73,7 +73,7 @@ class SignUp extends StatelessWidget {
                     suffixIcon: Icons.phone_outlined,
                     controller: controller.phone,
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                   GetBuilder<SignUpControllerImp>(
                     builder: (controller) => CustomTextFormAuth(
                       obscureText: isShowPassword,
@@ -91,14 +91,14 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 40),
                   CustomButtonAuth(
                     text: "signUp",
                     onPressed: () {
                       controller.signUp();
                     },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   CustomTextSignUp(
                     textBody: "textPageSignUp",
                     textLink: "linkPageSignUp",

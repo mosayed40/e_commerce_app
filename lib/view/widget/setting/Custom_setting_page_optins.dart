@@ -42,26 +42,31 @@ class CustomSettingPageOptins extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                ListTile(
-                  onTap: () {
-                    if (data[i]['id'] == "1") {
-                      print("Notifications");
-                    } else if (data[i]['id'] == "2") {
-                      Get.toNamed(AppRoute.pendingOrder);
-                    } else if (data[i]['id'] == "3") {
-                      Get.toNamed(AppRoute.viewAddress);
-                    } else if (data[i]['id'] == "4") {
-                      print("About us");
-                    } else if (data[i]['id'] == "5") {
-                      print("Contact us");
-                    } else if (data[i]['id'] == "6") {
-                      settingController.logOut();
-                    }
-                  },
-                  title: Text("${data[i]['titel']}"),
-                  trailing: data[i]['icon'],
-                  iconColor: data[i]['id'] == "5" ? Colors.red : Colors.black,
+                Material(
+                  color: Colors.grey[100],
+                  elevation: 0.0,
+                  child: ListTile(
+                    onTap: () {
+                      if (data[i]['id'] == "1") {
+                        print("Notifications");
+                      } else if (data[i]['id'] == "2") {
+                        Get.toNamed(AppRoute.pendingOrder);
+                      } else if (data[i]['id'] == "3") {
+                        Get.toNamed(AppRoute.viewAddress);
+                      } else if (data[i]['id'] == "4") {
+                        print("About us");
+                      } else if (data[i]['id'] == "5") {
+                        print("Contact us");
+                      } else if (data[i]['id'] == "6") {
+                        settingController.logOut();
+                      }
+                    },
+                    title: Text("${data[i]['titel']}"),
+                    trailing: data[i]['icon'],
+                    iconColor: data[i]['id'] == "6" ? Colors.red : Colors.black,
+                  ),
                 ),
+
                 const SizedBox(height: 10),
               ],
             ),

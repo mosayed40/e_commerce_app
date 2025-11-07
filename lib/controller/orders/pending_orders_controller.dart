@@ -1,7 +1,8 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
+import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
-import 'package:e_commerce_app/core/middle_ware/pending_order_model.dart';
+import 'package:e_commerce_app/core/middle_ware/order_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/orders_data.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,8 @@ import 'package:get/get.dart';
 abstract class OrderController extends GetxController {
   getPendingOrder();
   printOrderStatus(int val);
+  goToOrderDetails(OrdersModel listModel);
+  deleteOrder(int orderId);
 }
 
 class OrderControllerImp extends OrderController {
@@ -17,6 +20,7 @@ class OrderControllerImp extends OrderController {
   StatusRequest statusRequest = StatusRequest.loading;
   MyServices myServices = Get.find();
   List<OrdersModel> data = [];
+  OrdersModel? ordersModel;
 
   @override
   void onInit() {
@@ -33,6 +37,7 @@ class OrderControllerImp extends OrderController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
+
         data.addAll(responseData.map((e) => OrdersModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;
@@ -52,5 +57,25 @@ class OrderControllerImp extends OrderController {
     } else {
       return "archive ";
     }
+  }
+
+  @override
+  goToOrderDetails(listModel) {
+    Get.toNamed(AppRoute.orderDetails, arguments: {"listModel": listModel});
+  }
+
+  @override
+  deleteOrder(orderId) async {
+    var response = await ordersData.deleteOrders(orderId);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        data.removeWhere((element) => element.ordersId == orderId);
+        Get.snackbar("تنبية", "تم حذف الطلب");
+      } else {
+        Get.snackbar("تنبية", "لا يمكن حذف الطلب");
+      }
+    }
+    update();
   }
 }

@@ -27,12 +27,12 @@ class Language extends GetView<LocaleController> {
             Text(
               "1".tr,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: AppColors.textColor,
+                color: AppColors.textColor_1,
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 50),
             CustomButtonLang(
               textButton: "A R",
               onPressed: () {

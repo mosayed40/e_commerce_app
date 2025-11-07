@@ -28,4 +28,6 @@ class AppRoute {
   static const String viewAddress = "/viewAddress";
   // Orders
   static const String pendingOrder = "/pendingOrder";
+  static const String orderDetails = "/orderDetails";
+  static const String editOrder = "/editOrder";
 }

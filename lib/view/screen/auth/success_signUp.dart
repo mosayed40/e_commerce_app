@@ -20,37 +20,42 @@ class SuccessSignup extends StatelessWidget {
         title: Center(
           child: Text(
             "32".tr,
-            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
+            style: const TextStyle(color: AppColors.textColor_2, fontSize: 24),
           ),
         ),
+        centerTitle: true,
       ),
       body: Container(
         padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            const Icon(
-              Icons.check_circle,
-              size: 150,
-              color: AppColors.primaryColor,
-            ),
-            Lottie.asset(AppImageAsset.verfiySuccess, height: 250, width: 250),
-            const SizedBox(height: 20),
-            Text(
-              "39".tr,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              width: 300,
-              child: CustomButtonAuth(
-                text: "31",
-                onPressed: () {
-                  Get.offAllNamed(AppRoute.login);
-                },
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 80),
+              Lottie.asset(
+                AppImageAsset.verfiySuccess,
+                height: 250,
+                width: 250,
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Text(
+                "39".tr,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: 300,
+                child: CustomButtonAuth(
+                  text: "31",
+                  onPressed: () {
+                    Get.offAllNamed(AppRoute.login);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
