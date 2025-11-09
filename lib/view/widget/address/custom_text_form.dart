@@ -24,7 +24,7 @@ class CustomTextForm extends StatelessWidget {
       keyboardType: TextInputType.multiline,
       style: TextStyle(color: Colors.black, fontSize: 18),
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         hintText: hintText.tr,
         hintStyle: const TextStyle(color: AppColors.textColor_2, fontSize: 14),

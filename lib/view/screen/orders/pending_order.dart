@@ -2,6 +2,8 @@ import 'package:e_commerce_app/controller/orders/pending_orders_controller.dart'
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/middle_ware/order_model.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +16,14 @@ class PendingOrder extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(" Check Out", style: TextStyle(color: Colors.grey)),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          CustomIconBack(),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Check Out")),
+        ],
       ),
       body: Padding(
         padding: EdgeInsetsGeometry.all(10.0),
@@ -58,8 +66,6 @@ class CardOrder extends GetView<OrderControllerImp> {
                     style: TextStyle(color: AppColors.primaryColor),
                   ),
                   Divider(),
-                  Text("Order Price :  ${listData.ordersPrice}\$"),
-                  Text("Price Delivery :  ${listData.ordersPriceDelivery}\$"),
                   Text("Total Price :  ${listData.ordersTotalPrice}\$"),
                   Text("Payment Method :  ${listData.ordersPaymentMethod}"),
                   Container(
@@ -74,15 +80,14 @@ class CardOrder extends GetView<OrderControllerImp> {
               ),
             ),
           ),
-
           Positioned(
-            top: 60,
+            top: 50,
             right: 10,
             child: IconButton(
               onPressed: () {
                 controller.deleteOrder(listData.ordersId!);
               },
-              icon: Icon(Icons.delete, size: 30, color: Colors.red),
+              icon: Icon(Icons.delete, size: 28, color: Colors.red),
             ),
           ),
         ],

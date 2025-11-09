@@ -26,14 +26,15 @@ class ItemsPage extends StatelessWidget {
       children: [
         Scaffold(
           appBar: AppBar(
+            toolbarHeight: 120,
+            backgroundColor: AppColors.primaryColor,
             automaticallyImplyLeading: false,
-            actionsPadding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+            actionsPadding: EdgeInsetsGeometry.symmetric(horizontal: 10),
             actions: [
-              CustomIconBack(),
-              SizedBox(width: 20),
+              Expanded(flex: 1, child: CustomIconBack()),
+              SizedBox(width: 15),
               Expanded(
-                flex: 4,
-
+                flex: 6,
                 child: CustomSearchTextFormField(
                   myController: controller.search!,
                   hintText: "Search For Products",
@@ -50,7 +51,6 @@ class ItemsPage extends StatelessWidget {
           body: ListView(
             padding: EdgeInsets.all(15),
             children: [
-              const SizedBox(height: 20),
               const CustomListCategoriesItemsPage(),
               GetBuilder<ItemsControllerImp>(
                 builder: (controller) => HandlingDatatView(
@@ -64,7 +64,7 @@ class ItemsPage extends StatelessWidget {
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 0.6,
+                                childAspectRatio: 0.53,
                               ),
                           itemBuilder: (BuildContext context, index) {
                             controllerFavorite.isFavorite[controller
@@ -100,7 +100,7 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
       itemBuilder: (context, i) {
         return InkWell(
           onTap: () {
-            controller.goToPageProductDetails(listDataModel[i]);
+            controller.goToPageItemDetails(listDataModel[i]);
           },
           child: Card(
             child: Row(

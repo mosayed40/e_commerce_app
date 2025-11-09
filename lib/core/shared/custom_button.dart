@@ -1,10 +1,10 @@
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomButtonShoppingCart extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String labelText;
   final void Function()? onPressed;
-  const CustomButtonShoppingCart({
+  const CustomButton({
     super.key,
     required this.labelText,
     required this.onPressed,
@@ -13,7 +13,7 @@ class CustomButtonShoppingCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 50, left: 50, bottom: 30),
+      margin: EdgeInsets.only(right: 50, left: 50, bottom: 15),
       decoration: BoxDecoration(
         color: AppColors.buttonColor,
         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -24,7 +24,7 @@ class CustomButtonShoppingCart extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         ),
         onPressed: onPressed,
         label: Text(

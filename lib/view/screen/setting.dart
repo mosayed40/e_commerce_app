@@ -10,14 +10,18 @@ class Setting extends GetView<LocaleController> {
   const Setting({super.key});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 10,
+        backgroundColor: AppColors.primaryColor,
+      ),
+      body: ListView(
         children: [
           Stack(
             clipBehavior: Clip.none,
             alignment: AlignmentGeometry.center,
             children: [
-              Container(height: Get.width / 2, color: AppColors.primaryColor),
+              Container(height: Get.width / 1.8, color: AppColors.primaryColor),
               Positioned(
                 top: Get.width / 2.5,
                 child: CircleAvatar(
@@ -35,9 +39,9 @@ class Setting extends GetView<LocaleController> {
                   children: [
                     Text(
                       "Mustafa Sayed",
-                      style: const TextStyle(color: Colors.white, fontSize: 35),
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Text(
                       "moustafa.2950@gmail.com",
                       style: const TextStyle(color: Colors.grey, fontSize: 20),
@@ -46,9 +50,8 @@ class Setting extends GetView<LocaleController> {
                 ),
               ),
               Positioned(
-                top: 10,
+                top: 0,
                 right: 10,
-
                 child: Row(
                   children: [
                     IconButton(
@@ -89,7 +92,7 @@ class Setting extends GetView<LocaleController> {
               ),
             ],
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 60),
           CustomSettingPageOptins(),
           CustomLangSetting(),
         ],

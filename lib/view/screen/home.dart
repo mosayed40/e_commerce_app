@@ -22,46 +22,55 @@ class HomePage extends GetView<LocaleController> {
     Get.put(HomeControllerImp());
 
     return GetBuilder<HomeControllerImp>(
-      builder: (controller) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: ListView(
-          children: [
-            const SizedBox(height: 25),
-            CustomAppBar(
-              myController: controller.search!,
-              titleAppBar: "search",
-              onChanged: (val) {
-                controller.checkSearch(val);
-              },
-              onPressedSearch: () {
-                controller.onSearch();
-              },
-              onPressedNotifications: () {},
-              onPressedFavorite: () {
-                controller.goToMyfavorite();
-              },
+      builder: (controller) => Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 150,
+          backgroundColor: AppColors.backgroundAppBar,
+          actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+          actions: [
+            Expanded(
+              child: CustomAppBar(
+                myController: controller.search!,
+                titleAppBar: "search",
+                onChanged: (val) {
+                  controller.checkSearch(val);
+                },
+                onPressedSearch: () {
+                  controller.onSearch();
+                },
+                onPressedNotifications: () {},
+                onPressedFavorite: () {
+                  controller.goToMyfavorite();
+                },
+              ),
             ),
-            const SizedBox(height: 20),
-            controller.isSearch
-                ? ListItemsSearch(listDataModel: controller.listData)
-                : HandlingDatatView(
-                    statusRequest: controller.statusRequest,
-                    widget: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        SizedBox(height: 20),
-                        CustomCardHome(
-                          title: "A summer surprise",
-                          subTitle: "Cash back 25%",
-                        ),
-                        CustomTitleHome(title: "titleCat"),
-                        CustomListCategoriesHome(),
-                        CustomTitleHome(title: "titleItem"),
-                        CustomListItemsHome(),
-                      ],
-                    ),
-                  ),
           ],
+        ),
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: ListView(
+            children: [
+              controller.isSearch
+                  ? ListItemsSearch(listDataModel: controller.listData)
+                  : HandlingDatatView(
+                      statusRequest: controller.statusRequest,
+                      widget: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SizedBox(height: 20),
+                          CustomCardHome(
+                            title: "A summer surprise",
+                            subTitle: "Cash back 25%",
+                          ),
+                          CustomTitleHome(title: "titleCat"),
+                          CustomListCategoriesHome(),
+                          CustomTitleHome(title: "titleItem"),
+                          CustomListItemsHome(),
+                        ],
+                      ),
+                    ),
+            ],
+          ),
         ),
       ),
     );
@@ -81,7 +90,7 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
       itemBuilder: (context, i) {
         return InkWell(
           onTap: () {
-            controller.goToPageProductDetails(listDataModel[i]);
+            controller.goToPageItemDetails(listDataModel[i]);
           },
           child: Card(
             child: Row(
@@ -96,8 +105,7 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
                       child: CachedNetworkImage(
                         imageUrl:
                             "${AppLinkApi.imagesItems}/${listDataModel[i].itemsImage}",
-                        width: 20,
-                        height: 100,
+                        height: 90,
                       ),
                     ),
                   ),
@@ -110,6 +118,7 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
                       padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
                         "${translateDatabase(listDataModel[i].itemsNameAr, listDataModel[i].itemsName)}",
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                     subtitle: Column(

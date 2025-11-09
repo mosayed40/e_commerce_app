@@ -1,6 +1,9 @@
 import 'package:e_commerce_app/controller/cart_check_out_controller.dart';
 import 'package:e_commerce_app/controller/cart_controller.dart';
-import 'package:e_commerce_app/view/widget/check_out.dart/custom_button_check_out.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/shared/custom_button.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/check_out.dart/custom_delivery_address.dart';
 import 'package:e_commerce_app/view/widget/check_out.dart/custom_display_values.dart';
 import 'package:e_commerce_app/view/widget/check_out.dart/custom_enter_discount_coupon.dart';
@@ -19,11 +22,18 @@ class CartProductsDetails extends GetView<CartCheckOutControllerImp> {
     Get.put(CartCheckOutControllerImp());
     return Scaffold(
       appBar: AppBar(
-        title: const Text(" Check Out", style: TextStyle(color: Colors.grey)),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: const [
+          CustomIconBack(),
+          SizedBox(width: 20),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Check Out")),
+        ],
       ),
-      bottomNavigationBar: CustomButtonCheckOut(
-        text: "Check Out",
+      bottomNavigationBar: CustomButton(
+        labelText: "Check Out",
         onPressed: () {
           controller.checkOut();
         },
@@ -120,7 +130,7 @@ class CartProductsDetails extends GetView<CartCheckOutControllerImp> {
                             : false,
                       ),
                       CustomPaymentMethod(
-                        title: "الدفع عن طريق المحفظة الالكترونية",
+                        title: "الدفع بالتحويل الالكترونية",
                         onPressed: () {
                           controller.choosePaymentMethod("التحويل الالكتروني");
                         },

@@ -2,37 +2,31 @@ import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/image_asset.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/view/widget/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_commerce_app/controller/product_details_controller.dart';
+import 'package:e_commerce_app/controller/item_details_controller.dart';
 
-class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+class ItemDetails extends StatelessWidget {
+  const ItemDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailsControllerImp());
+    Get.put(ItemDetailsControllerImp());
     ControllerInCartImp controllerCart = Get.put(ControllerInCartImp());
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
         actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
           CustomIconBack(),
-          SizedBox(width: 100),
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(right: 90),
-            child: Text(
-              "تفاصيل المنتج",
-              style: TextStyle(color: Colors.grey[600], fontSize: 30),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          SizedBox(width: 20),
+          Expanded(flex: 4, child: CustomTitlePage(title: "تفاصيل المنتج")),
         ],
       ),
 
@@ -47,7 +41,7 @@ class ProductDetails extends StatelessWidget {
         ),
       ),
 
-      body: GetBuilder<ProductDetailsControllerImp>(
+      body: GetBuilder<ItemDetailsControllerImp>(
         builder: (controller) {
           if (controller.itemsModel == null) {
             return const Center(child: CircularProgressIndicator());
@@ -128,23 +122,22 @@ class ProductDetails extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 15),
-
                       Row(
                         children: [
                           // السعر بعد الخصم
                           Text(
                             "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)}  ج.م",
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryColor,
                             ),
                           ),
-                          const SizedBox(width: 20),
+                          const SizedBox(width: 40),
                           // السعر قبل الخصم
                           item.itemsDiscount! > 0
                               ? Text(
-                                  "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)} ج.م",
+                                  "${item.itemsPrice!} ج.م",
                                   style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -158,7 +151,7 @@ class ProductDetails extends StatelessWidget {
                   ),
                 ),
                 if (item.itemsDiscount != 0)
-                  Image.asset(AppImageAsset.discount, width: 120),
+                  Image.asset(AppImageAsset.discount, width: 100),
               ],
             ),
           );

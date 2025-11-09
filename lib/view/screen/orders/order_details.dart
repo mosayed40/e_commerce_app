@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/controller/orders/order_details_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,11 +16,14 @@ class OrderDetails extends StatelessWidget {
     final listModel = controller.ordersModel;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Order Details",
-          style: TextStyle(color: Colors.grey),
-        ),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          CustomIconBack(),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Order Details")),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
@@ -29,7 +34,7 @@ class OrderDetails extends StatelessWidget {
               children: [
                 Container(
                   height: 50,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: AppColors.buttonColor,
@@ -48,14 +53,14 @@ class OrderDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
-                Center(
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 15),
+                  alignment: Alignment.center,
                   child: Text(
                     "Orders Id :       ${listModel.ordersId}",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
                 ),
-                SizedBox(height: 20),
                 Table(
                   children: [
                     TableRow(
@@ -77,7 +82,6 @@ class OrderDetails extends StatelessWidget {
                         ),
                       ],
                     ),
-
                     TableRow(
                       children: [
                         Text("shose", textAlign: TextAlign.center),
@@ -94,23 +98,20 @@ class OrderDetails extends StatelessWidget {
                         Text("150 \$", textAlign: TextAlign.center),
                       ],
                     ),
+                    TableRow(
+                      children: [
+                        Text("delvery Price"),
+                        Text(""),
+                        Text("50 \$", textAlign: TextAlign.center),
+                      ],
+                    ),
                   ],
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 45.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text("delvery Price : "), Text("50 \$")],
-                  ),
-                ),
-
                 Container(
                   height: 3,
                   margin: EdgeInsets.symmetric(vertical: 15),
                   color: Colors.black,
                 ),
-
                 SizedBox(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -132,28 +133,38 @@ class OrderDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-
+                const SizedBox(height: 10),
                 Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Address Name : ${listModel.addressName}"),
-                      Text("City : ${listModel.addressCity}"),
-                      Text("Street : ${listModel.addressStreet}"),
-                      Text("Phone Number : ${listModel.addressPhone}"),
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Address Name :   ${listModel.addressName}",
+                          style: TextStyle(
+                            color: AppColors.primaryColor,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text("City :   ${listModel.addressCity}"),
+                        Text("Street :   ${listModel.addressStreet}"),
+                        Text("Phone Number :   ${listModel.addressPhone}"),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 10),
                 Container(
-                  height: 300,
+                  height: Get.height / 3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.amber,
                   ),
+                  clipBehavior: Clip.antiAlias,
                   child: GoogleMap(
                     mapType: MapType.normal,
                     myLocationEnabled: true,
+                    markers: controller.markers.toSet(),
                     initialCameraPosition: controller.cameraPosition!,
                     onMapCreated: (GoogleMapController controllerMap) {
                       controller.controllerMap.complete(controllerMap);

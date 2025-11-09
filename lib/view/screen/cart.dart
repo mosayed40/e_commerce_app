@@ -1,7 +1,8 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
-import 'package:e_commerce_app/view/widget/cart/custom_button_shopping_cart.dart';
-import 'package:e_commerce_app/view/widget/cart/custom_cart_app_bar.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/shared/custom_button.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/cart/custom_item_on_product_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,13 +14,21 @@ class ShoppingCartPage extends GetView<ControllerInCartImp> {
   Widget build(BuildContext context) {
     Get.put(ControllerInCartImp());
     return Scaffold(
-      appBar: AppBar(title: CustomCartAppBar(title: "Shopping Cart")),
-      bottomNavigationBar: CustomButtonShoppingCart(
+      appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: const [
+          Expanded(child: CustomTitlePage(title: "Shopping Cart")),
+        ],
+      ),
+      bottomNavigationBar: CustomButton(
         labelText: "Go To Check Out",
         onPressed: () {
           controller.goToCheckOut();
         },
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<ControllerInCartImp>(

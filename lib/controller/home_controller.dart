@@ -13,7 +13,7 @@ abstract class HomeController extends GetxController {
   getData();
   goToItems(List categories, int i);
   goToMyfavorite();
-  goToPageProductDetails(ItemsModel itemsModel);
+  goToPageItemDetails(ItemsModel itemsModel);
   checkSearch(val);
   onSearch();
   searchData();
@@ -45,11 +45,13 @@ class HomeControllerImp extends HomeController {
     lang = myServices.sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getInt("id");
+    update();
   }
 
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
+    update();
     var response = await homeData.getData();
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
@@ -86,8 +88,8 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  goToPageProductDetails(itemsModel) {
-    Get.toNamed(AppRoute.productDetails, arguments: {"itemsModel": itemsModel});
+  goToPageItemDetails(itemsModel) {
+    Get.toNamed(AppRoute.itemDetails, arguments: {"itemsModel": itemsModel});
   }
 
   @override

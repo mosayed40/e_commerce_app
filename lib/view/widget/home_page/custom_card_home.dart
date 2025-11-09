@@ -17,7 +17,7 @@ class CustomCardHome extends GetView<HomeControllerImp> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 170,
+      height: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: AppColors.primaryColor,
@@ -25,50 +25,56 @@ class CustomCardHome extends GetView<HomeControllerImp> {
       child: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.symmetric(vertical: 15),
             alignment: Alignment.center,
             child: ListTile(
-              title: Text(
-                title,
-                style: const TextStyle(
-                  color: AppColors.textColor_2,
-                  fontSize: 20,
-                ),
-              ),
-              subtitle: Text(
-                subTitle,
-                style: const TextStyle(
-                  color: AppColors.backgroundColor,
-                  fontSize: 30,
-                ),
+              title: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: AppColors.textColor_2,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    subTitle,
+                    style: const TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ],
               ),
             ),
           ),
-          Positioned(
-            top: -20,
-            left: controller.lang == "ar" ? -22 : null,
-            right: controller.lang == "en" ? -22 : null,
-            child: Container(
-              height: 180,
-              width: 180,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-                color: AppColors.textColor_2,
-              ),
-              alignment: Alignment.bottomRight,
-              clipBehavior: Clip.hardEdge,
-              child: Center(
-                child: controller.itemsList.isEmpty
-                    ? Icon(Icons.image_outlined, size: 130)
-                    : Container(
-                        margin: EdgeInsets.only(top: 15),
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              "${AppLinkApi.imagesItems}/${controller.itemsList[1]['items_image']}",
-                          fit: BoxFit.cover,
+          GetBuilder<HomeControllerImp>(
+            builder: (controller) => Positioned(
+              top: -15,
+              left: controller.lang == "ar" ? -20 : null,
+              right: controller.lang == "en" ? -20 : null,
+              child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(150),
+                  color: AppColors.textColor_2,
+                ),
+                alignment: Alignment.bottomRight,
+                clipBehavior: Clip.hardEdge,
+                child: Center(
+                  child: controller.itemsList.isEmpty
+                      ? Icon(Icons.image_outlined, size: 100)
+                      : Container(
+                          margin: EdgeInsets.only(top: 15),
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "${AppLinkApi.imagesItems}/${controller.itemsList[1]['items_image']}",
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                ),
               ),
             ),
           ),

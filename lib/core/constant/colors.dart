@@ -4,6 +4,8 @@ class AppColors {
   static const primaryColor = Color(0XFF6200ee);
   static const secondaryColor = Color(0XFF03DAC6);
   static const backgroundColor = Color(0XFFF5F5F5);
+  static const backgroundAppBar = Color(0xE96900FB);
+
   static const buttonColor = Color(0XFF6200ee);
   static const errorColor = Color(0XFFB00020);
 

@@ -12,6 +12,7 @@ class OrderDetailsControllerImp extends OrderDetailsController {
   StatusRequest statusRequest = StatusRequest.loading;
   OrdersModel? ordersModel;
   Completer<GoogleMapController> controllerMap = Completer();
+  List<Marker> markers = [];
   CameraPosition? cameraPosition;
   double? lat;
   double? long;
@@ -27,7 +28,10 @@ class OrderDetailsControllerImp extends OrderDetailsController {
     ordersModel = Get.arguments['listModel'];
     lat = ordersModel!.addressLat;
     long = ordersModel!.addressLong;
-    cameraPosition = CameraPosition(target: LatLng(lat!, long!), zoom: 14.4746);
+    markers.add(
+      Marker(markerId: const MarkerId("1"), position: LatLng(lat!, long!)),
+    );
+    cameraPosition = CameraPosition(target: LatLng(lat!, long!), zoom: 11.4746);
     statusRequest = StatusRequest.none;
   }
 

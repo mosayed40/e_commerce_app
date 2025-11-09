@@ -7,7 +7,7 @@ import 'package:e_commerce_app/data/data_source/remote/cart_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class ProductDetailsController extends GetxController {
+abstract class ItemDetailsController extends GetxController {
   addCount();
   removeCount();
   addToCart(int itemsid);
@@ -15,7 +15,7 @@ abstract class ProductDetailsController extends GetxController {
   getCountItemsCart(int iremsid);
 }
 
-class ProductDetailsControllerImp extends ProductDetailsController {
+class ItemDetailsControllerImp extends ItemDetailsController {
   CartData cartData = CartData(Get.find<Crud>());
   MyServices myServices = Get.find();
   StatusRequest statusRequest = StatusRequest.none;

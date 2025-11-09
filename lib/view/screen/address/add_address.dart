@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/controller/address/add_address_controller.dart';
 import 'package:e_commerce_app/controller/address/add_map_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/valid_input_address.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/address/custom_text_form.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
@@ -17,22 +19,16 @@ class AddAddress extends StatelessWidget {
     Get.put(ControllerAddAddressImp());
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 90,
+        backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
-        actionsPadding: EdgeInsets.symmetric(horizontal: 15),
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
           CustomIconBack(),
-          SizedBox(width: 20),
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 60),
-            child: Text(
-              "Add Addresses",
-              style: TextStyle(color: Colors.grey[600], fontSize: 30),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Add Addresses")),
         ],
       ),
+
       body: GetBuilder<ControllerAddAddressImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
@@ -94,15 +90,12 @@ class AddAddress extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    SizedBox(
-                      height: Get.height / 1.9,
+                    Container(
+                      margin: EdgeInsets.only(top: 15, left: 10, right: 10),
+                      height: Get.height / 3,
                       child: Center(
                         child: GetBuilder<ControllerMapImp>(
                           builder: (mapConroller) => GoogleMap(
-                            onTap: (latLng) {
-                              mapConroller.addMarkers(latLng);
-                            },
                             mapType: MapType.normal,
                             markers: mapConroller.markers.toSet(),
                             myLocationEnabled: true,
@@ -118,8 +111,6 @@ class AddAddress extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 30),
                 Positioned(
                   width: Get.width / 1.5,
                   bottom: 0,

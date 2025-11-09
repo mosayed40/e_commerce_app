@@ -39,12 +39,10 @@ class CustomSettingPageOptins extends StatelessWidget {
         ...List.generate(
           data.length,
           (i) => Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               children: [
                 Material(
-                  color: Colors.grey[100],
-                  elevation: 0.0,
                   child: ListTile(
                     onTap: () {
                       if (data[i]['id'] == "1") {
@@ -61,13 +59,16 @@ class CustomSettingPageOptins extends StatelessWidget {
                         settingController.logOut();
                       }
                     },
-                    title: Text("${data[i]['titel']}"),
+                    title: Text(
+                      "${data[i]['titel']}",
+                      style: TextStyle(
+                        color: data[i]['id'] == "6" ? Colors.red : Colors.black,
+                      ),
+                    ),
                     trailing: data[i]['icon'],
                     iconColor: data[i]['id'] == "6" ? Colors.red : Colors.black,
                   ),
                 ),
-
-                const SizedBox(height: 10),
               ],
             ),
           ),

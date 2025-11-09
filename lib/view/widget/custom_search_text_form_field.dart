@@ -17,22 +17,25 @@ class CustomSearchTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: myController,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        prefixIcon: IconButton(
-          onPressed: onPressedSearch,
-          icon: Icon(Icons.search, color: AppColors.textColor_2),
+    return SizedBox(
+      height: 50,
+      child: TextFormField(
+        controller: myController,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          prefixIcon: IconButton(
+            onPressed: onPressedSearch,
+            icon: Icon(Icons.search, color: AppColors.textColor_2),
+          ),
+          hintText: hintText,
+          hintStyle: const TextStyle(color: Color(0xFF9A9999), fontSize: 16),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          filled: true,
+          fillColor: Colors.grey[300],
         ),
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Color(0xFF9A9999), fontSize: 16),
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        filled: true,
-        fillColor: Colors.grey[300],
       ),
     );
   }

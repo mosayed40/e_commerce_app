@@ -16,7 +16,7 @@ class OnBoarding extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const Expanded(flex: 3, child: CustomSilder()),
+          const Expanded(flex: 4, child: CustomSilder()),
           Expanded(
             flex: 1,
             child: Container(

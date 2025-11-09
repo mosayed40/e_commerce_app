@@ -36,7 +36,7 @@ class Items extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        controllerHome.goToPageProductDetails(itemsModel);
+        controllerHome.goToPageItemDetails(itemsModel);
       },
       child: Stack(
         children: [

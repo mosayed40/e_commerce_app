@@ -44,20 +44,20 @@ class Categories extends CustomListCategoriesHome {
       child: Column(
         children: [
           Container(
-            height: 90,
-            width: 105,
+            height: 80,
+            width: 100,
             margin: EdgeInsets.all(5),
+            padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.grey.withValues(alpha: 0.2),
             ),
-            child: Center(
-              child: CachedNetworkImage(
-                imageUrl:
-                    "${AppLinkApi.imagesCategoreis}/${categoriesModle.categoriesImage}",
-              ),
+            child: CachedNetworkImage(
+              imageUrl:
+                  "${AppLinkApi.imagesCategoreis}/${categoriesModle.categoriesImage}",
             ),
           ),
+
           Text(
             "${translateDatabase(categoriesModle.categoriesNameAr, categoriesModle.categoriesName)}",
             style: const TextStyle(color: AppColors.textColor_2, fontSize: 16),

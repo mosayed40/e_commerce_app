@@ -25,8 +25,7 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Image
               Container(
@@ -43,21 +42,18 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
                   height: 100,
                 ),
               ),
-              const Spacer(),
               // Title
               Text(
                 "${translateDatabase(favoriteModel.itemsNameAr, favoriteModel.itemsName)}",
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-              const Spacer(),
               // Description
               SizedBox(
-                width: 200,
-                height: 60,
+                height: 50,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Text(
@@ -69,7 +65,6 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
                   ),
                 ),
               ),
-              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -78,7 +73,7 @@ class CustomListFavoriteItems extends GetView<FavoriteControllerImp> {
                     "${favoriteModel.itemsPrice} \$",
                     style: const TextStyle(color: AppColors.primaryColor),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 8),
                   IconButton(
                     onPressed: () {
                       controller.deleteFromFavorite(favoriteModel.favoriteId!);

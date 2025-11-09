@@ -37,7 +37,6 @@ class ControllerViewAddressImp extends ControllerViewAddress {
     controllerMap = Completer<GoogleMapController>();
     getViewAddressData();
     update();
-    statusRequest = StatusRequest.none;
     super.onInit();
   }
 
@@ -48,8 +47,6 @@ class ControllerViewAddressImp extends ControllerViewAddress {
       Marker(markerId: const MarkerId("1"), position: LatLng(lat, long)),
     );
     kGooglePlex = CameraPosition(target: LatLng(lat, long), zoom: 14.4746);
-    this.lat = lat;
-    this.long = long;
     if (controllerMap.isCompleted) {
       final GoogleMapController mapController = await controllerMap.future;
       mapController.animateCamera(
@@ -58,20 +55,18 @@ class ControllerViewAddressImp extends ControllerViewAddress {
         ),
       );
     }
-
     update();
   }
 
   @override
   getViewAddressData() async {
     statusRequest = StatusRequest.loading;
-    update();
     var response = await addressData.viewAddress(usersid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
-        data.clear();
+        // data.clear();
         data.addAll(responseData.map((e) => AddressModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;

@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 abstract class ItemsController extends GetxController {
   changeCat(int val, int catVal);
   getItems(int selectedCat);
-  goToPageProductDetails(ItemsModel itemsModel);
+  goToPageItemDetails(ItemsModel itemsModel);
   checkSearch(val);
   onSearch();
   searchData();
@@ -71,8 +71,8 @@ class ItemsControllerImp extends ItemsController {
   }
 
   @override
-  goToPageProductDetails(itemsModel) {
-    Get.toNamed(AppRoute.productDetails, arguments: {"itemsModel": itemsModel});
+  goToPageItemDetails(itemsModel) {
+    Get.toNamed(AppRoute.itemDetails, arguments: {"itemsModel": itemsModel});
   }
 
   @override

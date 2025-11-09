@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
-import 'package:e_commerce_app/view/widget/myfavorite/custom_list_favortie_items.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
+import 'package:e_commerce_app/view/widget/favorite/custom_list_favortie_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,24 +15,17 @@ class MyFavorite extends StatelessWidget {
     Get.put(FavoriteControllerImp());
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
-        toolbarHeight: 70,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
-          SizedBox(width: 25),
           CustomIconBack(),
-          Spacer(),
-          Container(
-            width: 300,
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Text(
-              "Favorite",
-              style: TextStyle(fontSize: 30, color: Colors.grey[600]),
-            ),
-          ),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Favorite")),
         ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.all(10),
         child: GetBuilder<FavoriteControllerImp>(
           builder: (controller) => ListView(
             children: [
@@ -42,7 +37,7 @@ class MyFavorite extends StatelessWidget {
                   itemCount: controller.data.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.6,
                   ),
                   itemBuilder: (context, index) {
                     return CustomListFavoriteItems(

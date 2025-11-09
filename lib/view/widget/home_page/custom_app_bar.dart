@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/controller/home_controller.dart';
 import 'package:e_commerce_app/view/widget/custom_search_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,10 +22,13 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
+    return GetBuilder<HomeControllerImp>(
+      builder: (controller) => Stack(
         children: [
-          Expanded(
+          Container(
+            height: 130,
+            padding: EdgeInsets.only(bottom: 20),
+            alignment: Alignment.bottomCenter,
             child: CustomSearchTextFormField(
               myController: myController,
               hintText: titleAppBar.tr,
@@ -33,39 +36,29 @@ class CustomAppBar extends StatelessWidget {
               onChanged: onChanged,
             ),
           ),
-          const SizedBox(width: 10),
-          // notifications
-          Container(
-            width: 60,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(15),
-            ),
+          Positioned(
+            top: 0,
+            left: controller.lang == "ar" ? 0 : null,
+            right: controller.lang == "en" ? 0 : null,
             child: IconButton(
               onPressed: onPressedNotifications,
               icon: Icon(
-                Icons.notifications_active_outlined,
+                Icons.notifications_active,
                 size: 30,
-                color: AppColors.textColor_2,
+                color: const Color(0xFFCDCACA),
               ),
             ),
           ),
-          const SizedBox(width: 10),
-          //Favorite
-          Container(
-            width: 60,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(15),
-            ),
+          Positioned(
+            top: 0,
+            left: controller.lang == "ar" ? 50 : null,
+            right: controller.lang == "en" ? 50 : null,
             child: IconButton(
               onPressed: onPressedFavorite,
               icon: Icon(
                 Icons.favorite,
                 size: 30,
-                color: AppColors.textColor_2,
+                color: const Color(0xFFCDCACA),
               ),
             ),
           ),

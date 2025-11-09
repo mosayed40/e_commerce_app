@@ -8,7 +8,7 @@ class CustomLangSetting extends GetView<LocaleController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 25),
+      padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
       child: Row(
         children: [
           Text("Language", style: TextStyle(color: Colors.black, fontSize: 20)),

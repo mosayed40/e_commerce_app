@@ -20,7 +20,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
 
     return InkWell(
       onTap: () {
-        controller.goToPageProductDetails(itemsModel);
+        controller.goToPageItemDetails(itemsModel);
       },
       child: Card(
         color: Colors.grey[200],
@@ -34,7 +34,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                 children: [
                   // Image
                   Container(
-                    height: 120,
+                    height: 100,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -44,38 +44,32 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                     child: CachedNetworkImage(
                       imageUrl:
                           "${AppLinkApi.imagesItems}/${itemsModel.itemsImage}",
-                      height: 100,
-                      // fit: BoxFit.fill,
+                      height: 80,
                     ),
                   ),
-                  const Spacer(),
                   // Title
                   Text(
                     "${translateDatabase(itemsModel.itemsNameAr, itemsModel.itemsName)}",
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                     textAlign: TextAlign.start,
                   ),
-                  const Spacer(),
                   // Description
                   SizedBox(
-                    width: 200,
-                    height: 60,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Text(
                         "${translateDatabase(itemsModel.itemsDascAr, itemsModel.itemsDasc)}",
                         style: const TextStyle(fontSize: 14),
                         textAlign: TextAlign.start,
-                        maxLines: 3,
+                        maxLines: 2,
                         overflow: TextOverflow.visible,
                       ),
                     ),
                   ),
-                  const Spacer(),
                   Row(
                     children: [
                       ...List.generate(
@@ -83,10 +77,10 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                         (index) => Icon(
                           Icons.star,
                           color: index < 3 ? Colors.amber : Colors.black,
-                          size: 18,
+                          size: 16,
                         ),
                       ),
-                      const SizedBox(width: 25),
+                      const SizedBox(width: 8),
                       // Add To Cart
                       IconButton(
                         onPressed: () {
@@ -96,7 +90,6 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                       ),
                     ],
                   ),
-                  const Spacer(),
                   Row(
                     children: [
                       // Price
@@ -107,16 +100,16 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                                 Text(
                                   "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)} ج.م",
                                   style: const TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.primaryColor,
                                   ),
                                 ),
                                 // السعر قبل الخصم
                                 Text(
-                                  "${itemsModel.itemsPrice! - (itemsModel.itemsPrice! * itemsModel.itemsDiscount! / 100)}ج.م",
+                                  "${itemsModel.itemsPrice!}ج.م",
                                   style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: Colors.grey,
                                     decoration: TextDecoration.lineThrough,
                                   ),
@@ -128,10 +121,9 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: AppColors.primaryColor,
-                                // decoration: TextDecoration.lineThrough,
                               ),
                             ),
-                      const SizedBox(width: 25),
+                      const SizedBox(width: 20),
                       GetBuilder<FavoriteControllerImp>(
                         builder: (controller) => IconButton(
                           onPressed: () {
@@ -156,7 +148,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
               ),
             ),
             if (itemsModel.itemsDiscount != 0)
-              Image.asset(AppImageAsset.discount, width: 60),
+              Image.asset(AppImageAsset.discount, width: 50),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,15 +15,14 @@ class AddMapDemo extends StatelessWidget {
     Get.put(ControllerMapImp());
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Add Map Sample",
-          style: TextStyle(color: Colors.grey[600]),
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: CustomIconBack(),
-        ),
-        centerTitle: true,
+        toolbarHeight: 80,
+        backgroundColor: AppColors.backgroundAppBar,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          CustomIconBack(),
+          Expanded(flex: 4, child: CustomTitlePage(title: "Add Map Sample")),
+        ],
       ),
       body: GetBuilder<ControllerMapImp>(
         builder: (controller) => HandlingDatatView(

@@ -13,62 +13,61 @@ class CustomItemOnProductCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ControllerInCartImp controller = Get.put(ControllerInCartImp());
-    return InkWell(
-      onTap: () {},
-      child: Card(
-        child: Row(
-          children: [
-            // image
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "${AppLinkApi.imagesItems}/${cartModel.itemsImage}",
-                    width: 20,
-                  ),
+    return Card(
+      child: Row(
+        children: [
+          // image
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: CachedNetworkImage(
+                  imageUrl: "${AppLinkApi.imagesItems}/${cartModel.itemsImage}",
+                  width: 20,
                 ),
               ),
             ),
-            // title && price
-            Expanded(
-              flex: 4,
-              child: ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Text("${cartModel.itemsName}"),
+          ),
+          // title && price
+          Expanded(
+            flex: 5,
+            child: ListTile(
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Text(
+                  "${cartModel.itemsName}",
+                  style: TextStyle(fontSize: 18),
                 ),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      "${cartModel.askPrice} \$",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 18,
-                      ),
+              ),
+              subtitle: Row(
+                children: [
+                  Text(
+                    "${cartModel.askPrice} \$",
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                      fontSize: 18,
                     ),
-                    Spacer(),
-                    Text("Count: ${cartModel.numberOfPieces}"),
-                  ],
-                ),
+                  ),
+                  Spacer(),
+                  Text("Count:  ${cartModel.numberOfPieces}"),
+                ],
               ),
             ),
-            //delete
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                onPressed: () {
-                  controller.deleteFromCart(cartModel.itemsId!);
-                  controller.refresData();
-                },
-                icon: Icon(Icons.delete, color: Colors.red[700]),
-              ),
+          ),
+          //delete
+          Expanded(
+            flex: 1,
+            child: IconButton(
+              onPressed: () {
+                controller.deleteFromCart(cartModel.itemsId!);
+                controller.refresData();
+              },
+              icon: Icon(Icons.delete, color: Colors.red[700]),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

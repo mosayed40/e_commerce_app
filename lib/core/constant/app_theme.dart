@@ -16,16 +16,14 @@ ThemeData themeEnglish = ThemeData(
       color: Colors.grey[600],
     ),
     bodyMedium: TextStyle(
-      // height: 1.5,
-      fontSize: 18,
+      fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.grey[600],
     ),
-
     titleLarge: TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: Colors.white,
     ),
   ),
 );
@@ -45,7 +43,6 @@ ThemeData themeArabic = ThemeData(
       color: Colors.grey[600],
     ),
     bodyMedium: TextStyle(
-      // height: 2,
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.grey[600],
@@ -53,7 +50,7 @@ ThemeData themeArabic = ThemeData(
     titleLarge: TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: Colors.white,
     ),
   ),
 );

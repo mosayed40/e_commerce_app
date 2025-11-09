@@ -1,8 +1,8 @@
-import 'package:e_commerce_app/controller/product_details_controller.dart';
+import 'package:e_commerce_app/controller/item_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomProductsColor extends GetView<ProductDetailsControllerImp> {
+class CustomProductsColor extends GetView<ItemDetailsControllerImp> {
   const CustomProductsColor({super.key});
 
   @override

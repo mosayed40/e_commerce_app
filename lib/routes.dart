@@ -8,10 +8,10 @@ import 'package:e_commerce_app/view/screen/cart.dart';
 import 'package:e_commerce_app/view/screen/cart_check_out.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
-import 'package:e_commerce_app/view/screen/myfavorite.dart';
+import 'package:e_commerce_app/view/screen/favorite.dart';
 import 'package:e_commerce_app/view/screen/orders/order_details.dart';
 import 'package:e_commerce_app/view/screen/orders/pending_order.dart';
-import 'package:e_commerce_app/view/screen/product_details.dart';
+import 'package:e_commerce_app/view/screen/item_details.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:e_commerce_app/core/middle_ware/my_app_midel_ware.dart';
@@ -59,7 +59,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.items, page: () => const ItemsPage()),
   GetPage(name: AppRoute.setting, page: () => const Setting()),
   GetPage(name: AppRoute.myFavorite, page: () => const MyFavorite()),
-  GetPage(name: AppRoute.productDetails, page: () => const ProductDetails()),
+  GetPage(name: AppRoute.itemDetails, page: () => const ItemDetails()),
   GetPage(
     name: AppRoute.cartProductsDetails,
     page: () => const CartProductsDetails(),

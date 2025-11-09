@@ -57,7 +57,7 @@ class ControllerAddAddressImp extends ControllerAddAddress {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          Get.offNamed(AppRoute.setting);
+          Get.offNamed(AppRoute.home);
           Get.snackbar(
             "نبية",
             "تم اضافة العنوان",

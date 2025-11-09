@@ -14,8 +14,8 @@ class CustomListCategoriesItemsPage extends GetView<ItemsControllerImp> {
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
     return SizedBox(
-      width: 140,
-      height: 140,
+      width: 100,
+      height: 100,
       child: ListView.builder(
         itemCount: controller.categories.length,
         scrollDirection: Axis.horizontal,
@@ -47,9 +47,10 @@ class Categories extends CustomListCategoriesItemsPage {
         builder: (controller) => Column(
           children: [
             Container(
-              height: 100,
-              width: 125,
+              height: 70,
+              width: 70,
               margin: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: controller.selectedCat == i
