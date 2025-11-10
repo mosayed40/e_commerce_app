@@ -20,10 +20,13 @@ class OrderControllerImp extends OrderController {
   StatusRequest statusRequest = StatusRequest.loading;
   MyServices myServices = Get.find();
   List<OrdersModel> data = [];
+  String? lang;
+
   OrdersModel? ordersModel;
 
   @override
   void onInit() {
+    lang = myServices.sharedPreferences.getString("lang");
     getPendingOrder();
     super.onInit();
   }
@@ -49,13 +52,13 @@ class OrderControllerImp extends OrderController {
   @override
   printOrderStatus(val) {
     if (val == 0) {
-      return "pending approve";
+      return "statusOrder0".tr;
     } else if (val == 1) {
-      return "the order is being prepared ";
+      return "statusOrder1".tr;
     } else if (val == 2) {
-      return "on the way ";
+      return "statusOrder2".tr;
     } else {
-      return "archive ";
+      return "statusOrder3".tr;
     }
   }
 

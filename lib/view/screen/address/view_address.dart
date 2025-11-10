@@ -126,21 +126,34 @@ class CardAddress extends StatelessWidget {
             child: GoogleMap(
               mapType: MapType.normal,
               markers: controller.markers.toSet(),
-              initialCameraPosition: controller.kGooglePlex!,
-              // CameraPosition(target: LatLng(0.0, 0.0)),
+              initialCameraPosition:
+                  controller.cameraPosition ??
+                  CameraPosition(target: LatLng(0.0, 0.0)),
               onMapCreated: (GoogleMapController controllerMap) {
-                if (controller.controllerMap.isCompleted) {
+                if (!controller.controllerMap.isCompleted) {
                   controller.controllerMap.complete(controllerMap);
-                }
-                if (addressModel.addressLat != null ||
-                    addressModel.addressLong != null) {
-                  controller.setInitialMarker(
-                    addressModel.addressLat ?? 0.0,
-                    addressModel.addressLong ?? 0.0,
-                  );
                 }
               },
             ),
+            //  GoogleMap(
+            //   mapType: MapType.normal,
+            //   markers: controller.markers.toSet(),
+            //   initialCameraPosition:
+            //       controller.kGooglePlex ??
+            //       CameraPosition(target: LatLng(0.0, 0.0)),
+            //   onMapCreated: (GoogleMapController controllerMap) {
+            //     if (!controller.controllerMap.isCompleted) {
+            //       controller.controllerMap.complete(controllerMap);
+            //     }
+            //     if (addressModel.addressLat != null ||
+            //         addressModel.addressLong != null) {
+            //       controller.setInitialMarker(
+            //         addressModel.addressLat!,
+            //         addressModel.addressLong!,
+            //       );
+            //     }
+            //   },
+            // ),
           ),
         ],
       ),

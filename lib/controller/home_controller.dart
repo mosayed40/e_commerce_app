@@ -36,6 +36,7 @@ class HomeControllerImp extends HomeController {
   void onInit() {
     getData();
     initialData();
+    update();
     super.onInit();
   }
 
@@ -84,7 +85,7 @@ class HomeControllerImp extends HomeController {
 
   @override
   goToMyfavorite() {
-    Get.toNamed(AppRoute.myFavorite);
+    // Get.toNamed(AppRoute.myFavorite);
   }
 
   @override

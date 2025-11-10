@@ -19,7 +19,7 @@ class ShoppingCartPage extends GetView<ControllerInCartImp> {
         backgroundColor: AppColors.backgroundAppBar,
         actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: const [
-          Expanded(child: CustomTitlePage(title: "Shopping Cart")),
+          Expanded(child: CustomTitlePage(title: "titlePageShoppingCart")),
         ],
       ),
       bottomNavigationBar: CustomButton(

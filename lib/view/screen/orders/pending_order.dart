@@ -4,6 +4,9 @@ import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/middle_ware/order_model.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
+import 'package:e_commerce_app/view/widget/order/custom_card_address.dart';
+import 'package:e_commerce_app/view/widget/order/custom_orderId.dart';
+import 'package:e_commerce_app/view/widget/order/custom_status_order.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +25,7 @@ class PendingOrder extends StatelessWidget {
         actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
           CustomIconBack(),
-          Expanded(flex: 4, child: CustomTitlePage(title: "Check Out")),
+          Expanded(flex: 4, child: CustomTitlePage(title: "titlePageMyOrders")),
         ],
       ),
       body: Padding(
@@ -44,7 +47,6 @@ class PendingOrder extends StatelessWidget {
 
 class CardOrder extends GetView<OrderControllerImp> {
   final OrdersModel listData;
-
   const CardOrder({super.key, required this.listData});
 
   @override
@@ -61,28 +63,28 @@ class CardOrder extends GetView<OrderControllerImp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Order Number :  ${listData.ordersId} ",
-                    style: TextStyle(color: AppColors.primaryColor),
-                  ),
+                  CustomOrderid(orderId: "${listData.ordersId}"),
                   Divider(),
-                  Text("Total Price :  ${listData.ordersTotalPrice}\$"),
-                  Text("Payment Method :  ${listData.ordersPaymentMethod}"),
-                  Container(
-                    color: const Color(0xFF8B07FF),
-                    padding: EdgeInsetsDirectional.symmetric(horizontal: 8),
-                    child: Text(
-                      "Order Status :  ${controller.printOrderStatus(listData.ordersStatus!)}",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  CustomTextAddress(
+                    title: "totalPrice",
+                    body: " ${listData.ordersTotalPrice} \$",
+                  ),
+                  CustomTextAddress(
+                    title: "paymentMethod",
+                    body: "${listData.ordersPaymentMethod}",
+                  ),
+                  CustomStatusOrder(
+                    status:
+                        " ${controller.printOrderStatus(listData.ordersStatus!)}",
                   ),
                 ],
               ),
             ),
           ),
           Positioned(
-            top: 50,
-            right: 10,
+            top: 12,
+            right: controller.lang == "en" ? 10 : null,
+            left: controller.lang == "ar" ? 10 : null,
             child: IconButton(
               onPressed: () {
                 controller.deleteOrder(listData.ordersId!);

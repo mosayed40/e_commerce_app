@@ -1,11 +1,18 @@
 import 'package:e_commerce_app/controller/orders/order_details_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
+import 'package:e_commerce_app/view/widget/order/custom_body_table.dart';
+import 'package:e_commerce_app/view/widget/order/custom_card_address.dart';
+import 'package:e_commerce_app/view/widget/order/custom_google_map.dart';
+import 'package:e_commerce_app/view/widget/order/custom_orderId.dart';
+import 'package:e_commerce_app/view/widget/order/custom_status_order.dart';
+import 'package:e_commerce_app/view/widget/order/custom_title_tabel.dart';
+import 'package:e_commerce_app/view/widget/order/custom_total_price.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -22,7 +29,10 @@ class OrderDetails extends StatelessWidget {
         actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
           CustomIconBack(),
-          Expanded(flex: 4, child: CustomTitlePage(title: "Order Details")),
+          Expanded(
+            flex: 4,
+            child: CustomTitlePage(title: "titlePageOrderDetails"),
+          ),
         ],
       ),
       body: Container(
@@ -32,144 +42,74 @@ class OrderDetails extends StatelessWidget {
             statusRequest: controller.statusRequest,
             widget: ListView(
               children: [
-                Container(
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: AppColors.buttonColor,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Status : ",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      Text(
-                        "${controller.printOrderStatus(listModel!.ordersStatus!)} ",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
+                CustomStatusOrder(
+                  status:
+                      "${controller.printOrderStatus(listModel!.ordersStatus!)} ",
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 15),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Orders Id :       ${listModel.ordersId}",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
+                  child: CustomOrderid(orderId: "${listModel.ordersId}"),
                 ),
                 Table(
+                  columnWidths: const {
+                    0: FlexColumnWidth(2),
+                    1: FlexColumnWidth(1),
+                    2: FlexColumnWidth(1),
+                  },
                   children: [
                     TableRow(
-                      children: [
-                        Text(
-                          "Title",
-                          style: TextStyle(color: const Color(0xFF0B02BD)),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Ctv",
-                          style: TextStyle(color: const Color(0xFF0B02BD)),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Price",
-                          style: TextStyle(color: const Color(0xFF0B02BD)),
-                          textAlign: TextAlign.center,
-                        ),
+                      children: const [
+                        CustomTitleTabel(titleColumn: "titleColumnName"),
+                        CustomTitleTabel(titleColumn: "titleColumnCount"),
+                        CustomTitleTabel(titleColumn: "titleColumnPrice"),
                       ],
                     ),
+                    ...List.generate(controller.data.length, (index) {
+                      var listData = controller.data[index];
+                      return TableRow(
+                        children: [
+                          CustomBodyTable(
+                            value:
+                                "${translateDatabase(listData['items_name_ar'], listData['items_name'])}",
+                          ),
+                          CustomBodyTable(value: "${listData['countitems']}"),
+                          CustomBodyTable(
+                            value: "${listData['itemsprice']} \$",
+                          ),
+                        ],
+                      );
+                    }),
                     TableRow(
                       children: [
-                        Text("shose", textAlign: TextAlign.center),
-                        Text("2", textAlign: TextAlign.center),
-
-                        Text("114 \$", textAlign: TextAlign.center),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("phone", textAlign: TextAlign.center),
-                        Text("1", textAlign: TextAlign.center),
-
-                        Text("150 \$", textAlign: TextAlign.center),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("delvery Price"),
+                        CustomBodyTable(value: "bodyRowDelivery".tr),
                         Text(""),
-                        Text("50 \$", textAlign: TextAlign.center),
+                        CustomBodyTable(
+                          value: "${listModel.ordersPriceDelivery} \$",
+                        ),
                       ],
                     ),
                   ],
                 ),
                 Container(
                   height: 3,
-                  margin: EdgeInsets.symmetric(vertical: 15),
+                  margin: const EdgeInsets.symmetric(vertical: 15),
                   color: Colors.black,
                 ),
-                SizedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Total Price : ",
-                        style: TextStyle(
-                          color: const Color(0xFF0B02BD),
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "${listModel.ordersTotalPrice} \$",
-                        style: TextStyle(
-                          color: const Color(0xFF0B02BD),
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
+                CustomTotalPriceOrder(
+                  totalPrice: "${listModel.ordersTotalPrice}",
                 ),
                 const SizedBox(height: 10),
-                Card(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Address Name :   ${listModel.addressName}",
-                          style: TextStyle(
-                            color: AppColors.primaryColor,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Text("City :   ${listModel.addressCity}"),
-                        Text("Street :   ${listModel.addressStreet}"),
-                        Text("Phone Number :   ${listModel.addressPhone}"),
-                      ],
-                    ),
-                  ),
+                CustomCardAddress(
+                  name: " ${listModel.addressName}",
+                  city: "${listModel.addressCity}",
+                  street: "${listModel.addressStreet}",
+                  phone: "${listModel.addressPhone}",
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  height: Get.height / 3,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: GoogleMap(
-                    mapType: MapType.normal,
-                    myLocationEnabled: true,
-                    markers: controller.markers.toSet(),
-                    initialCameraPosition: controller.cameraPosition!,
-                    onMapCreated: (GoogleMapController controllerMap) {
-                      controller.controllerMap.complete(controllerMap);
-                    },
-                  ),
+                CustomGoogleMap(
+                  marker: controller.markers,
+                  cameraPosition: controller.cameraPosition,
+                  controllerMap: controller.controllerMap,
                 ),
               ],
             ),

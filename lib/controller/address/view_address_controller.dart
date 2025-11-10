@@ -27,26 +27,25 @@ class ControllerViewAddressImp extends ControllerViewAddress {
   late int usersid = myServices.sharedPreferences.getInt("id")!;
   Completer<GoogleMapController> controllerMap = Completer();
   List<Marker> markers = [];
-  CameraPosition? kGooglePlex;
+  CameraPosition? cameraPosition;
   double? lat;
   double? long;
 
   @override
   void onInit() {
-    addressModel = AddressModel();
-    controllerMap = Completer<GoogleMapController>();
+    // controllerMap = Completer<GoogleMapController>();
     getViewAddressData();
+
     update();
     super.onInit();
   }
 
   @override
   setInitialMarker(lat, long) async {
-    markers.clear();
     markers.add(
       Marker(markerId: const MarkerId("1"), position: LatLng(lat, long)),
     );
-    kGooglePlex = CameraPosition(target: LatLng(lat, long), zoom: 14.4746);
+    cameraPosition = CameraPosition(target: LatLng(lat, long), zoom: 14.4746);
     if (controllerMap.isCompleted) {
       final GoogleMapController mapController = await controllerMap.future;
       mapController.animateCamera(
@@ -61,13 +60,17 @@ class ControllerViewAddressImp extends ControllerViewAddress {
   @override
   getViewAddressData() async {
     statusRequest = StatusRequest.loading;
+    update();
     var response = await addressData.viewAddress(usersid);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
-        // data.clear();
+        data.clear();
         data.addAll(responseData.map((e) => AddressModel.fromJson(e)));
+        addressModel = AddressModel();
+
+        print("=============$addressModel");
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -87,7 +90,7 @@ class ControllerViewAddressImp extends ControllerViewAddress {
           backgroundColor: Color(0xFFF04628),
           duration: const Duration(seconds: 1),
         );
-        Get.offAllNamed(AppRoute.viewAddress);
+        // Get.offNamed(AppRoute.viewAddress);
       } else {
         statusRequest = StatusRequest.failure;
       }

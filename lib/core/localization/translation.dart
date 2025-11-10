@@ -61,8 +61,32 @@ class MyTranslation extends Translations {
       "button2": "ألانجليزية",
       // ألصفحة الرئيسية
       "search": "البحث عن المنتجات",
+      "titleCardHome": "مفاجأة الصيف",
+      "subtitleCardHome": "استرداد نقدي 25%",
       "titleCat": "ألفئات",
       "titleItem": "عروض حصرية",
+      // سلة التسوق
+      "titlePageShoppingCart": "سلة التسوق",
+      // صفحة أوردراتي
+      "titlePageMyOrders": "أوردراتي",
+      "paymentMethod": "طريقة الدفع",
+      // صفحة تفاصيل الطلب
+      "titlePageOrderDetails": "تفاصيل الطلب",
+      "statusOrder": "حالة الطلب",
+      "statusOrder0": "في انتظار الموافقة",
+      "statusOrder1": "يتم إعداد الطلب",
+      "statusOrder2": "على الطريق",
+      "statusOrder3": "أرشيف",
+      "orderId": "رقم الطلب",
+      "titleColumnName": "الاسم",
+      "titleColumnCount": "العدد",
+      "titleColumnPrice": "السعر",
+      "bodyRowDelivery": "سعر شحن الطلب",
+      "totalPrice": "أجمالي السعر",
+      "AddressLocation": "مكان العنوان",
+      "phoneNumber": "رقم الهاتف",
+      "addressCity": "المدينة",
+      "addressStreet": "الشارع",
     },
     //========================================================
     // English Language
@@ -124,8 +148,33 @@ class MyTranslation extends Translations {
       "button2": "E N",
       // Home Page
       "search": "Search For products",
+      "titleCardHome": "A summer surprise",
+      "subtitleCardHome": "Cash back 25%",
       "titleCat": "Categories",
       "titleItem": "Exclusive Offers",
+      // Shopping Cart
+      "titlePageShoppingCart": "Shopping Cart",
+      // My orders
+      "titlePageMyOrders": "My orders",
+      "paymentMethod": "Payment Method",
+
+      // Order Details Page
+      "titlePageOrderDetails": "Order Details",
+      "statusOrder": "Status",
+      "statusOrder0": "pending approve",
+      "statusOrder1": "the order is being prepared",
+      "statusOrder2": "on the way",
+      "statusOrder3": "archive",
+      "orderId": "Order Id",
+      "titleColumnName": "Title",
+      "titleColumnCount": "CTV",
+      "titleColumnPrice": "Prie",
+      "bodyRowDelivery": "Price Delivery",
+      "totalPrice": "Total Price",
+      "AddressLocation": "Address location",
+      "phoneNumber": "Phone Number",
+      "addressCity": "City",
+      "addressStreet": "Street",
     },
   };
 }

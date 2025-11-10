@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:e_commerce_app/core/class/c_r_u_d.dart';
+import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
+import 'package:e_commerce_app/data/data_source/remote/orders_data.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/middle_ware/order_model.dart';
@@ -6,9 +9,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class OrderDetailsController extends GetxController {
   printOrderStatus(int val);
+  getOrderDetailsData();
 }
 
 class OrderDetailsControllerImp extends OrderDetailsController {
+  OrdersData ordersData = OrdersData(Get.find<Crud>());
+
   StatusRequest statusRequest = StatusRequest.loading;
   OrdersModel? ordersModel;
   Completer<GoogleMapController> controllerMap = Completer();
@@ -16,16 +22,20 @@ class OrderDetailsControllerImp extends OrderDetailsController {
   CameraPosition? cameraPosition;
   double? lat;
   double? long;
+  int? orderId;
+
+  List data = [];
 
   @override
   void onInit() {
-    controllerMap = Completer<GoogleMapController>();
+    ordersModel = Get.arguments['listModel'];
     initData();
+    getOrderDetailsData();
     super.onInit();
   }
 
   initData() {
-    ordersModel = Get.arguments['listModel'];
+    orderId = ordersModel!.ordersId;
     lat = ordersModel!.addressLat;
     long = ordersModel!.addressLong;
     markers.add(
@@ -38,13 +48,28 @@ class OrderDetailsControllerImp extends OrderDetailsController {
   @override
   printOrderStatus(val) {
     if (val == 0) {
-      return "pending approve";
+      return "statusOrder0".tr;
     } else if (val == 1) {
-      return "the order is being prepared ";
+      return "statusOrder1".tr;
     } else if (val == 2) {
-      return "on the way ";
+      return "statusOrder2".tr;
     } else {
-      return "archive ";
+      return "statusOrder3".tr;
     }
+  }
+
+  @override
+  getOrderDetailsData() async {
+    var response = await ordersData.orderDetails(orderId!);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        List responseData = response['data'];
+        data.addAll(responseData);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 }

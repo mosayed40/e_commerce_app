@@ -38,9 +38,11 @@ class HomePage extends GetView<LocaleController> {
                 onPressedSearch: () {
                   controller.onSearch();
                 },
-                onPressedNotifications: () {},
+                onPressedNotifications: () {
+                  print("Notification");
+                },
                 onPressedFavorite: () {
-                  controller.goToMyfavorite();
+                  print("person");
                 },
               ),
             ),
@@ -59,8 +61,8 @@ class HomePage extends GetView<LocaleController> {
                         children: const [
                           SizedBox(height: 20),
                           CustomCardHome(
-                            title: "A summer surprise",
-                            subTitle: "Cash back 25%",
+                            title: "titleCardHome",
+                            subTitle: "subtitleCardHome",
                           ),
                           CustomTitleHome(title: "titleCat"),
                           CustomListCategoriesHome(),

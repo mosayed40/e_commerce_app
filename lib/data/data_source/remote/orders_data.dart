@@ -33,8 +33,8 @@ class OrdersData {
     return response.fold((l) => l, (r) => r);
   }
 
-  detailsOrders(int orderId) async {
-    var response = await crud.postData(AppLinkApi.detailsOrders, {
+  orderDetails(int orderId) async {
+    var response = await crud.postData(AppLinkApi.ordersDetails, {
       "id": orderId.toString(),
     });
     return response.fold((l) => l, (r) => r);

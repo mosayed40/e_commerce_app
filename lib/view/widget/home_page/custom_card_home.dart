@@ -29,11 +29,10 @@ class CustomCardHome extends GetView<HomeControllerImp> {
             alignment: Alignment.center,
             child: ListTile(
               title: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    title.tr,
                     style: const TextStyle(
                       color: AppColors.textColor_2,
                       fontSize: 18,
@@ -41,7 +40,7 @@ class CustomCardHome extends GetView<HomeControllerImp> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    subTitle,
+                    subTitle.tr,
                     style: const TextStyle(color: Colors.white, fontSize: 24),
                   ),
                 ],

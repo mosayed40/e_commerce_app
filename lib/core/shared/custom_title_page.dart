@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class CustomTitlePage extends StatelessWidget {
   final String title;
@@ -9,7 +10,7 @@ class CustomTitlePage extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       child: Text(
-        title,
+        title.tr,
         style: Theme.of(context).textTheme.titleLarge,
         textAlign: TextAlign.center,
       ),

@@ -14,7 +14,6 @@ class HomeScreenPage extends StatelessWidget {
         backgroundColor: Colors.grey.shade100,
         bottomNavigationBar: GetBuilder<HomeScreenControllerImp>(
           builder: (controller) => BottomNavigationBar(
-            // type: BottomNavigationBarType.fixed,
             currentIndex: controller.currentPage,
             selectedItemColor: AppColors.primaryColor,
             unselectedItemColor: Colors.grey,
@@ -28,8 +27,8 @@ class HomeScreenPage extends StatelessWidget {
                 label: "Cart",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_4_rounded),
-                label: "profile",
+                icon: Icon(Icons.favorite),
+                label: "Favorite",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
