@@ -5,9 +5,10 @@ vaildInput(String val, int min, int max, String type) {
     return 'Input cannot be empty';
   }
 
-  if (type == "UserName") {
-    if (!GetUtils.isUsername(val)) {
-      return 'Invalid username';
+  if (type.toLowerCase() == "UserName") {
+    final nameRegExp = RegExp(r"^[a-zA-Z\s]+$");
+    if (!nameRegExp.hasMatch(val)) {
+      return 'Username can only contain letters and spaces';
     }
   }
 

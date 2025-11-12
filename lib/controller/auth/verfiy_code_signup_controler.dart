@@ -5,6 +5,7 @@ import 'package:e_commerce_app/data/data_source/remote/auth/verfiycode_sign_up.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
+import 'package:otp_text_field/otp_field.dart';
 
 abstract class VirfiyCodeSignUpController extends GetxController {
   reSend();
@@ -12,6 +13,7 @@ abstract class VirfiyCodeSignUpController extends GetxController {
 }
 
 class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
+  OtpFieldController? otpController;
   VerfiycodeSignUpData verfiycodeSignUpData = VerfiycodeSignUpData(
     Get.find<Crud>(),
   );
@@ -20,6 +22,7 @@ class VirfiyCodeSignUpControllerImp extends VirfiyCodeSignUpController {
 
   @override
   void onInit() {
+    otpController = OtpFieldController();
     email = Get.arguments['email'];
     super.onInit();
   }

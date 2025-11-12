@@ -17,7 +17,6 @@ class VerfiyCodeSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(VirfiyCodeSignUpControllerImp());
-    OtpFieldController otpController = Get.put(OtpFieldController());
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +53,7 @@ class VerfiyCodeSignUp extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 OTPTextField(
-                  controller: otpController,
+                  controller: controller.otpController,
                   length: 5,
                   width: MediaQuery.of(context).size.width,
                   textFieldAlignment: MainAxisAlignment.spaceAround,
