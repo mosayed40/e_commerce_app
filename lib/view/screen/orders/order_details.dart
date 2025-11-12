@@ -6,13 +6,14 @@ import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/order/custom_body_table.dart';
 import 'package:e_commerce_app/view/widget/order/custom_card_address.dart';
-import 'package:e_commerce_app/view/widget/order/custom_google_map.dart';
+import 'package:e_commerce_app/view/widget/custom_google_map.dart';
 import 'package:e_commerce_app/view/widget/order/custom_orderId.dart';
 import 'package:e_commerce_app/view/widget/order/custom_status_order.dart';
 import 'package:e_commerce_app/view/widget/order/custom_title_tabel.dart';
 import 'package:e_commerce_app/view/widget/order/custom_total_price.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -109,7 +110,9 @@ class OrderDetails extends StatelessWidget {
                 CustomGoogleMap(
                   marker: controller.markers,
                   cameraPosition: controller.cameraPosition,
-                  controllerMap: controller.controllerMap,
+                  onMapCreated: (GoogleMapController controllerMap) {
+                    controller.controllerMap.complete(controllerMap);
+                  },
                 ),
               ],
             ),

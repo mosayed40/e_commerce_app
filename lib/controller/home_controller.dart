@@ -12,7 +12,7 @@ abstract class HomeController extends GetxController {
   initialData();
   getData();
   goToItems(List categories, int i);
-  goToMyfavorite();
+  goToPerson();
   goToPageItemDetails(ItemsModel itemsModel);
   checkSearch(val);
   onSearch();
@@ -46,7 +46,6 @@ class HomeControllerImp extends HomeController {
     lang = myServices.sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getInt("id");
-    update();
   }
 
   @override
@@ -84,7 +83,7 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  goToMyfavorite() {
+  goToPerson() {
     // Get.toNamed(AppRoute.myFavorite);
   }
 

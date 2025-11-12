@@ -2,6 +2,7 @@ import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/image_asset.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
@@ -20,18 +21,21 @@ class ItemDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
-        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
-          CustomIconBack(),
-          SizedBox(width: 20),
-          Expanded(flex: 4, child: CustomTitlePage(title: "تفاصيل المنتج")),
+          const CustomIconBack(),
+          const SizedBox(width: 20),
+          Expanded(
+            flex: 4,
+            child: CustomTitlePage(title: "titlePageItmeDetails".tr),
+          ),
         ],
       ),
-
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         child: CustomIconButton(
           onPressed: () {
             controllerCart.refresData();
@@ -73,7 +77,7 @@ class ItemDetails extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        item.itemsName ?? "بدون اسم",
+                        translateDatabase(item.itemsNameAr, item.itemsName),
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -81,7 +85,7 @@ class ItemDetails extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        item.itemsDasc ?? "لا يوجد وصف متاح",
+                        translateDatabase(item.itemsDascAr, item.itemsDasc),
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.grey,
@@ -92,7 +96,7 @@ class ItemDetails extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Count",
+                            "count".tr,
                             style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -114,26 +118,18 @@ class ItemDetails extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 15),
-                      Text(
-                        "Price",
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 15),
+
                       Row(
                         children: [
-                          // السعر بعد الخصم
                           Text(
-                            "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)}  ج.م",
+                            "price".tr,
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.primaryColor,
                             ),
                           ),
-                          const SizedBox(width: 40),
+                          const Spacer(),
+                          // const SizedBox(width: 40),
                           // السعر قبل الخصم
                           item.itemsDiscount! > 0
                               ? Text(
@@ -145,6 +141,16 @@ class ItemDetails extends StatelessWidget {
                                   ),
                                 )
                               : Text(""),
+                          const Spacer(),
+                          // السعر بعد الخصم
+                          Text(
+                            "${item.itemsPrice! - (item.itemsPrice! * item.itemsDiscount! / 100)}  ج.م",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
                         ],
                       ),
                     ],

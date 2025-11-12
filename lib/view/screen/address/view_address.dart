@@ -5,6 +5,8 @@ import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/middle_ware/address_model.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
+import 'package:e_commerce_app/view/widget/custom_google_map.dart';
+import 'package:e_commerce_app/view/widget/order/custom_card_address.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,10 +23,9 @@ class ViewAddress extends StatelessWidget {
         toolbarHeight: 100,
         backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
-        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
-        actions: [
+        actionsPadding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: const [
           CustomIconBack(),
-          SizedBox(width: 20),
           Expanded(flex: 4, child: CustomTitlePage(title: "Addresses")),
         ],
       ),
@@ -36,23 +37,25 @@ class ViewAddress extends StatelessWidget {
         child: Icon(Icons.add, color: Colors.white, size: 30),
       ),
       body: GetBuilder<ControllerViewAddressImp>(
-        builder: (controller) => controller.data.isEmpty
-            ? const Center(
-                child: Text(
-                  "لا يوجد عناوين حالياً",
-                  style: TextStyle(fontSize: 18),
-                ),
-              )
-            : HandlingDatatView(
-                statusRequest: controller.statusRequest,
-                widget: ListView.builder(
-                  itemCount: controller.data.length,
-                  itemBuilder: (context, index) => CardAddress(
-                    addressModel: controller.data[index],
-                    controller: controller,
-                  ),
+        builder: (controller) =>
+            // controller.data.isEmpty
+            // ? const Center(
+            //     child: Text(
+            //       "لا يوجد عناوين حالياً",
+            //       style: TextStyle(fontSize: 18),
+            //     ),
+            //   )
+            // :
+            HandlingDatatView(
+              statusRequest: controller.statusRequest,
+              widget: ListView.builder(
+                itemCount: controller.data.length,
+                itemBuilder: (context, index) => CardAddress(
+                  addressModel: controller.data[index],
+                  controller: controller,
                 ),
               ),
+            ),
       ),
     );
   }
@@ -75,9 +78,12 @@ class CardAddress extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            addressModel.addressName ?? "لا يوجد عنوان",
-            style: TextStyle(color: Colors.grey[600], fontSize: 30),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              addressModel.addressName ?? "",
+              style: TextStyle(color: AppColors.primaryColor, fontSize: 30),
+            ),
           ),
           const SizedBox(height: 10),
           Stack(
@@ -87,31 +93,44 @@ class CardAddress extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: ListTile(
-                  title: Text("city : ${addressModel.addressCity ?? ''}"),
+                  title: CustomTextAddress(
+                    title: "addressCity",
+                    body: addressModel.addressCity!,
+                  ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("street : ${addressModel.addressStreet ?? ''}"),
-                      Text("phone : ${addressModel.addressPhone}"),
+                      CustomTextAddress(
+                        title: "addressStreet",
+                        body: addressModel.addressStreet!,
+                      ),
+                      CustomTextAddress(
+                        title: "phoneNumber",
+                        body: "${addressModel.addressPhone}",
+                      ),
                     ],
                   ),
                 ),
               ),
               Positioned(
                 top: 5,
-                right: 15,
-                child: IconButton(
-                  icon: const Icon(Icons.edit, color: AppColors.buttonColor),
-                  onPressed: () => controller.goToEditAddress(),
-                ),
-              ),
-              Positioned(
-                top: 45,
-                right: 15,
-                child: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
-                  onPressed: () =>
-                      controller.deleteAddress(addressModel.addressId!),
+                left: controller.lang == "ar" ? 15 : null,
+                right: controller.lang == "ar" ? null : 15,
+                child: Column(
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.edit,
+                        color: AppColors.buttonColor,
+                      ),
+                      onPressed: () => controller.goToEditAddress(),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () =>
+                          controller.deleteAddress(addressModel.addressId!),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -123,37 +142,18 @@ class CardAddress extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.grey[200],
             ),
-            child: GoogleMap(
-              mapType: MapType.normal,
-              markers: controller.markers.toSet(),
-              initialCameraPosition:
-                  controller.cameraPosition ??
-                  CameraPosition(target: LatLng(0.0, 0.0)),
-              onMapCreated: (GoogleMapController controllerMap) {
-                if (!controller.controllerMap.isCompleted) {
+            child: HandlingDatatView(
+              statusRequest: controller.statusRequest,
+              widget: CustomGoogleMap(
+                marker: controller.markers,
+                cameraPosition: controller.cameraPosition,
+                onMapCreated: (GoogleMapController controllerMap) {
                   controller.controllerMap.complete(controllerMap);
-                }
-              },
+                  controller.lat = addressModel.addressLat!;
+                  controller.lat = addressModel.addressLong!;
+                },
+              ),
             ),
-            //  GoogleMap(
-            //   mapType: MapType.normal,
-            //   markers: controller.markers.toSet(),
-            //   initialCameraPosition:
-            //       controller.kGooglePlex ??
-            //       CameraPosition(target: LatLng(0.0, 0.0)),
-            //   onMapCreated: (GoogleMapController controllerMap) {
-            //     if (!controller.controllerMap.isCompleted) {
-            //       controller.controllerMap.complete(controllerMap);
-            //     }
-            //     if (addressModel.addressLat != null ||
-            //         addressModel.addressLong != null) {
-            //       controller.setInitialMarker(
-            //         addressModel.addressLat!,
-            //         addressModel.addressLong!,
-            //       );
-            //     }
-            //   },
-            // ),
           ),
         ],
       ),

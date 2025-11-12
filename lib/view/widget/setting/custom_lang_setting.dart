@@ -11,7 +11,10 @@ class CustomLangSetting extends GetView<LocaleController> {
       padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Text("Language", style: TextStyle(color: Colors.black, fontSize: 20)),
+          Text(
+            "language".tr,
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
           Spacer(),
           Row(
             children: [

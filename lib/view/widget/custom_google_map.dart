@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -6,13 +5,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class CustomGoogleMap extends StatelessWidget {
   final List<Marker> marker;
   final CameraPosition? cameraPosition;
-  final Completer<GoogleMapController> controllerMap;
+  final Function(GoogleMapController)? onMapCreated;
 
   const CustomGoogleMap({
     super.key,
     required this.marker,
     required this.cameraPosition,
-    required this.controllerMap,
+    required this.onMapCreated,
   });
 
   @override
@@ -26,9 +25,7 @@ class CustomGoogleMap extends StatelessWidget {
         myLocationEnabled: true,
         markers: marker.toSet(),
         initialCameraPosition: cameraPosition!,
-        onMapCreated: (GoogleMapController controllerMap) {
-          controllerMap;
-        },
+        onMapCreated: onMapCreated,
       ),
     );
   }

@@ -13,26 +13,30 @@ class CustomSettingPageOptins extends StatelessWidget {
     List data = [
       {
         "id": "1",
-        "titel": "Disable Notifications",
-        "icon": Switch(onChanged: (val) {}, value: true),
+        "titel": "notifications".tr,
+        "icon": Switch(onChanged: (val) {}, value: false),
       },
       {
         "id": "2",
-        "titel": "My Orders",
+        "titel": "orders".tr,
         "icon": Icon(Icons.shopping_cart_checkout_outlined),
       },
-      {"id": "3", "titel": "Address", "icon": Icon(Icons.location_on_outlined)},
+      {
+        "id": "3",
+        "titel": "address".tr,
+        "icon": Icon(Icons.location_on_outlined),
+      },
       {
         "id": "4",
-        "titel": "About us",
+        "titel": "aboutUs".tr,
         "icon": Icon(Icons.help_outline_outlined),
       },
       {
         "id": "5",
-        "titel": "Contact us",
+        "titel": "contactUs".tr,
         "icon": Icon(Icons.phone_callback_outlined),
       },
-      {"id": "6", "titel": "LogOut", "icon": Icon(Icons.exit_to_app)},
+      {"id": "6", "titel": "logOut".tr, "icon": Icon(Icons.exit_to_app)},
     ];
     return Column(
       children: [
@@ -45,9 +49,7 @@ class CustomSettingPageOptins extends StatelessWidget {
                 Material(
                   child: ListTile(
                     onTap: () {
-                      if (data[i]['id'] == "1") {
-                        print("Notifications");
-                      } else if (data[i]['id'] == "2") {
+                      if (data[i]['id'] == "2") {
                         Get.toNamed(AppRoute.pendingOrder);
                       } else if (data[i]['id'] == "3") {
                         Get.toNamed(AppRoute.viewAddress);

@@ -1,7 +1,6 @@
 import 'package:e_commerce_app/controller/favorite_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
-import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
 import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/favorite/custom_list_favortie_items.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +19,7 @@ class MyFavorite extends StatelessWidget {
         automaticallyImplyLeading: false,
         actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: [
-          CustomIconBack(),
-          Expanded(flex: 4, child: CustomTitlePage(title: "Favorite")),
+          Expanded(flex: 4, child: CustomTitlePage(title: "titlePageFavorit")),
         ],
       ),
       body: Container(

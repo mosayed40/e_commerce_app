@@ -37,7 +37,7 @@ class ItemsPage extends StatelessWidget {
                 flex: 6,
                 child: CustomSearchTextFormField(
                   myController: controller.search!,
-                  hintText: "Search For Products",
+                  hintText: "search".tr,
                   onChanged: (val) {
                     controller.checkSearch(val);
                   },

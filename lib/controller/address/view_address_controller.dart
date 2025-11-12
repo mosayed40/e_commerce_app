@@ -22,22 +22,27 @@ class ControllerViewAddressImp extends ControllerViewAddress {
   AddressData addressData = AddressData(Get.find<Crud>());
   MyServices myServices = Get.find();
   StatusRequest statusRequest = StatusRequest.loading;
-  List<AddressModel> data = [];
-  AddressModel? addressModel;
-  late int usersid = myServices.sharedPreferences.getInt("id")!;
   Completer<GoogleMapController> controllerMap = Completer();
-  List<Marker> markers = [];
+  AddressModel? addressModel;
   CameraPosition? cameraPosition;
+  List<AddressModel> data = [];
+  List<Marker> markers = [];
   double? lat;
   double? long;
+  int? usersid;
+  String? lang;
 
   @override
   void onInit() {
-    // controllerMap = Completer<GoogleMapController>();
+    controllerMap = Completer<GoogleMapController>();
+    initData();
     getViewAddressData();
-
-    update();
     super.onInit();
+  }
+
+  initData() {
+    usersid = myServices.sharedPreferences.getInt("id")!;
+    lang = myServices.sharedPreferences.getString("lang");
   }
 
   @override
@@ -61,16 +66,13 @@ class ControllerViewAddressImp extends ControllerViewAddress {
   getViewAddressData() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await addressData.viewAddress(usersid);
+    var response = await addressData.viewAddress(usersid!);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
         data.clear();
         data.addAll(responseData.map((e) => AddressModel.fromJson(e)));
-        addressModel = AddressModel();
-
-        print("=============$addressModel");
       } else {
         statusRequest = StatusRequest.failure;
       }

@@ -22,56 +22,59 @@ class HomePage extends GetView<LocaleController> {
     Get.put(HomeControllerImp());
 
     return GetBuilder<HomeControllerImp>(
-      builder: (controller) => Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 150,
-          backgroundColor: AppColors.backgroundAppBar,
-          actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
-          actions: [
-            Expanded(
-              child: CustomAppBar(
-                myController: controller.search!,
-                titleAppBar: "search",
-                onChanged: (val) {
-                  controller.checkSearch(val);
-                },
-                onPressedSearch: () {
-                  controller.onSearch();
-                },
-                onPressedNotifications: () {
-                  print("Notification");
-                },
-                onPressedFavorite: () {
-                  print("person");
-                },
+      builder: (controller) => HandlingDatatView(
+        statusRequest: controller.statusRequest,
+        widget: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 150,
+            backgroundColor: AppColors.backgroundAppBar,
+            actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+            actions: [
+              Expanded(
+                child: CustomAppBar(
+                  myController: controller.search!,
+                  titleAppBar: "search",
+                  onChanged: (val) {
+                    controller.checkSearch(val);
+                  },
+                  onPressedSearch: () {
+                    controller.onSearch();
+                  },
+                  onPressedNotifications: () {
+                    print("Notification");
+                  },
+                  onPressedPerson: () {
+                    print("person");
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: ListView(
-            children: [
-              controller.isSearch
-                  ? ListItemsSearch(listDataModel: controller.listData)
-                  : HandlingDatatView(
-                      statusRequest: controller.statusRequest,
-                      widget: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          SizedBox(height: 20),
-                          CustomCardHome(
-                            title: "titleCardHome",
-                            subTitle: "subtitleCardHome",
-                          ),
-                          CustomTitleHome(title: "titleCat"),
-                          CustomListCategoriesHome(),
-                          CustomTitleHome(title: "titleItem"),
-                          CustomListItemsHome(),
-                        ],
-                      ),
-                    ),
             ],
+          ),
+          body: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: ListView(
+              children: [
+                controller.isSearch
+                    ? ListItemsSearch(listDataModel: controller.listData)
+                    : HandlingDatatView(
+                        statusRequest: controller.statusRequest,
+                        widget: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            SizedBox(height: 20),
+                            CustomCardHome(
+                              title: "titleCardHome",
+                              subTitle: "subtitleCardHome",
+                            ),
+                            CustomTitleHome(title: "titleCat"),
+                            CustomListCategoriesHome(),
+                            CustomTitleHome(title: "titleItem"),
+                            CustomListItemsHome(),
+                          ],
+                        ),
+                      ),
+              ],
+            ),
           ),
         ),
       ),

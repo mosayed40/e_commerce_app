@@ -59,14 +59,25 @@ class MyTranslation extends Translations {
       // أزرار تغيير اللغة
       "button1": "العربية",
       "button2": "ألانجليزية",
+      // شاشة الصفحات
+      "home": "رئيسية",
+      "cart": "تسوق",
+      "favorite": "مفضلة",
+      "setting": "أعدادات",
       // ألصفحة الرئيسية
       "search": "البحث عن المنتجات",
       "titleCardHome": "مفاجأة الصيف",
       "subtitleCardHome": "استرداد نقدي 25%",
       "titleCat": "ألفئات",
       "titleItem": "عروض حصرية",
+      // صفحة تفاصيل المنتج
+      "titlePageItmeDetails": "تفاصيل المنتج",
+      "count": "العدد",
+      "price": "السعر",
       // سلة التسوق
       "titlePageShoppingCart": "سلة التسوق",
+      // صفحة المفضلة
+      "titlePageFavorit": "ألمفضلة",
       // صفحة أوردراتي
       "titlePageMyOrders": "أوردراتي",
       "paymentMethod": "طريقة الدفع",
@@ -87,6 +98,14 @@ class MyTranslation extends Translations {
       "phoneNumber": "رقم الهاتف",
       "addressCity": "المدينة",
       "addressStreet": "الشارع",
+      // Setting
+      "notifications": "عرض الاشعارات",
+      "orders": "أوردراتي",
+      "address": "عناوينى",
+      "aboutUs": "معلومات عنا",
+      "contactUs": "اتصل بنا",
+      "logOut": "تسجيل الخروج",
+      "language": "اللغة",
     },
     //========================================================
     // English Language
@@ -146,14 +165,25 @@ class MyTranslation extends Translations {
       // Language change buttons
       "button1": "A R",
       "button2": "E N",
+      // Pages Screen
+      "home": "Home",
+      "cart": "Shopping",
+      "favorite": "Favorite",
+      "setting": "Setting",
       // Home Page
       "search": "Search For products",
       "titleCardHome": "A summer surprise",
       "subtitleCardHome": "Cash back 25%",
       "titleCat": "Categories",
       "titleItem": "Exclusive Offers",
-      // Shopping Cart
+      // Items Details Page
+      "titlePageItmeDetails": "Items Details",
+      "count": "Count",
+      "price": "Price",
+      // Shopping Cart Page
       "titlePageShoppingCart": "Shopping Cart",
+      // Favorite Page
+      "titlePageFavorit": "Favorite ",
       // My orders
       "titlePageMyOrders": "My orders",
       "paymentMethod": "Payment Method",
@@ -175,6 +205,14 @@ class MyTranslation extends Translations {
       "phoneNumber": "Phone Number",
       "addressCity": "City",
       "addressStreet": "Street",
+      // Setting
+      "notifications": "Disable Notifications",
+      "orders": "My Orders",
+      "address": "My Address",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "logOut": "Log Out",
+      "language": "Language",
     },
   };
 }

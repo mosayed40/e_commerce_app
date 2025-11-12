@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/controller/cart_controller.dart';
+import 'package:e_commerce_app/core/functions/translate_database.dart';
 import 'package:e_commerce_app/core/middle_ware/cart_model.dart';
 import 'package:e_commerce_app/link_api.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class CustomItemOnProductCart extends StatelessWidget {
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(
-                  "${cartModel.itemsName}",
+                  "${translateDatabase(cartModel.itemsNameAr, cartModel.itemsName)}",
                   style: TextStyle(fontSize: 18),
                 ),
               ),

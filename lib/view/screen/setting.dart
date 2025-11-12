@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/controller/setting_controller.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/constant/image_asset.dart';
 import 'package:e_commerce_app/view/widget/setting/Custom_setting_page_optins.dart';
@@ -10,6 +11,7 @@ class Setting extends GetView<LocaleController> {
   const Setting({super.key});
   @override
   Widget build(BuildContext context) {
+    SettingControllerImp controllerImp = Get.put(SettingControllerImp());
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 10,
@@ -31,27 +33,38 @@ class Setting extends GetView<LocaleController> {
                 ),
               ),
               Positioned(
-                top: 40,
-                left: 10,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Mustafa Sayed",
-                      style: const TextStyle(color: Colors.white, fontSize: 30),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "moustafa.2950@gmail.com",
-                      style: const TextStyle(color: Colors.grey, fontSize: 20),
-                    ),
-                  ],
+                top: 30,
+                right: controllerImp.lang == "en" ? 10 : null,
+                left: controllerImp.lang == "ar" ? 10 : null,
+                child: SizedBox(
+                  width: Get.width / 1 - 25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Mustafa Sayed",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "moustafa.2950@gmail.com",
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Positioned(
                 top: 0,
-                right: 10,
+                right: controllerImp.lang == "en" ? 10 : null,
+                left: controllerImp.lang == "en" ? null : 10,
                 child: Row(
                   children: [
                     IconButton(
@@ -92,7 +105,7 @@ class Setting extends GetView<LocaleController> {
               ),
             ],
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 50),
           CustomSettingPageOptins(),
           CustomLangSetting(),
         ],

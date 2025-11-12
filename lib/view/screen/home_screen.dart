@@ -20,19 +20,19 @@ class HomeScreenPage extends StatelessWidget {
             onTap: (i) {
               controller.changePage(i);
             },
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "home".tr),
               BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart),
-                label: "Cart",
+                label: "cart".tr,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite),
-                label: "Favorite",
+                label: "favorite".tr,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
-                label: "Settings",
+                label: "setting".tr,
               ),
             ],
           ),

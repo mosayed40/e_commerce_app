@@ -9,6 +9,13 @@ abstract class SettingController extends GetxController {
 
 class SettingControllerImp extends SettingController {
   MyServices myServices = Get.find();
+  String? lang;
+
+  @override
+  void onInit() {
+    lang = myServices.sharedPreferences.getString("lang");
+    super.onInit();
+  }
 
   @override
   logOut() {

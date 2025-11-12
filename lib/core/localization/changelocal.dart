@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/controller/home_controller.dart';
+import 'package:e_commerce_app/controller/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/core/constant/app_theme.dart';
 import 'package:e_commerce_app/core/services/services.dart';
@@ -32,6 +34,16 @@ class LocaleController extends GetxController {
     appThemeLanguage = langcode == "ar" ? themeArabic : themeEnglish;
     Get.changeTheme(appThemeLanguage);
     Get.updateLocale(locale);
+    updateLangUI(langcode);
+  }
+
+  updateLangUI(String valLang) {
+    // 👇 أضف هذا السطر لتحديث الواجهة
+    final homeController = Get.find<HomeControllerImp>();
+    final settingController = Get.find<SettingControllerImp>();
+    homeController.lang = valLang;
+    settingController.lang = valLang;
+    update();
   }
 
   requestPermissionLocation() async {
@@ -50,7 +62,6 @@ class LocaleController extends GetxController {
         return Get.snackbar("تنبية", "الرجاء اعطاء صلاحية الموقع للتطبيق");
       }
     }
-
     if (permission == LocationPermission.deniedForever) {
       return Get.snackbar("تنبية", "لا يمكن استخدام التطبيق بدون اللوكيشن ");
     }
