@@ -25,6 +25,9 @@ class LocaleController extends GetxController {
       language = Locale(Get.deviceLocale!.languageCode);
       appThemeLanguage = themeEnglish;
     }
+    Get.lazyPut(() => SettingControllerImp());
+    Get.lazyPut(() => HomeControllerImp());
+
     super.onInit();
   }
 
@@ -38,7 +41,6 @@ class LocaleController extends GetxController {
   }
 
   updateLangUI(String valLang) {
-    // 👇 أضف هذا السطر لتحديث الواجهة
     final homeController = Get.find<HomeControllerImp>();
     final settingController = Get.find<SettingControllerImp>();
     homeController.lang = valLang;

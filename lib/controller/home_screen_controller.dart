@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/controller/cart_controller.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
-import 'package:e_commerce_app/view/screen/cart.dart';
+import 'package:e_commerce_app/view/screen/shopping_cart.dart';
 import 'package:e_commerce_app/view/screen/favorite.dart';
 import 'package:e_commerce_app/view/screen/home.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';

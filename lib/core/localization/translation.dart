@@ -13,7 +13,7 @@ class MyTranslation extends Translations {
       "6": "تتبع طلبك",
       "7": "يمكنك تتبع طلبك في كل مرحلة \n وايضا التتبع من خلال الخريطة",
       "8": "متابعه",
-      "9": "تسجيل الدخول",
+      "titelPageLogin": "تسجيل الدخول",
       "titleSignPages": "اهلا بك",
       "bodySignPages":
           "يمكنك تسجيل الدخول من خلال البريد وكلمة المرور او من خلال وسائل التواصل الاجتماعي",
@@ -56,9 +56,12 @@ class MyTranslation extends Translations {
       "hintConfirmPassword": "ادخل كلمة المرور للتأكيد",
       "44":
           "تم تعديل كلمة المرور بنجاح \n .يمكنك الان تسجيل الدخول باستخدام كلمة المرور الجديدة",
+
       // أزرار تغيير اللغة
       "button1": "العربية",
       "button2": "ألانجليزية",
+      // Check Email Forget Password
+      "titlePageCheckEmail": "التحقق من البريد الإلكتروني",
       // شاشة الصفحات
       "home": "رئيسية",
       "cart": "تسوق",
@@ -119,7 +122,7 @@ class MyTranslation extends Translations {
       "6": "Track Your Order",
       "7": "The order can be tracked at every stage \n until it reaches you",
       "8": "Continue",
-      "9": "Sign In",
+      "titelPageLogin": "Sign In",
       "titleSignPages": "Welcome Back",
       "bodySignPages":
           "Sign In Your Email And Password Or  Continue With Social Media",
@@ -162,9 +165,12 @@ class MyTranslation extends Translations {
       "hintConfirmPassword": "Enter Your Confirm Password",
       "44":
           "Password has been modified successfully \n You can now log in with your new password",
+
       // Language change buttons
       "button1": "A R",
       "button2": "E N",
+      // Check Email Forget Password
+      "titlePageCheckEmail": "Email verification",
       // Pages Screen
       "home": "Home",
       "cart": "Shopping",

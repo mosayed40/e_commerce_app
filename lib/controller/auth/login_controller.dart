@@ -68,7 +68,7 @@ class LoginControllerImp extends LoginController {
             //   "user:${usersId.toString()}",
             // );
 
-            Get.offNamed(AppRoute.home);
+            Get.offAllNamed(AppRoute.home);
           } else {
             Get.toNamed(
               AppRoute.verfiyCodeSignUp,
@@ -97,7 +97,7 @@ class LoginControllerImp extends LoginController {
 
   @override
   goToForgetPassword() {
-    Get.toNamed(AppRoute.forgetPassword);
+    Get.toNamed(AppRoute.checkEmail);
   }
 
   @override

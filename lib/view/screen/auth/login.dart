@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/controller/auth/login_controller.dart';
@@ -22,18 +23,19 @@ class Login extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text(
-          "9".tr,
-          style: TextStyle(color: AppColors.textColor_2, fontSize: 24),
-        ),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        automaticallyImplyLeading: false,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          Expanded(flex: 4, child: CustomTitlePage(title: "titelPageLogin")),
+        ],
       ),
       body: GetBuilder<LoginControllerImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
+            color: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(

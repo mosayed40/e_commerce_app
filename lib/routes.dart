@@ -4,7 +4,7 @@ import 'package:e_commerce_app/view/screen/address/edit_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
 import 'package:e_commerce_app/view/screen/address/add_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/view_address.dart';
-import 'package:e_commerce_app/view/screen/cart.dart';
+import 'package:e_commerce_app/view/screen/shopping_cart.dart';
 import 'package:e_commerce_app/view/screen/cart_check_out.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
 import 'package:e_commerce_app/view/screen/items.dart';
@@ -15,7 +15,6 @@ import 'package:e_commerce_app/view/screen/item_details.dart';
 import 'package:e_commerce_app/view/screen/setting.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:e_commerce_app/core/middle_ware/my_app_midel_ware.dart';
-import 'package:e_commerce_app/view/screen/auth/check_email.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/forget_password.dart';
 import 'package:e_commerce_app/view/screen/auth/login.dart';
 import 'package:e_commerce_app/view/screen/auth/forgetPassword/reset_password.dart';
@@ -38,10 +37,9 @@ List<GetPage<dynamic>>? routes = [
   // Auth Routes
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
-  GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
+  GetPage(name: AppRoute.checkEmail, page: () => const ForgetPassword()),
   GetPage(name: AppRoute.resetPassword, page: () => const ResetPassword()),
   GetPage(name: AppRoute.successSignUp, page: () => const SuccessSignup()),
-  GetPage(name: AppRoute.checkEmail, page: () => const CheckEamil()),
   GetPage(
     name: AppRoute.verfiyCodeForgetPassword,
     page: () => const VerfiyCode(),

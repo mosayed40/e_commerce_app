@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/controller/auth/signup_controller.dart';
@@ -20,19 +21,17 @@ class SignUp extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text(
-          "signUp".tr,
-          style: TextStyle(color: AppColors.textColor_2, fontSize: 24),
-        ),
-        centerTitle: true,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [Expanded(flex: 4, child: CustomTitlePage(title: "signUp"))],
       ),
       body: GetBuilder<SignUpControllerImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
+            color: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             alignment: Alignment.center,
             child: Form(

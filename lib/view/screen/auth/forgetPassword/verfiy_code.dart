@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/constant/image_asset.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -18,16 +19,14 @@ class VerfiyCode extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text(
-          "42".tr,
-          style: const TextStyle(color: AppColors.textColor_2, fontSize: 24),
-        ),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [Expanded(flex: 4, child: CustomTitlePage(title: "42"))],
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 150),
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
         alignment: Alignment.center,
         child: ListView(
           children: [

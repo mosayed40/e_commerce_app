@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
@@ -15,22 +16,16 @@ class SuccessSignup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Center(
-          child: Text(
-            "32".tr,
-            style: const TextStyle(color: AppColors.textColor_2, fontSize: 24),
-          ),
-        ),
-        centerTitle: true,
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [Expanded(flex: 4, child: CustomTitlePage(title: "32"))],
       ),
       body: Container(
         padding: const EdgeInsets.all(15),
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 80),
               Lottie.asset(
                 AppImageAsset.verfiySuccess,
                 height: 250,
@@ -40,11 +35,11 @@ class SuccessSignup extends StatelessWidget {
               Text(
                 "39".tr,
                 style: const TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               SizedBox(
                 width: 300,
                 child: CustomButtonAuth(

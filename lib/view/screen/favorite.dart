@@ -25,26 +25,29 @@ class MyFavorite extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(10),
         child: GetBuilder<FavoriteControllerImp>(
-          builder: (controller) => ListView(
-            children: [
-              HandlingDatatView(
-                statusRequest: controller.statusRequest,
-                widget: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.data.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.6,
+          builder: (controller) => HandlingDatatView(
+            statusRequest: controller.statusRequest,
+            widget: controller.data.isEmpty
+                ? Center(child: Text("No Dtat"))
+                : ListView(
+                    children: [
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.data.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.6,
+                            ),
+                        itemBuilder: (context, index) {
+                          return CustomListFavoriteItems(
+                            favoriteModel: controller.data[index],
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  itemBuilder: (context, index) {
-                    return CustomListFavoriteItems(
-                      favoriteModel: controller.data[index],
-                    );
-                  },
-                ),
-              ),
-            ],
           ),
         ),
       ),

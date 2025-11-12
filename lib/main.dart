@@ -5,13 +5,13 @@ import 'package:e_commerce_app/binding/initial_binding.dart';
 import 'package:e_commerce_app/core/localization/changelocal.dart';
 import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/routes.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await initialServices();
   runApp(const MyApp());
 }

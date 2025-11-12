@@ -28,31 +28,33 @@ class ShoppingCartPage extends GetView<ControllerInCartImp> {
           controller.goToCheckOut();
         },
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<ControllerInCartImp>(
-          builder: (controller) => ListView(
-            children: [
-              HandlingDatatView(
-                statusRequest: controller.statusRequest,
-                widget: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.data.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 3.5,
+          builder: (controller) => controller.data.isEmpty
+              ? Center(child: Text("No Data"))
+              : HandlingDatatView(
+                  statusRequest: controller.statusRequest,
+                  widget: ListView(
+                    children: [
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.data.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              childAspectRatio: 3.5,
+                            ),
+                        itemBuilder: (context, index) {
+                          return CustomItemOnProductCart(
+                            cartModel: controller.data[index],
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  itemBuilder: (context, index) {
-                    return CustomItemOnProductCart(
-                      cartModel: controller.data[index],
-                    );
-                  },
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );

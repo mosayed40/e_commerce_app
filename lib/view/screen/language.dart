@@ -17,7 +17,7 @@ class Language extends GetView<LocaleController> {
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/Group.png"),
+            image: const AssetImage("assets/images/Group.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -32,7 +32,7 @@ class Language extends GetView<LocaleController> {
                 color: AppColors.textColor_1,
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             CustomButtonLang(
               textButton: "A R",
               onPressed: () {
@@ -40,7 +40,7 @@ class Language extends GetView<LocaleController> {
                 Get.toNamed(AppRoute.onBoarding);
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CustomButtonLang(
               textButton: "E N",
               onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -20,40 +21,38 @@ class VerfiyCodeSignUp extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Center(
-          child: Text(
-            "42".tr,
-            style: const TextStyle(color: AppColors.textColor_2, fontSize: 20),
-          ),
-        ),
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [Expanded(flex: 4, child: CustomTitlePage(title: "42"))],
       ),
+
       body: GetBuilder<VirfiyCodeSignUpControllerImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
+            color: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
             alignment: Alignment.center,
             child: ListView(
               children: [
-                const SizedBox(height: 50),
+                Lottie.asset(
+                  AppImageAsset.verfiyEmail,
+                  height: 200,
+                  width: 200,
+                ),
+                const SizedBox(height: 10),
                 const CustomTextTitleAuth(textTitle: "40"),
                 const SizedBox(height: 20),
                 const CustomTextBodyAuth(textBody: "41"),
                 Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 50),
+                  margin: const EdgeInsets.only(bottom: 20),
                   child: Text(
                     "${controller.email}",
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Lottie.asset(
-                  AppImageAsset.verfiyEmail,
-                  height: 150,
-                  width: 150,
-                ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 OTPTextField(
                   controller: otpController,
                   length: 5,

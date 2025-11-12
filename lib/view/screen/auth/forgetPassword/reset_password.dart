@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/controller/auth/forget_password/reset_password_controller.dart';
@@ -18,20 +19,17 @@ class ResetPassword extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Center(
-          child: Text(
-            "43".tr,
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
-          ),
-        ),
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [Expanded(flex: 4, child: CustomTitlePage(title: "43"))],
       ),
       body: GetBuilder<ReastPasswordControllerImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 150),
+            color: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
             alignment: Alignment.center,
             child: Form(
               key: controller.resetPasswordFormState,
@@ -60,7 +58,7 @@ class ResetPassword extends StatelessWidget {
                     suffixIcon: Icons.lock_outlined,
                     controller: controller.repassword,
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 80),
                   CustomButtonAuth(
                     text: "33",
                     onPressed: () {

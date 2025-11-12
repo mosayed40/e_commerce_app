@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
+import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:e_commerce_app/controller/auth/forget_password/forget_password_controller.dart';
@@ -18,15 +19,17 @@ class ForgetPassword extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Center(
-          child: Text(
-            "Forget Password",
-            style: TextStyle(color: AppColors.textColor_2, fontSize: 20),
+        toolbarHeight: 100,
+        backgroundColor: AppColors.backgroundAppBar,
+        actionsPadding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+        actions: [
+          Expanded(
+            flex: 4,
+            child: CustomTitlePage(title: "titlePageCheckEmail"),
           ),
-        ),
+        ],
       ),
+
       body: GetBuilder<ForgetPasswordControllerImp>(
         builder: (controller) => HandlingDatatRequest(
           statusRequest: controller.statusRequest,
