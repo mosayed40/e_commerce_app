@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 abstract class SettingController extends GetxController {
   logOut();
+  goToViewAddress();
+  goToViewOreder();
 }
 
 class SettingControllerImp extends SettingController {
@@ -26,5 +28,15 @@ class SettingControllerImp extends SettingController {
     // );
     myServices.sharedPreferences.clear();
     Get.offAllNamed(AppRoute.login);
+  }
+
+  @override
+  goToViewAddress() {
+    Get.toNamed(AppRoute.viewAddress);
+  }
+
+  @override
+  goToViewOreder() {
+    Get.toNamed(AppRoute.pendingOrder);
   }
 }

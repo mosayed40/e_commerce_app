@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/controller/setting_controller.dart';
-import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,9 +49,9 @@ class CustomSettingPageOptins extends StatelessWidget {
                   child: ListTile(
                     onTap: () {
                       if (data[i]['id'] == "2") {
-                        Get.toNamed(AppRoute.pendingOrder);
+                        settingController.goToViewOreder();
                       } else if (data[i]['id'] == "3") {
-                        Get.toNamed(AppRoute.viewAddress);
+                        settingController.goToViewAddress();
                       } else if (data[i]['id'] == "4") {
                         print("About us");
                       } else if (data[i]['id'] == "5") {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
 import 'package:e_commerce_app/core/constant/routes.dart';
@@ -6,6 +8,7 @@ import 'package:e_commerce_app/core/services/services.dart';
 import 'package:e_commerce_app/data/data_source/remote/address_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class ControllerAddAddress extends GetxController {
   addAddress();
@@ -17,6 +20,7 @@ class ControllerAddAddressImp extends ControllerAddAddress {
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   late int usersid = myServices.sharedPreferences.getInt("id")!;
+  Completer<GoogleMapController> controllerMap = Completer();
   late TextEditingController name;
   late TextEditingController phone;
   late TextEditingController city;
@@ -35,6 +39,7 @@ class ControllerAddAddressImp extends ControllerAddAddress {
   }
 
   intiaData() {
+    controllerMap = Completer<GoogleMapController>();
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
   }
@@ -57,7 +62,7 @@ class ControllerAddAddressImp extends ControllerAddAddress {
       statusRequest = handingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          Get.offNamed(AppRoute.home);
+          Get.offAllNamed(AppRoute.home);
           Get.snackbar(
             "نبية",
             "تم اضافة العنوان",

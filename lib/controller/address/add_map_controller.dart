@@ -20,6 +20,7 @@ class ControllerMapImp extends ControllerMap {
   Position? position;
   double? lat;
   double? long;
+  int? addressId;
 
   @override
   void onInit() {

@@ -23,7 +23,6 @@ class OrderDetailsControllerImp extends OrderDetailsController {
   double? lat;
   double? long;
   int? orderId;
-
   List data = [];
 
   @override
@@ -39,7 +38,7 @@ class OrderDetailsControllerImp extends OrderDetailsController {
     lat = ordersModel!.addressLat;
     long = ordersModel!.addressLong;
     markers.add(
-      Marker(markerId: const MarkerId("1"), position: LatLng(lat!, long!)),
+      Marker(markerId: MarkerId("${orderId!}"), position: LatLng(lat!, long!)),
     );
     cameraPosition = CameraPosition(target: LatLng(lat!, long!), zoom: 11.4746);
     statusRequest = StatusRequest.none;

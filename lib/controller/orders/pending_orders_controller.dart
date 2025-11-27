@@ -16,16 +16,17 @@ abstract class OrderController extends GetxController {
 
 class OrderControllerImp extends OrderController {
   OrdersData ordersData = OrdersData(Get.find<Crud>());
-  late int usersid = myServices.sharedPreferences.getInt("id")!;
+  // late int usersid = myServices.sharedPreferences.getInt("id")!;
   StatusRequest statusRequest = StatusRequest.loading;
   MyServices myServices = Get.find();
   List<OrdersModel> data = [];
-  String? lang;
-
   OrdersModel? ordersModel;
+  int? usersid;
+  String? lang;
 
   @override
   void onInit() {
+    usersid = myServices.sharedPreferences.getInt("id")!;
     lang = myServices.sharedPreferences.getString("lang");
     getPendingOrder();
     super.onInit();
@@ -35,12 +36,11 @@ class OrderControllerImp extends OrderController {
   getPendingOrder() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await ordersData.pendingOrders(usersid);
+    var response = await ordersData.pendingOrders(usersid!);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
-
         data.addAll(responseData.map((e) => OrdersModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;

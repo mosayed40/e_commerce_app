@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/controller/address/add_address_controller.dart';
-import 'package:e_commerce_app/controller/address/add_map_controller.dart';
 import 'package:e_commerce_app/core/class/handling_data_view.dart';
 import 'package:e_commerce_app/core/constant/colors.dart';
 import 'package:e_commerce_app/core/functions/valid_input_address.dart';
@@ -7,6 +6,7 @@ import 'package:e_commerce_app/core/shared/custom_title_page.dart';
 import 'package:e_commerce_app/view/widget/address/custom_text_form.dart';
 import 'package:e_commerce_app/view/widget/auth/custom_button_auth.dart';
 import 'package:e_commerce_app/core/shared/custom_icon_back.dart';
+import 'package:e_commerce_app/view/widget/custom_google_map.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -90,24 +90,21 @@ class AddAddress extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 15, left: 10, right: 10),
-                      height: Get.height / 3,
-                      child: Center(
-                        child: GetBuilder<ControllerMapImp>(
-                          builder: (mapConroller) => GoogleMap(
-                            mapType: MapType.normal,
-                            markers: mapConroller.markers.toSet(),
-                            myLocationEnabled: true,
-                            initialCameraPosition: mapConroller.kGooglePlex!,
-                            onMapCreated: (GoogleMapController controllerMap) {
-                              mapConroller.controllerMap.complete(
-                                controllerMap,
-                              );
-                            },
-                          ),
+
+                    CustomGoogleMap(
+                      marker: [
+                        Marker(
+                          markerId: MarkerId("1"),
+                          position: LatLng(controller.lat!, controller.long!),
                         ),
+                      ],
+                      cameraPosition: CameraPosition(
+                        target: LatLng(controller.lat!, controller.long!),
+                        zoom: 14.4746,
                       ),
+                      onMapCreated: (GoogleMapController controllerMap) {
+                        controller.controllerMap.complete(controllerMap);
+                      },
                     ),
                   ],
                 ),

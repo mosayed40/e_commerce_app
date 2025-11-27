@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
-import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/address_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
@@ -12,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class ControllerViewAddress extends GetxController {
-  setInitialMarker(double latl, double longl);
   getViewAddressData();
   deleteAddress(int addressid);
   goToEditAddress();
@@ -20,46 +18,21 @@ abstract class ControllerViewAddress extends GetxController {
 
 class ControllerViewAddressImp extends ControllerViewAddress {
   AddressData addressData = AddressData(Get.find<Crud>());
-  MyServices myServices = Get.find();
   StatusRequest statusRequest = StatusRequest.loading;
   Completer<GoogleMapController> controllerMap = Completer();
-  AddressModel? addressModel;
-  CameraPosition? cameraPosition;
+  MyServices myServices = Get.find();
   List<AddressModel> data = [];
-  List<Marker> markers = [];
-  double? lat;
-  double? long;
+  AddressModel? addressModel;
   int? usersid;
   String? lang;
 
   @override
   void onInit() {
-    controllerMap = Completer<GoogleMapController>();
-    initData();
-    getViewAddressData();
-    super.onInit();
-  }
-
-  initData() {
     usersid = myServices.sharedPreferences.getInt("id")!;
     lang = myServices.sharedPreferences.getString("lang");
-  }
-
-  @override
-  setInitialMarker(lat, long) async {
-    markers.add(
-      Marker(markerId: const MarkerId("1"), position: LatLng(lat, long)),
-    );
-    cameraPosition = CameraPosition(target: LatLng(lat, long), zoom: 14.4746);
-    if (controllerMap.isCompleted) {
-      final GoogleMapController mapController = await controllerMap.future;
-      mapController.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(lat, long), zoom: 14.4746),
-        ),
-      );
-    }
-    update();
+    getViewAddressData();
+    controllerMap = Completer<GoogleMapController>();
+    super.onInit();
   }
 
   @override
@@ -86,13 +59,13 @@ class ControllerViewAddressImp extends ControllerViewAddress {
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
+        data.removeWhere((e) => e.addressId == addressid);
         Get.snackbar(
           "نبية",
           "تم حذف العنوان",
           backgroundColor: Color(0xFFF04628),
           duration: const Duration(seconds: 1),
         );
-        // Get.offNamed(AppRoute.viewAddress);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -102,9 +75,9 @@ class ControllerViewAddressImp extends ControllerViewAddress {
 
   @override
   goToEditAddress() {
-    Get.toNamed(
-      AppRoute.editMapDemo,
-      arguments: {"addressModel": addressModel},
-    );
+    // Get.toNamed(
+    //   AppRoute.editMapDemo,
+    //   arguments: {"addressModel": addressModel},
+    // );
   }
 }

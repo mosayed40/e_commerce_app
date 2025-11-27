@@ -26,7 +26,7 @@ class ViewAddress extends StatelessWidget {
         actionsPadding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
         actions: const [
           CustomIconBack(),
-          Expanded(flex: 4, child: CustomTitlePage(title: "Addresses")),
+          Expanded(flex: 4, child: CustomTitlePage(title: "address")),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -37,25 +37,14 @@ class ViewAddress extends StatelessWidget {
         child: Icon(Icons.add, color: Colors.white, size: 30),
       ),
       body: GetBuilder<ControllerViewAddressImp>(
-        builder: (controller) =>
-            // controller.data.isEmpty
-            // ? const Center(
-            //     child: Text(
-            //       "لا يوجد عناوين حالياً",
-            //       style: TextStyle(fontSize: 18),
-            //     ),
-            //   )
-            // :
-            HandlingDatatView(
-              statusRequest: controller.statusRequest,
-              widget: ListView.builder(
-                itemCount: controller.data.length,
-                itemBuilder: (context, index) => CardAddress(
-                  addressModel: controller.data[index],
-                  controller: controller,
-                ),
-              ),
-            ),
+        builder: (controller) => HandlingDatatView(
+          statusRequest: controller.statusRequest,
+          widget: ListView.builder(
+            itemCount: controller.data.length,
+            itemBuilder: (context, index) =>
+                CardAddress(addressModel: controller.data[index]),
+          ),
+        ),
       ),
     );
   }
@@ -63,99 +52,100 @@ class ViewAddress extends StatelessWidget {
 
 class CardAddress extends StatelessWidget {
   final AddressModel addressModel;
-  final ControllerViewAddressImp controller;
-
-  const CardAddress({
-    super.key,
-    required this.addressModel,
-    required this.controller,
-  });
+  const CardAddress({super.key, required this.addressModel});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              addressModel.addressName ?? "",
-              style: TextStyle(color: AppColors.primaryColor, fontSize: 30),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Stack(
+    return GetBuilder<ControllerViewAddressImp>(
+      builder: (controller) => HandlingDatatView(
+        statusRequest: controller.statusRequest,
+        widget: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: ListTile(
-                  title: CustomTextAddress(
-                    title: "addressCity",
-                    body: addressModel.addressCity!,
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomTextAddress(
-                        title: "addressStreet",
-                        body: addressModel.addressStreet!,
-                      ),
-                      CustomTextAddress(
-                        title: "phoneNumber",
-                        body: "${addressModel.addressPhone}",
-                      ),
-                    ],
-                  ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  addressModel.addressName ?? "",
+                  style: TextStyle(color: AppColors.primaryColor, fontSize: 30),
                 ),
               ),
-              Positioned(
-                top: 5,
-                left: controller.lang == "ar" ? 15 : null,
-                right: controller.lang == "ar" ? null : 15,
-                child: Column(
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.edit,
-                        color: AppColors.buttonColor,
+              const SizedBox(height: 10),
+              Stack(
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListTile(
+                      title: CustomTextAddress(
+                        title: "addressCity",
+                        body: addressModel.addressCity!,
                       ),
-                      onPressed: () => controller.goToEditAddress(),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextAddress(
+                            title: "addressStreet",
+                            body: addressModel.addressStreet!,
+                          ),
+                          CustomTextAddress(
+                            title: "phoneNumber",
+                            body: "${addressModel.addressPhone}",
+                          ),
+                        ],
+                      ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: () =>
-                          controller.deleteAddress(addressModel.addressId!),
+                  ),
+                  Positioned(
+                    top: 5,
+                    left: controller.lang == "ar" ? 15 : null,
+                    right: controller.lang == "ar" ? null : 15,
+                    child: Column(
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.edit,
+                            color: AppColors.buttonColor,
+                          ),
+                          onPressed: () => controller.goToEditAddress(),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () =>
+                              controller.deleteAddress(addressModel.addressId!),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                ],
+              ),
+
+              CustomGoogleMap(
+                marker: [
+                  Marker(
+                    markerId: MarkerId("${addressModel.addressId}"),
+                    position: LatLng(
+                      addressModel.addressLat!,
+                      addressModel.addressLong!,
+                    ),
+                  ),
+                ],
+                cameraPosition: CameraPosition(
+                  target: LatLng(
+                    addressModel.addressLat!,
+                    addressModel.addressLong!,
+                  ),
+                  zoom: 14.4746,
                 ),
+                onMapCreated: (GoogleMapController controllerMap) {
+                  controller.controllerMap.complete(controllerMap);
+                },
               ),
             ],
           ),
-          Container(
-            height: Get.height / 3.5,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.grey[200],
-            ),
-            child: HandlingDatatView(
-              statusRequest: controller.statusRequest,
-              widget: CustomGoogleMap(
-                marker: controller.markers,
-                cameraPosition: controller.cameraPosition,
-                onMapCreated: (GoogleMapController controllerMap) {
-                  controller.controllerMap.complete(controllerMap);
-                  controller.lat = addressModel.addressLat!;
-                  controller.lat = addressModel.addressLong!;
-                },
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
