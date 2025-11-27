@@ -20,11 +20,7 @@ class CustomSettingPageOptins extends StatelessWidget {
         "titel": "orders".tr,
         "icon": Icon(Icons.shopping_cart_checkout_outlined),
       },
-      {
-        "id": "3",
-        "titel": "address".tr,
-        "icon": Icon(Icons.location_on_outlined),
-      },
+      {"id": "3", "titel": "archive".tr, "icon": Icon(Icons.archive_outlined)},
       {
         "id": "4",
         "titel": "aboutUs".tr,
@@ -35,7 +31,12 @@ class CustomSettingPageOptins extends StatelessWidget {
         "titel": "contactUs".tr,
         "icon": Icon(Icons.phone_callback_outlined),
       },
-      {"id": "6", "titel": "logOut".tr, "icon": Icon(Icons.exit_to_app)},
+      {
+        "id": "6",
+        "titel": "address".tr,
+        "icon": Icon(Icons.location_on_outlined),
+      },
+      {"id": "7", "titel": "logOut".tr, "icon": Icon(Icons.exit_to_app)},
     ];
     return Column(
       children: [
@@ -51,23 +52,25 @@ class CustomSettingPageOptins extends StatelessWidget {
                       if (data[i]['id'] == "2") {
                         settingController.goToViewOreder();
                       } else if (data[i]['id'] == "3") {
-                        settingController.goToViewAddress();
+                        print("Arcive");
                       } else if (data[i]['id'] == "4") {
                         print("About us");
                       } else if (data[i]['id'] == "5") {
                         print("Contact us");
                       } else if (data[i]['id'] == "6") {
+                        settingController.goToViewAddress();
+                      } else if (data[i]['id'] == "7") {
                         settingController.logOut();
                       }
                     },
                     title: Text(
                       "${data[i]['titel']}",
                       style: TextStyle(
-                        color: data[i]['id'] == "6" ? Colors.red : Colors.black,
+                        color: data[i]['id'] == "7" ? Colors.red : Colors.black,
                       ),
                     ),
                     trailing: data[i]['icon'],
-                    iconColor: data[i]['id'] == "6" ? Colors.red : Colors.black,
+                    iconColor: data[i]['id'] == "7" ? Colors.red : Colors.black,
                   ),
                 ),
               ],

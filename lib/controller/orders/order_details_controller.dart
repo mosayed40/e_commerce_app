@@ -14,7 +14,6 @@ abstract class OrderDetailsController extends GetxController {
 
 class OrderDetailsControllerImp extends OrderDetailsController {
   OrdersData ordersData = OrdersData(Get.find<Crud>());
-
   StatusRequest statusRequest = StatusRequest.loading;
   OrdersModel? ordersModel;
   Completer<GoogleMapController> controllerMap = Completer();

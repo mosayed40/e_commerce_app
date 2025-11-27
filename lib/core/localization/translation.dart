@@ -107,8 +107,9 @@ class MyTranslation extends Translations {
       "address": "عناوينى",
       "aboutUs": "معلومات عنا",
       "contactUs": "اتصل بنا",
-      "logOut": "تسجيل الخروج",
+      "archive": "أرشيف",
       "language": "اللغة",
+      "logOut": "تسجيل الخروج",
     },
     //========================================================
     // English Language
@@ -217,8 +218,9 @@ class MyTranslation extends Translations {
       "address": "My Address",
       "aboutUs": "About Us",
       "contactUs": "Contact Us",
-      "logOut": "Log Out",
+      "archive": "Archive",
       "language": "Language",
+      "logOut": "Log Out",
     },
   };
 }

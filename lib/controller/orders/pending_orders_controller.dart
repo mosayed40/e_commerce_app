@@ -16,7 +16,6 @@ abstract class OrderController extends GetxController {
 
 class OrderControllerImp extends OrderController {
   OrdersData ordersData = OrdersData(Get.find<Crud>());
-  // late int usersid = myServices.sharedPreferences.getInt("id")!;
   StatusRequest statusRequest = StatusRequest.loading;
   MyServices myServices = Get.find();
   List<OrdersModel> data = [];

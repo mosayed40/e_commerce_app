@@ -65,49 +65,12 @@ class Setting extends GetView<LocaleController> {
                 top: 0,
                 right: controllerImp.lang == "en" ? 10 : null,
                 left: controllerImp.lang == "en" ? null : 10,
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        controller.changeLange("ar");
-                      },
-                      icon: Container(
-                        width: 35,
-                        height: 35,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2F1E49),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text("ع", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        controller.changeLange("en");
-                      },
-                      icon: Container(
-                        width: 35,
-                        height: 35,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2F1E49),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          "En",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: CustomLangSetting(),
               ),
             ],
           ),
           const SizedBox(height: 50),
           CustomSettingPageOptins(),
-          CustomLangSetting(),
         ],
       ),
     );

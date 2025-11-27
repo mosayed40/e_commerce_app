@@ -7,51 +7,38 @@ class CustomLangSetting extends GetView<LocaleController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+    return SizedBox(
       child: Row(
         children: [
-          Text(
-            "language".tr,
-            style: TextStyle(color: Colors.black, fontSize: 20),
+          IconButton(
+            onPressed: () {
+              controller.changeLange("ar");
+            },
+            icon: Container(
+              width: 35,
+              height: 35,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color(0xFF7139BF),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text("ع", style: TextStyle(color: Colors.white)),
+            ),
           ),
-          Spacer(),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  controller.changeLange("ar");
-                },
-                icon: Container(
-                  width: 35,
-                  height: 35,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF7139BF),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text("ع", style: TextStyle(color: Colors.white)),
-                ),
+          IconButton(
+            onPressed: () {
+              controller.changeLange("en");
+            },
+            icon: Container(
+              width: 35,
+              height: 35,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color(0xFF7139BF),
+                borderRadius: BorderRadius.circular(10),
               ),
-              IconButton(
-                onPressed: () {
-                  controller.changeLange("en");
-                },
-                icon: Container(
-                  width: 35,
-                  height: 35,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF7139BF),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Text(
-                    "En",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ],
+              child: const Text("En", style: TextStyle(color: Colors.white)),
+            ),
           ),
         ],
       ),

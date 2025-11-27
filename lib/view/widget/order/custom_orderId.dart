@@ -11,14 +11,13 @@ class CustomOrderid extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5),
 
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "orderId".tr,
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
           Text(
-            " :       $orderId",
+            " :    $orderId",
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ],
