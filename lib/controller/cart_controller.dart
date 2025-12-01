@@ -75,6 +75,7 @@ class ControllerInCartImp extends ControllerInCart {
           backgroundColor: Color(0xFF3199EE),
           duration: const Duration(seconds: 1),
         );
+        Get.toNamed(AppRoute.shoppingCartPage);
       } else {
         statusRequest = StatusRequest.failure;
       }

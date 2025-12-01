@@ -47,6 +47,7 @@ class AppLinkApi {
 
   // Order
   static const String checkOut = "$server/orders/checkout.php";
+  static const String archive = "$server/orders/archive.php";
   static const String deleteOrders = "$server/orders/delete.php";
   static const String ordersDetails = "$server/orders/details.php";
   static const String pendingOrders = "$server/orders/pending.php";

@@ -1,21 +1,18 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
-import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/order_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
-import 'package:e_commerce_app/data/data_source/remote/orders_data.dart';
+import 'package:e_commerce_app/data/data_source/remote/archive_order_data.dart';
 import 'package:get/get.dart';
 
-abstract class OrderController extends GetxController {
-  getPendingOrder();
+abstract class OrderArchiveController extends GetxController {
+  getViewOrder();
   printOrderStatus(int val);
-  goToOrderDetails(OrdersModel listModel);
-  deleteOrder(int orderId);
 }
 
-class OrderControllerImp extends OrderController {
-  OrdersData ordersData = OrdersData(Get.find<Crud>());
+class OrderArchiveControllerImp extends OrderArchiveController {
+  OrderArchive orderArchive = OrderArchive(Get.find<Crud>());
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
   List<OrdersModel> data = [];
@@ -27,15 +24,16 @@ class OrderControllerImp extends OrderController {
   void onInit() {
     usersid = myServices.sharedPreferences.getInt("id")!;
     lang = myServices.sharedPreferences.getString("lang");
-    getPendingOrder();
+    getViewOrder();
+
     super.onInit();
   }
 
   @override
-  getPendingOrder() async {
+  getViewOrder() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await ordersData.pendingOrders(usersid!);
+    var response = await orderArchive.viewOrders(usersid!);
     statusRequest = handingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -59,25 +57,5 @@ class OrderControllerImp extends OrderController {
     } else {
       return "statusOrder3".tr;
     }
-  }
-
-  @override
-  goToOrderDetails(listModel) {
-    Get.toNamed(AppRoute.orderDetails, arguments: {"listModel": listModel});
-  }
-
-  @override
-  deleteOrder(orderId) async {
-    var response = await ordersData.deleteOrders(orderId);
-    statusRequest = handingData(response);
-    if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-        data.removeWhere((element) => element.ordersId == orderId);
-        Get.snackbar("تنبية", "تم حذف الطلب");
-      } else {
-        Get.snackbar("تنبية", "لا يمكن حذف الطلب");
-      }
-    }
-    update();
   }
 }

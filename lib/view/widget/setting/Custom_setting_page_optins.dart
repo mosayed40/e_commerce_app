@@ -52,7 +52,7 @@ class CustomSettingPageOptins extends StatelessWidget {
                       if (data[i]['id'] == "2") {
                         settingController.goToViewOreder();
                       } else if (data[i]['id'] == "3") {
-                        print("Arcive");
+                        settingController.goToViewOrederArchive();
                       } else if (data[i]['id'] == "4") {
                         print("About us");
                       } else if (data[i]['id'] == "5") {

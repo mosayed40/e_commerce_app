@@ -1,6 +1,5 @@
 import 'package:e_commerce_app/core/class/c_r_u_d.dart';
 import 'package:e_commerce_app/core/class/status_request.dart';
-import 'package:e_commerce_app/core/constant/routes.dart';
 import 'package:e_commerce_app/core/functions/handling_data_controller.dart';
 import 'package:e_commerce_app/core/middle_ware/myfavorite_model.dart';
 import 'package:e_commerce_app/core/services/services.dart';
@@ -13,7 +12,6 @@ abstract class FavoriteController extends GetxController {
   addFavorite(int itemsid);
   removeFavorite(int itemsid);
   deleteFromFavorite(int catId);
-  goToCartPage();
 }
 
 class FavoriteControllerImp extends FavoriteController {
@@ -83,10 +81,5 @@ class FavoriteControllerImp extends FavoriteController {
     favoriteData.favoriteDelete(catId);
     data.removeWhere((element) => element.favoriteId == catId);
     update();
-  }
-
-  @override
-  goToCartPage() {
-    Get.offNamed(AppRoute.shoppingCartPage);
   }
 }

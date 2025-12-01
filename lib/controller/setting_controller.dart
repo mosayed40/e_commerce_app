@@ -7,6 +7,7 @@ abstract class SettingController extends GetxController {
   logOut();
   goToViewAddress();
   goToViewOreder();
+  goToViewOrederArchive();
 }
 
 class SettingControllerImp extends SettingController {
@@ -38,5 +39,10 @@ class SettingControllerImp extends SettingController {
   @override
   goToViewOreder() {
     Get.toNamed(AppRoute.pendingOrder);
+  }
+
+  @override
+  goToViewOrederArchive() {
+    Get.toNamed(AppRoute.archiveOrder);
   }
 }

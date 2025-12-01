@@ -84,6 +84,8 @@ class MyTranslation extends Translations {
       // صفحة أوردراتي
       "titlePageMyOrders": "أوردراتي",
       "paymentMethod": "طريقة الدفع",
+      // صفحة أرشيف الطلبات
+      "titlePgaeOrderArchive": "أرشيف الطلبات",
       // صفحة تفاصيل الطلب
       "titlePageOrderDetails": "تفاصيل الطلب",
       "statusOrder": "حالة الطلب",
@@ -101,7 +103,7 @@ class MyTranslation extends Translations {
       "phoneNumber": "رقم الهاتف",
       "addressCity": "المدينة",
       "addressStreet": "الشارع",
-      // Setting
+      // صفحة الاعدادت
       "notifications": "عرض الاشعارات",
       "orders": "أوردراتي",
       "address": "عناوينى",
@@ -191,9 +193,11 @@ class MyTranslation extends Translations {
       "titlePageShoppingCart": "Shopping Cart",
       // Favorite Page
       "titlePageFavorit": "Favorite ",
-      // My orders
+      // My orders Page
       "titlePageMyOrders": "My orders",
       "paymentMethod": "Payment Method",
+      // Order archive page
+      "titlePgaeOrderArchive": "Order Archive",
 
       // Order Details Page
       "titlePageOrderDetails": "Order Details",
