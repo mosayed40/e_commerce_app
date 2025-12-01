@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/controller/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomSettingPageOptins extends StatelessWidget {
   const CustomSettingPageOptins({super.key});
@@ -48,7 +49,7 @@ class CustomSettingPageOptins extends StatelessWidget {
               children: [
                 Material(
                   child: ListTile(
-                    onTap: () {
+                    onTap: () async {
                       if (data[i]['id'] == "2") {
                         settingController.goToViewOreder();
                       } else if (data[i]['id'] == "3") {
@@ -56,7 +57,7 @@ class CustomSettingPageOptins extends StatelessWidget {
                       } else if (data[i]['id'] == "4") {
                         print("About us");
                       } else if (data[i]['id'] == "5") {
-                        print("Contact us");
+                        await launchUrl(Uri.parse("tel:+201091815177"));
                       } else if (data[i]['id'] == "6") {
                         settingController.goToViewAddress();
                       } else if (data[i]['id'] == "7") {
