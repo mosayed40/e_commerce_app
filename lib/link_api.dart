@@ -57,4 +57,8 @@ class AppLinkApi {
   static const String eidtAddress = "$server/address/eidt.php";
   static const String deleteAddress = "$server/address/delete.php";
   static const String viewAddress = "$server/address/view.php";
+
+  // Offers
+  static const String offers = "$server/offer/offers.php";
+  static const String searchOffres = "$server/offer/search.php";
 }

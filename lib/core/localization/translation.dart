@@ -103,6 +103,8 @@ class MyTranslation extends Translations {
       "phoneNumber": "رقم الهاتف",
       "addressCity": "المدينة",
       "addressStreet": "الشارع",
+      // The Offers Page
+      "titlePageOffers": "خصومات",
       // صفحة الاعدادت
       "notifications": "عرض الاشعارات",
       "orders": "أوردراتي",
@@ -110,7 +112,7 @@ class MyTranslation extends Translations {
       "aboutUs": "معلومات عنا",
       "contactUs": "اتصل بنا",
       "archive": "أرشيف",
-      "language": "اللغة",
+      "offers": "خصومات",
       "logOut": "تسجيل الخروج",
     },
     //========================================================
@@ -216,6 +218,8 @@ class MyTranslation extends Translations {
       "phoneNumber": "Phone Number",
       "addressCity": "City",
       "addressStreet": "Street",
+      // The Offers Page
+      "titlePageOffers": "Offers",
       // Setting
       "notifications": "Disable Notifications",
       "orders": "My Orders",
@@ -223,7 +227,7 @@ class MyTranslation extends Translations {
       "aboutUs": "About Us",
       "contactUs": "Contact Us",
       "archive": "Archive",
-      "language": "Language",
+      "offers": "Offers",
       "logOut": "Log Out",
     },
   };

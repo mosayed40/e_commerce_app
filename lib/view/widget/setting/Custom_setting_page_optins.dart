@@ -37,7 +37,12 @@ class CustomSettingPageOptins extends StatelessWidget {
         "titel": "address".tr,
         "icon": Icon(Icons.location_on_outlined),
       },
-      {"id": "7", "titel": "logOut".tr, "icon": Icon(Icons.exit_to_app)},
+      {
+        "id": "7",
+        "titel": "offers".tr,
+        "icon": Icon(Icons.local_offer_outlined),
+      },
+      {"id": "8", "titel": "logOut".tr, "icon": Icon(Icons.exit_to_app)},
     ];
     return Column(
       children: [
@@ -61,17 +66,19 @@ class CustomSettingPageOptins extends StatelessWidget {
                       } else if (data[i]['id'] == "6") {
                         settingController.goToViewAddress();
                       } else if (data[i]['id'] == "7") {
+                        settingController.goToViewOffers();
+                      } else if (data[i]['id'] == "8") {
                         settingController.logOut();
                       }
                     },
                     title: Text(
                       "${data[i]['titel']}",
                       style: TextStyle(
-                        color: data[i]['id'] == "7" ? Colors.red : Colors.black,
+                        color: data[i]['id'] == "8" ? Colors.red : Colors.black,
                       ),
                     ),
                     trailing: data[i]['icon'],
-                    iconColor: data[i]['id'] == "7" ? Colors.red : Colors.black,
+                    iconColor: data[i]['id'] == "8" ? Colors.red : Colors.black,
                   ),
                 ),
               ],

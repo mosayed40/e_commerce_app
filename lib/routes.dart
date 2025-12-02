@@ -5,6 +5,7 @@ import 'package:e_commerce_app/view/screen/address/eidt_address.dart';
 import 'package:e_commerce_app/view/screen/address/add_map_demo.dart';
 import 'package:e_commerce_app/view/screen/address/view_address.dart';
 import 'package:e_commerce_app/view/screen/archive.dart';
+import 'package:e_commerce_app/view/screen/offres.dart';
 import 'package:e_commerce_app/view/screen/shopping_cart.dart';
 import 'package:e_commerce_app/view/screen/cart_check_out.dart';
 import 'package:e_commerce_app/view/screen/home_screen.dart';
@@ -78,4 +79,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.pendingOrder, page: () => const PendingOrder()),
   GetPage(name: AppRoute.archiveOrder, page: () => const ArchiveOrders()),
   GetPage(name: AppRoute.orderDetails, page: () => const OrderDetails()),
+  GetPage(name: AppRoute.offers, page: () => const Offres()),
 ];

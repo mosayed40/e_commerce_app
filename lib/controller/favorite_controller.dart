@@ -15,9 +15,9 @@ abstract class FavoriteController extends GetxController {
 }
 
 class FavoriteControllerImp extends FavoriteController {
-  MyServices myServices = Get.find();
   FavoriteData favoriteData = FavoriteData(Get.find<Crud>());
   late StatusRequest statusRequest;
+  MyServices myServices = Get.find();
   late int usersid = myServices.sharedPreferences.getInt("id")!;
   List<MyfavoriteModel> data = [];
   Map isFavorite = {};

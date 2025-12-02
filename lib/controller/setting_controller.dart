@@ -8,6 +8,7 @@ abstract class SettingController extends GetxController {
   goToViewAddress();
   goToViewOreder();
   goToViewOrederArchive();
+  goToViewOffers();
 }
 
 class SettingControllerImp extends SettingController {
@@ -44,5 +45,10 @@ class SettingControllerImp extends SettingController {
   @override
   goToViewOrederArchive() {
     Get.toNamed(AppRoute.archiveOrder);
+  }
+
+  @override
+  goToViewOffers() {
+    Get.toNamed(AppRoute.offers);
   }
 }

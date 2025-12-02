@@ -31,4 +31,5 @@ class AppRoute {
   static const String archiveOrder = "/archiveOrder";
   static const String orderDetails = "/orderDetails";
   static const String editOrder = "/editOrder";
+  static const String offers = "/offers";
 }
