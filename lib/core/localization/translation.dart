@@ -67,6 +67,10 @@ class MyTranslation extends Translations {
       "cart": "تسوق",
       "favorite": "مفضلة",
       "setting": "أعدادات",
+      "titleDialog": "تأكيد الخروج",
+      "bodyDialog": "هل تريد الخروج من التطبيق؟",
+      "buttonDialog1": "إلغاء",
+      "buttonDialog2": "خروج",
       // ألصفحة الرئيسية
       "search": "البحث عن المنتجات",
       "titleCardHome": "مفاجأة الصيف",
@@ -181,6 +185,10 @@ class MyTranslation extends Translations {
       "cart": "Shopping",
       "favorite": "Favorite",
       "setting": "Setting",
+      "titleDialog": "Confirm checkout",
+      "bodyDialog": "Do you want to exit the app?",
+      "buttonDialog1": "cancel",
+      "buttonDialog2": "exit",
       // Home Page
       "search": "Search For products",
       "titleCardHome": "A summer surprise",

@@ -38,7 +38,34 @@ class HomeScreenPage extends StatelessWidget {
           ),
         ),
 
-        body: controller.pages.elementAt(controller.currentPage),
+        body: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (!didPop) {
+              bool? exitApp = await showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("titleDialog".tr),
+                  content: Text("bodyDialog".tr),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: Text("buttonDialog1".tr),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: Text("buttonDialog2".tr),
+                    ),
+                  ],
+                ),
+              );
+              if (exitApp == true) {
+                Navigator.of(context).pop();
+              }
+            }
+          },
+          child: controller.pages[controller.currentPage],
+        ),
       ),
     );
   }
