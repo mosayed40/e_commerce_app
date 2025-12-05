@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 abstract class OrderArchiveController extends GetxController {
   getViewOrder();
   printOrderStatus(int val);
+  ordersRating(int orderId, double rating, String comment);
 }
 
 class OrderArchiveControllerImp extends OrderArchiveController {
@@ -31,6 +32,7 @@ class OrderArchiveControllerImp extends OrderArchiveController {
 
   @override
   getViewOrder() async {
+    data.clear();
     statusRequest = StatusRequest.loading;
     update();
     var response = await orderArchive.viewOrders(usersid!);
@@ -57,5 +59,22 @@ class OrderArchiveControllerImp extends OrderArchiveController {
     } else {
       return "statusOrder3".tr;
     }
+  }
+
+  @override
+  ordersRating(orderId, rating, comment) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await orderArchive.ordersRating(orderId, rating, comment);
+    statusRequest = handingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        print("=============================$response");
+        getViewOrder();
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 }

@@ -1,8 +1,6 @@
 class AppLinkApi {
-  static const String server = "http://192.168.1.18/e_commerce_app";
-  // static const String server = "http://10.0.2.2/e_commerce_app";
-  static const String imageStatic = "http://192.168.1.18/e_commerce_app/upload";
-  // static const String imageStatic = "http://10.0.2.2/e_commerce_app/upload";
+  static const String server = "http://192.168.1.2/e_commerce_app";
+  static const String imageStatic = "http://192.168.1.2/e_commerce_app/upload";
   // Images
   static const String imagesCategoreis = "$imageStatic/categories";
   static const String imagesItems = "$imageStatic/items";
@@ -60,5 +58,6 @@ class AppLinkApi {
 
   // Offers
   static const String offers = "$server/offer/offers.php";
+  static const String ordersRating = "$server/rating.php";
   static const String searchOffres = "$server/offer/search.php";
 }

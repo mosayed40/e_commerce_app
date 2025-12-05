@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class CustomListOffers extends StatelessWidget {
   final ItemsModel listModel;
+
   const CustomListOffers({super.key, required this.listModel});
   @override
   Widget build(BuildContext context) {
@@ -65,10 +66,18 @@ class CustomListOffers extends StatelessWidget {
                   children: [
                     // Price
                     Text(
-                      "${listModel.itemsPrice} \$",
+                      "${listModel.itemsPrice! - (listModel.itemsPrice! * listModel.itemsDiscount! / 100)} \$",
                       style: const TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      "${listModel.itemsPrice!} \$",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
                       ),
                     ),
                     Container(
@@ -95,9 +104,29 @@ class CustomListOffers extends StatelessWidget {
           ),
         ),
         Positioned(
+          top: 10,
+          left: 10,
+
+          child: Image.asset(AppImageAsset.discount, width: 80),
+        ),
+        Positioned(
           top: 20,
-          left: 20,
-          child: Image.asset(AppImageAsset.discount, width: 100),
+          right: 20,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF75044),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              "-${listModel.itemsDiscount}%",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ),
       ],
     );

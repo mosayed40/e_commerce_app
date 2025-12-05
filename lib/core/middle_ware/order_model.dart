@@ -9,6 +9,8 @@ class OrdersModel {
   String? ordersPaymentMethod;
   String? ordersDateTime;
   int? ordersStatus;
+  double? ordersRating;
+  String? ordersNoterating;
   int? addressId;
   int? addressUsersId;
   String? addressCity;
@@ -29,6 +31,8 @@ class OrdersModel {
     this.ordersPaymentMethod,
     this.ordersDateTime,
     this.ordersStatus,
+    this.ordersRating,
+    this.ordersNoterating,
     this.addressId,
     this.addressUsersId,
     this.addressCity,
@@ -50,6 +54,8 @@ class OrdersModel {
     ordersPaymentMethod = json['orders_payment_method'];
     ordersDateTime = json['orders_date_time'];
     ordersStatus = json['orders_status'];
+    ordersRating = (json['orders_rating'] as num?)?.toDouble();
+    ordersNoterating = json['orders_noterating'];
     addressId = json['address_id'];
     addressUsersId = json['address_users_id'];
     addressCity = json['address_city'];
@@ -72,6 +78,8 @@ class OrdersModel {
     data['orders_payment_method'] = ordersPaymentMethod;
     data['orders_date_time'] = ordersDateTime;
     data['orders_status'] = ordersStatus;
+    data['orders_rating'] = ordersRating;
+    data['orders_noterating'] = ordersNoterating;
     data['address_id'] = addressId;
     data['address_users_id'] = addressUsersId;
     data['address_city'] = addressCity;

@@ -90,6 +90,13 @@ class MyTranslation extends Translations {
       "paymentMethod": "طريقة الدفع",
       // صفحة أرشيف الطلبات
       "titlePgaeOrderArchive": "أرشيف الطلبات",
+      "button": "تصنيف",
+      // صفحة تصنيف الطلبات ==>
+      "titleRating": "تصنيف الطلبات",
+      "messageRating":
+          "انقر على نجمة لتعيين تقييمك. أضف المزيد من الوصف هنا إذا أردت.",
+      "buttonText": "تقديم",
+      "commentText": "تعيين تلميح التعليق المخصص الخاص بك",
       // صفحة تفاصيل الطلب
       "titlePageOrderDetails": "تفاصيل الطلب",
       "statusOrder": "حالة الطلب",
@@ -107,7 +114,7 @@ class MyTranslation extends Translations {
       "phoneNumber": "رقم الهاتف",
       "addressCity": "المدينة",
       "addressStreet": "الشارع",
-      // The Offers Page
+      // صفحة العروض
       "titlePageOffers": "خصومات",
       // صفحة الاعدادت
       "notifications": "عرض الاشعارات",
@@ -208,7 +215,13 @@ class MyTranslation extends Translations {
       "paymentMethod": "Payment Method",
       // Order archive page
       "titlePgaeOrderArchive": "Order Archive",
-
+      "button": "Rating",
+      // rating dialog ==>
+      "titleRating": "Rating Dialog",
+      "messageRating":
+          "Tap a star to set your rating. Add more description here if you want.",
+      "buttonText": "Submit",
+      "commentText": "Set your custom comment hint",
       // Order Details Page
       "titlePageOrderDetails": "Order Details",
       "statusOrder": "Status",
